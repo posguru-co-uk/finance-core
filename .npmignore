@@ -1,0 +1,6 @@
+stories/
+.storybook/
+node_modules/
+*.log
+*.mdx
+*.stories.js
