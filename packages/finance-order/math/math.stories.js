@@ -1,8 +1,8 @@
 import React from 'react';
-import { calculateTwoNumbers } from './math';
+import { calculateTwoNumbers } from './';
 
 export default {
-  title: 'Sample/Math/CalculateTwoNumbers',
+  title: 'finance-order/Math/CalculateTwoNumbers',
   argTypes: {
     a: { control: 'number' },
     b: { control: 'number' },

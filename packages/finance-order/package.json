@@ -1,11 +1,16 @@
 {
-  "name": "@posguru/finance-core",
+  "name": "@posguru/finance-order",
   "version": "1.0.0",
   "description": "Universal JavaScript library for finance-related math functions, usable in both Node.js (Express) and React applications.",
+  "main": "index.cjs",
+  "module": "index.js",
+  "exports": {
+    "require": "./index.cjs",
+    "import": "./index.js"
+  },
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -28,18 +33,6 @@
   "homepage": "https://github.com/posguru-co-uk/finance-core#readme",
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
-    "@storybook/addon-essentials": "7.6.15",
-    "@storybook/addon-interactions": "7.6.15",
-    "@storybook/addon-links": "7.6.15",
-    "@storybook/addon-onboarding": "1.0.11",
-    "@storybook/blocks": "7.6.15",
-    "@storybook/react": "7.6.15",
-    "@storybook/react-webpack5": "7.6.15",
-    "@storybook/test": "7.6.15",
-    "prop-types": "15.8.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "storybook": "7.6.15"
   },
   "files": [
     "src/",
