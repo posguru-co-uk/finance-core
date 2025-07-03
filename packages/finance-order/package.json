@@ -35,7 +35,7 @@
   "devDependencies": {
   },
   "files": [
-    "src/",
+    "finance-order/",
     "dist/",
     "README.md"
   ]
