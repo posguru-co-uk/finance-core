@@ -111,7 +111,7 @@ neworder.billAmount = neworder.items.reduce(
   return neworder;
 }
 
-export function createOrderItem(product: Product){
+export function createOrderItem(product: Product): OrderItem{
     const newOrderItem: OrderItem = {
     id: Date.now().toString(),
     productId: product.id,
