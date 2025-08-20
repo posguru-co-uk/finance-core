@@ -1,3 +1,42 @@
+export interface LocalizedText {
+    [langCode: string]: string;
+}
+export interface AddonItem {
+    id: number;
+    item: LocalizedText;
+    rank: number;
+    amount: string;
+    defaultSelect: boolean;
+}
+export interface Addon {
+    id: number;
+    name: LocalizedText;
+    rank: number;
+    status: "ACTIVE" | "INACTIVE" | string;
+    maximum: number;
+    minimum: number;
+    addonItems: AddonItem[];
+}
+export interface Product {
+    id: string;
+    name: LocalizedText;
+    allergens: string[];
+    masterItemId: string | null;
+    description: string;
+    color: string;
+    isSellOnTill: boolean;
+    categoryId: string;
+    costPrice: string;
+    salesPriceWithoutTax: string;
+    salesPrice: string;
+    taxRateId: string;
+    isDeleted: boolean;
+    createdBy: string;
+    updatedBy: string;
+    createdAt: string;
+    updatedAt: string;
+    addons: Addon[];
+}
 export type OrderItem = {
     id: number;
     name: string;
@@ -36,4 +75,4 @@ export type Order = {
  * @param products
  * @returns calculated order
  */
-export declare function applyInvoice(order: Order, products: number): Order;
+export declare function applyInvoice(order: Order, products: Array<Product>): Order;

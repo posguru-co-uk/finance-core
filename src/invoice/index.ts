@@ -1,3 +1,50 @@
+// Base localized text type
+export interface LocalizedText {
+  [langCode: string]: string;
+}
+
+// Addon Item
+export interface AddonItem {
+  id: number;
+  item: LocalizedText;
+  rank: number;
+  amount: string; // could be number if you want strict typing
+  defaultSelect: boolean;
+}
+
+// Addon Group
+export interface Addon {
+  id: number;
+  name: LocalizedText;
+  rank: number;
+  status: "ACTIVE" | "INACTIVE" | string;
+  maximum: number;
+  minimum: number;
+  addonItems: AddonItem[];
+}
+
+// Product Model
+export interface Product {
+  id: string;
+  name: LocalizedText;
+  allergens: string[];
+  masterItemId: string | null;
+  description: string;
+  color: string;
+  isSellOnTill: boolean;
+  categoryId: string;
+  costPrice: string;
+  salesPriceWithoutTax: string;
+  salesPrice: string;
+  taxRateId: string;
+  isDeleted: boolean;
+  createdBy: string;
+  updatedBy: string;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  addons: Addon[];
+}
+
 
 export type OrderItem = {
   id: number;
@@ -40,7 +87,7 @@ export type Order = {
  * @param products 
  * @returns calculated order
  */
-export function applyInvoice(order: Order, products: number): Order {
+export function applyInvoice(order: Order, products: Array<Product>): Order {
  const neworder: Order = {
     ...order,
     billWithoutDiscount: '', // override field
