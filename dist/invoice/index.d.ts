@@ -18,7 +18,7 @@ export interface Addon {
     addonItems: AddonItem[];
 }
 export interface Product {
-    id: string;
+    id: number;
     name: LocalizedText;
     allergens: string[];
     masterItemId: string | null;
@@ -35,7 +35,7 @@ export interface Product {
 }
 export interface OrderItem {
     id: String;
-    name: string;
+    name: LocalizedText;
     note: string | null;
     addons: any[];
     amount: number;
@@ -72,3 +72,4 @@ export interface Order {
  * @returns calculated order
  */
 export declare function applyInvoice(order: Order, products: Array<Product>): Order;
+export declare function createOrderItem(product: Product): OrderItem;

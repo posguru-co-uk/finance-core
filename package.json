@@ -16,7 +16,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc && vite build --minify false"
+    "build": "rimraf dist && tsc && vite build"
   },
   "keywords": [
     "finance",

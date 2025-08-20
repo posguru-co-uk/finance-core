@@ -25,7 +25,7 @@ export interface Addon {
 
 // Product Model
 export interface Product {
-  id: string;
+  id: number;
   name: LocalizedText;
   allergens: string[];
   masterItemId: string | null;
@@ -44,7 +44,7 @@ export interface Product {
 
 export interface OrderItem {
   id: String;
-  name: string;
+  name: LocalizedText;
   note: string | null;
   addons: any[]; // can refine later if addons have structure
   amount: number;
@@ -109,4 +109,25 @@ neworder.billAmount = neworder.items.reduce(
 );
 
   return neworder;
+}
+
+export function createOrderItem(product: Product){
+    const newOrderItem: OrderItem = {
+    id: Date.now().toString(),
+    productId: product.id,
+    quantity: 1,
+    addons: product.addons || [],
+    name: product.name,
+    note: null,
+    amount: product.salesPrice,
+    discount: 0,
+    totalCost: 0,
+    totalAmount: 0,
+    discountName: null,
+    discountType: null,
+    discountAmount: 0,
+    costWithoutDiscount: 0,
+  };
+
+  return newOrderItem;
 }

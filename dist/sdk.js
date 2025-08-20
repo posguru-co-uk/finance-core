@@ -1,26 +1,39 @@
-function applyInvoice(order, products) {
-  const neworder = {
-    ...order,
-    items: [...order.items]
+function u(o, s) {
+  const e = {
+    ...o,
+    items: [...o.items]
     // shallow copy of items
-  };
-  const productsMap = {};
-  for (const product of products) {
-    productsMap[product.id] = product;
+  }, i = {};
+  for (const t of s)
+    i[t.id] = t;
+  for (const t of o.items) {
+    const n = i[t.productId];
+    n && (t.amount = n.salesPrice, t.totalCost = t.quantity * t.amount);
   }
-  for (const item of order.items) {
-    const product = productsMap[item.productId];
-    if (product) {
-      item.amount = product.salesPrice;
-      item.totalCost = item.quantity * item.amount;
-    }
-  }
-  neworder.billAmount = neworder.items.reduce(
-    (sum, item) => sum + (item.totalCost ?? 0),
+  return e.billAmount = e.items.reduce(
+    (t, n) => t + (n.totalCost ?? 0),
     0
-  );
-  return neworder;
+  ), e;
+}
+function c(o) {
+  return {
+    id: Date.now().toString(),
+    productId: o.id,
+    quantity: 1,
+    addons: o.addons || [],
+    name: o.name,
+    note: null,
+    amount: o.salesPrice,
+    discount: 0,
+    totalCost: 0,
+    totalAmount: 0,
+    discountName: null,
+    discountType: null,
+    discountAmount: 0,
+    costWithoutDiscount: 0
+  };
 }
 export {
-  applyInvoice
+  u as applyInvoice,
+  c as createOrderItem
 };
