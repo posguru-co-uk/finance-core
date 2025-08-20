@@ -28,7 +28,7 @@ export interface Product {
     categoryId: string;
     costPrice: string;
     salesPriceWithoutTax: string;
-    salesPrice: string;
+    salesPrice: number;
     taxRateId: string;
     isDeleted: boolean;
     createdBy: string;
@@ -37,7 +37,7 @@ export interface Product {
     updatedAt: string;
     addons: Addon[];
 }
-export type OrderItem = {
+export interface OrderItem {
     id: number;
     name: string;
     note: string | null;
@@ -52,13 +52,13 @@ export type OrderItem = {
     discountType: string | null;
     discountAmount: number;
     costWithoutDiscount: number;
-};
-export type Order = {
+}
+export interface Order {
     id: string;
     items: OrderItem[];
     isPaid: boolean;
     status: "NEW" | "PAID" | "CANCELLED" | string;
-    billAmount: string;
+    billAmount: number;
     customerId: string | null;
     discountId: string | null;
     paidAmount: string;
@@ -68,7 +68,7 @@ export type Order = {
     totalQuantity: string;
     discountAmount: string;
     billWithoutDiscount: string;
-};
+}
 /**
  *
  * @param order

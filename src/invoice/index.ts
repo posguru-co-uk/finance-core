@@ -35,7 +35,7 @@ export interface Product {
   categoryId: string;
   costPrice: string;
   salesPriceWithoutTax: string;
-  salesPrice: string;
+  salesPrice: number;
   taxRateId: string;
   isDeleted: boolean;
   createdBy: string;
@@ -46,7 +46,7 @@ export interface Product {
 }
 
 
-export type OrderItem = {
+export interface OrderItem {
   id: number;
   name: string;
   note: string | null;
@@ -63,12 +63,12 @@ export type OrderItem = {
   costWithoutDiscount: number;
 };
 
-export type Order = {
+export interface Order {
   id: string;
   items: OrderItem[];
   isPaid: boolean;
   status: "NEW" | "PAID" | "CANCELLED" | string; // extend as needed
-  billAmount: string;
+  billAmount: number;
   customerId: string | null;
   discountId: string | null;
   paidAmount: string;
@@ -88,9 +88,29 @@ export type Order = {
  * @returns calculated order
  */
 export function applyInvoice(order: Order, products: Array<Product>): Order {
- const neworder: Order = {
+  // Clone the order so we don’t mutate the original
+  const neworder: Order = {
     ...order,
-    billWithoutDiscount: '', // override field
+    items: [...order.items], // shallow copy of items
   };
-    return neworder;
+
+  const productsMap: Record<string, Product> = {};
+  for (const product of products) {
+    productsMap[product.id] = product;
+  }
+
+for (const item of neworder.items) {
+  const product = productsMap[item.productId];
+  if (product) {
+    item.amount = product.salesPrice;
+    item.totalCost = item.quantity * product.salesPrice;
+  }
+}
+
+neworder.billAmount = neworder.items.reduce(
+  (sum, item) => sum + (item.totalCost ?? 0),
+  0
+);
+
+  return neworder;
 }
