@@ -1,20 +1,26 @@
-function n(e, i) {
-  const s = {
-    ...e,
-    items: [...e.items]
+function applyInvoice(order, products) {
+  const neworder = {
+    ...order,
+    items: [...order.items]
     // shallow copy of items
-  }, c = {};
-  for (const t of i)
-    c[t.id] = t;
-  for (const t of s.items) {
-    const o = c[t.productId];
-    o && (t.amount = o.salesPrice, t.totalCost = t.quantity * o.salesPrice);
+  };
+  const productsMap = {};
+  for (const product of products) {
+    productsMap[product.id] = product;
   }
-  return s.billAmount = s.items.reduce(
-    (t, o) => t + (o.totalCost ?? 0),
+  for (const item of order.items) {
+    const product = productsMap[item.productId];
+    if (product) {
+      item.amount = product.salesPrice;
+      item.totalCost = item.quantity * item.amount;
+    }
+  }
+  neworder.billAmount = neworder.items.reduce(
+    (sum, item) => sum + (item.totalCost ?? 0),
     0
-  ), s;
+  );
+  return neworder;
 }
 export {
-  n as applyInvoice
+  applyInvoice
 };

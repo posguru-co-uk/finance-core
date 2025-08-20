@@ -38,10 +38,6 @@ export interface Product {
   salesPrice: number;
   taxRateId: string;
   isDeleted: boolean;
-  createdBy: string;
-  updatedBy: string;
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
   addons: Addon[];
 }
 
@@ -99,11 +95,11 @@ export function applyInvoice(order: Order, products: Array<Product>): Order {
     productsMap[product.id] = product;
   }
 
-for (const item of neworder.items) {
+for (const item of order.items) {
   const product = productsMap[item.productId];
   if (product) {
     item.amount = product.salesPrice;
-    item.totalCost = item.quantity * product.salesPrice;
+    item.totalCost = item.quantity * item.amount;
   }
 }
 

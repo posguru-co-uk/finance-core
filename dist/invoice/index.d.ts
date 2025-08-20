@@ -31,10 +31,6 @@ export interface Product {
     salesPrice: number;
     taxRateId: string;
     isDeleted: boolean;
-    createdBy: string;
-    updatedBy: string;
-    createdAt: string;
-    updatedAt: string;
     addons: Addon[];
 }
 export interface OrderItem {

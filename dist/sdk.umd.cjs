@@ -1,1 +1,30 @@
-(function(t,o){typeof exports=="object"&&typeof module<"u"?o(exports):typeof define=="function"&&define.amd?define(["exports"],o):(t=typeof globalThis<"u"?globalThis:t||self,o(t.FinanceCore={}))})(this,function(t){"use strict";function o(s,u){const i={...s,items:[...s.items]},c={};for(const e of u)c[e.id]=e;for(const e of i.items){const n=c[e.productId];n&&(e.amount=n.salesPrice,e.totalCost=e.quantity*n.salesPrice)}return i.billAmount=i.items.reduce((e,n)=>e+(n.totalCost??0),0),i}t.applyInvoice=o,Object.defineProperty(t,Symbol.toStringTag,{value:"Module"})});
+(function(global, factory) {
+  typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.FinanceCore = {}));
+})(this, function(exports2) {
+  "use strict";
+  function applyInvoice(order, products) {
+    const neworder = {
+      ...order,
+      items: [...order.items]
+      // shallow copy of items
+    };
+    const productsMap = {};
+    for (const product of products) {
+      productsMap[product.id] = product;
+    }
+    for (const item of order.items) {
+      const product = productsMap[item.productId];
+      if (product) {
+        item.amount = product.salesPrice;
+        item.totalCost = item.quantity * item.amount;
+      }
+    }
+    neworder.billAmount = neworder.items.reduce(
+      (sum, item) => sum + (item.totalCost ?? 0),
+      0
+    );
+    return neworder;
+  }
+  exports2.applyInvoice = applyInvoice;
+  Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
+});
