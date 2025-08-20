@@ -38,7 +38,7 @@ export interface Product {
     addons: Addon[];
 }
 export interface OrderItem {
-    id: number;
+    id: String;
     name: string;
     note: string | null;
     addons: any[];
@@ -61,13 +61,13 @@ export interface Order {
     billAmount: number;
     customerId: string | null;
     discountId: string | null;
-    paidAmount: string;
-    carryBagFee: string;
+    paidAmount: number;
+    carryBagFee: number;
     paymentMode: "CASH" | "CARD" | "UPI" | string;
-    totalDiscount: string;
-    totalQuantity: string;
-    discountAmount: string;
-    billWithoutDiscount: string;
+    totalDiscount: number;
+    totalQuantity: number;
+    discountAmount: number;
+    billWithoutDiscount: number;
 }
 /**
  *

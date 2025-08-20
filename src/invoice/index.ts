@@ -47,7 +47,7 @@ export interface Product {
 
 
 export interface OrderItem {
-  id: number;
+  id: String;
   name: string;
   note: string | null;
   addons: any[]; // can refine later if addons have structure
@@ -71,13 +71,13 @@ export interface Order {
   billAmount: number;
   customerId: string | null;
   discountId: string | null;
-  paidAmount: string;
-  carryBagFee: string;
+  paidAmount: number;
+  carryBagFee: number;
   paymentMode: "CASH" | "CARD" | "UPI" | string; // extend as needed
-  totalDiscount: string;
-  totalQuantity: string;
-  discountAmount: string;
-  billWithoutDiscount: string;
+  totalDiscount: number;
+  totalQuantity: number;
+  discountAmount: number;
+  billWithoutDiscount: number;
 };
 
 
