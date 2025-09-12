@@ -5,17 +5,17 @@ export interface AddonItem {
     id: number;
     item: LocalizedText;
     rank: number;
-    amount: string;
+    amount: number;
     defaultSelect: boolean;
 }
 export interface Addon {
     id: number;
     name: LocalizedText;
     rank: number;
-    status: "ACTIVE" | "INACTIVE" | string;
+    status: 'ACTIVE' | 'INACTIVE' | string;
     maximum: number;
     minimum: number;
-    addonItems: AddonItem[];
+    addonItems: Record<string, AddonItem>;
 }
 export interface Product {
     id: number;
@@ -31,45 +31,97 @@ export interface Product {
     salesPrice: number;
     taxRateId: string;
     isDeleted: boolean;
-    addons: Addon[];
+    addonItems: Record<string, AddonItem>;
+    addons: Record<string, Addon>;
 }
 export interface OrderItem {
-    id: String;
+    id: number;
     name: LocalizedText;
-    note: string | null;
-    addons: any[];
-    amount: number;
-    discount: number | null;
-    quantity: number;
+    orderId: number;
     productId: number;
-    totalCost: number;
+    amount: number;
+    quantity: number;
     totalAmount: number;
-    discountName: string | null;
-    discountType: string | null;
+    createdBy?: string;
+    updatedBy?: string;
+    createdAt: Date;
+    updatedAt: Date;
+    totalCost: number;
+    note?: string;
     discountAmount: number;
     costWithoutDiscount: number;
+    discountId?: number;
+    refundId?: number;
+    isMiscellaneous?: boolean;
+    courseId?: number;
+    isPrinted?: boolean;
+    partnerId: string;
+    addons: Array<OrderItemsAddons>;
+}
+export interface OrderItemsAddons {
+    id: number;
+    orderItemsId: number;
+    addonItemId: number;
+    amount: number;
+    quantity: number;
+    totalAmount: number;
+    createdBy?: string | null;
+    updatedBy?: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    orderId: number;
+    partnerId: string;
 }
 export interface Order {
-    id: string;
-    items: OrderItem[];
-    isPaid: boolean;
-    status: "NEW" | "PAID" | "CANCELLED" | string;
+    id: number;
+    locationId: string;
+    customerId?: number | null;
+    status: string;
     billAmount: number;
-    customerId: string | null;
-    discountId: string | null;
+    isDeleted: boolean;
+    createdBy?: string | null;
+    updatedBy?: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    serviceType: string;
+    paymentMode?: string | null;
+    isPaid?: boolean | null;
     paidAmount: number;
+    dueAmount: number;
     carryBagFee: number;
-    paymentMode: "CASH" | "CARD" | "UPI" | string;
     totalDiscount: number;
-    totalQuantity: number;
-    discountAmount: number;
     billWithoutDiscount: number;
+    discountId?: number | null;
+    discountAmount: number;
+    deliveryChargeId?: number | null;
+    deliveryCharge?: number | null;
+    deliveryNote?: string | null;
+    cashAmount: number;
+    cardAmount: number;
+    deviceId?: string | null;
+    tipAmount: number;
+    tipMode?: string | null;
+    serviceCharge?: number | null;
+    serviceChargePercent?: number | null;
+    note?: Record<string, any> | null;
+    orderNumber?: number | null;
+    invoiceId?: number | null;
+    partnerId: string;
+    paid?: number | null;
+    subTotal?: number | null;
+    cashCollected?: number | null;
+    changeDue?: number | null;
+    checkoutType?: string | null;
+    tax?: number | null;
+    orderType?: string | null;
+    items: Array<OrderItem>;
+    invoiceNote?: string | null;
 }
 /**
+ * Recalculates an order invoice based on products and their addons.
  *
- * @param order
- * @param products
- * @returns calculated order
+ * @param order - The order object to update
+ * @param products - Map of productId → Product
+ * @returns Updated order with recalculated totals
  */
-export declare function applyInvoice(order: Order, products: Array<Product>): Order;
-export declare function createOrderItem(product: Product): OrderItem;
+export declare function applyInvoice(order: Order, products: Record<string, Product>): Order;

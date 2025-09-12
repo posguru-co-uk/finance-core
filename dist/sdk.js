@@ -1,39 +1,21 @@
-function u(o, s) {
-  const e = {
-    ...o,
-    items: [...o.items]
-    // shallow copy of items
-  }, i = {};
-  for (const t of s)
-    i[t.id] = t;
-  for (const t of o.items) {
-    const n = i[t.productId];
-    n && (t.amount = n.salesPrice, t.totalCost = t.quantity * t.amount);
-  }
-  return e.billAmount = e.items.reduce(
-    (t, n) => t + (n.totalCost ?? 0),
-    0
-  ), e;
-}
-function c(o) {
-  return {
-    id: Date.now().toString(),
-    productId: o.id,
-    quantity: 1,
-    addons: o.addons || [],
-    name: o.name,
-    note: null,
-    amount: o.salesPrice,
-    discount: 0,
-    totalCost: 0,
-    totalAmount: 0,
-    discountName: null,
-    discountType: null,
-    discountAmount: 0,
-    costWithoutDiscount: 0
-  };
+function h(n, p) {
+  var e, l;
+  let i = 0, a = (((e = n.items) == null ? void 0 : e.reduce((t, d) => d.id && d.id > t ? d.id : t, 0)) || 0) + 1;
+  return (l = n.items) == null || l.forEach((t, d) => {
+    var r, I;
+    const u = p[t.productId];
+    if (!u) return;
+    t.id || (t.id = a++);
+    const c = u.salesPrice * t.quantity;
+    t.amount = u.salesPrice, t.totalCost = c, t.totalAmount = c, t.costWithoutDiscount = c, t.productId = u.id, i += c;
+    let b = (((r = t.addons) == null ? void 0 : r.reduce((o, s) => s.id && s.id > o ? s.id : o, 0)) || 0) + 1;
+    (I = t.addons) == null || I.forEach((o, s) => {
+      var f;
+      const A = (f = u.addonItems) == null ? void 0 : f[o.addonItemId];
+      A && (o != null && o.id || (o.id = b++), o.orderItemsId = t.id, o.totalAmount = A.amount * o.quantity, i += o.totalAmount);
+    });
+  }), n.billAmount = i, n;
 }
 export {
-  u as applyInvoice,
-  c as createOrderItem
+  h as applyInvoice
 };

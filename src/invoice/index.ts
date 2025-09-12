@@ -8,7 +8,7 @@ export interface AddonItem {
   id: number;
   item: LocalizedText;
   rank: number;
-  amount: string; // could be number if you want strict typing
+  amount: number; // could be number if you want strict typing
   defaultSelect: boolean;
 }
 
@@ -17,10 +17,10 @@ export interface Addon {
   id: number;
   name: LocalizedText;
   rank: number;
-  status: "ACTIVE" | "INACTIVE" | string;
+  status: 'ACTIVE' | 'INACTIVE' | string;
   maximum: number;
   minimum: number;
-  addonItems: AddonItem[];
+  addonItems: Record<string, AddonItem>;
 }
 
 // Product Model
@@ -38,101 +38,143 @@ export interface Product {
   salesPrice: number;
   taxRateId: string;
   isDeleted: boolean;
-  addons: Addon[];
+  addonItems: Record<string, AddonItem>;
+  addons: Record<string, Addon>;
 }
-
 
 export interface OrderItem {
-  id: String;
+  id: number;
   name: LocalizedText;
-  note: string | null;
-  addons: any[]; // can refine later if addons have structure
-  amount: number;
-  discount: number | null;
-  quantity: number;
+  orderId: number;
   productId: number;
-  totalCost: number;
+  amount: number;
+  quantity: number;
   totalAmount: number;
-  discountName: string | null;
-  discountType: string | null;
+  createdBy?: string;
+  updatedBy?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  totalCost: number;
+  note?: string;
   discountAmount: number;
   costWithoutDiscount: number;
-};
+  discountId?: number;
+  refundId?: number;
+  isMiscellaneous?: boolean;
+  courseId?: number;
+  isPrinted?: boolean;
+  partnerId: string;
+  addons: Array<OrderItemsAddons>;
+}
+
+export interface OrderItemsAddons {
+  id: number;                // bigint
+  orderItemsId: number;      // bigint (order_items_id)
+  addonItemId: number;       // bigint (addon_item_id)
+  amount: number;            // numeric(10,2)
+  quantity: number;          // int
+  totalAmount: number;       // numeric(10,2)
+  createdBy?: string | null; // uuid
+  updatedBy?: string | null; // uuid
+  createdAt: Date;           // timestamp
+  updatedAt: Date;           // timestamp
+  orderId: number;           // bigint
+  partnerId: string;         // uuid
+}
 
 export interface Order {
-  id: string;
-  items: OrderItem[];
-  isPaid: boolean;
-  status: "NEW" | "PAID" | "CANCELLED" | string; // extend as needed
-  billAmount: number;
-  customerId: string | null;
-  discountId: string | null;
-  paidAmount: number;
-  carryBagFee: number;
-  paymentMode: "CASH" | "CARD" | "UPI" | string; // extend as needed
-  totalDiscount: number;
-  totalQuantity: number;
-  discountAmount: number;
-  billWithoutDiscount: number;
-};
-
+  id: number; // int8
+  locationId: string; // uuid
+  customerId?: number | null; // int8
+  status: string; // varchar(32)
+  billAmount: number; // numeric(10,2)
+  isDeleted: boolean; // bool
+  createdBy?: string | null; // uuid
+  updatedBy?: string | null; // uuid
+  createdAt: Date; // timestamp
+  updatedAt: Date; // timestamp
+  serviceType: string; // varchar(64)
+  paymentMode?: string | null; // varchar(32)
+  isPaid?: boolean | null; // bool
+  paidAmount: number; // numeric(10,2)
+  dueAmount: number; // numeric(10,2)
+  carryBagFee: number; // numeric(10,2)
+  totalDiscount: number; // numeric(10,2)
+  billWithoutDiscount: number; // numeric(10,2)
+  discountId?: number | null; // int8
+  discountAmount: number; // numeric(10,2)
+  deliveryChargeId?: number | null; // int8
+  deliveryCharge?: number | null; // numeric(10,2)
+  deliveryNote?: string | null; // varchar(126)
+  cashAmount: number; // numeric(10,2)
+  cardAmount: number; // numeric(10,2)
+  deviceId?: string | null; // uuid
+  tipAmount: number; // numeric(10,2)
+  tipMode?: string | null; // varchar(32)
+  serviceCharge?: number | null; // numeric(10,2)
+  serviceChargePercent?: number | null; // numeric(10,2)
+  note?: Record<string, any> | null; // jsonb
+  orderNumber?: number | null; // int8
+  invoiceId?: number | null; // int8
+  partnerId: string; // uuid
+  paid?: number | null; // numeric
+  subTotal?: number | null; // numeric
+  cashCollected?: number | null; // numeric
+  changeDue?: number | null; // numeric
+  checkoutType?: string | null; // varchar(32)
+  tax?: number | null; // numeric
+  orderType?: string | null; // varchar(16)
+  items: Array<OrderItem>;
+  invoiceNote?: string | null; // varchar(512)
+}
 
 /**
- * 
- * @param order 
- * @param products 
- * @returns calculated order
+ * Recalculates an order invoice based on products and their addons.
+ *
+ * @param order - The order object to update
+ * @param products - Map of productId → Product
+ * @returns Updated order with recalculated totals
  */
-export function applyInvoice(order: Order, products: Array<Product>): Order {
-  // Clone the order so we don’t mutate the original
-  const neworder: Order = {
-    ...order,
-    items: [...order.items], // shallow copy of items
-  };
+export function applyInvoice(order: Order, products: Record<string, Product>): Order {
+  let billAmount = 0;
+    // Precompute max IDs once to avoid repeated Math.max calls
+  let nextItemId =
+    (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
+  order.items?.forEach((item, itemIndex) => {
+    const product = products[item.productId];
+    if (!product) return;
 
-  const productsMap: Record<string, Product> = {};
-  for (const product of products) {
-    productsMap[product.id] = product;
-  }
+    // Assign an ID if missing
+    if (!item.id) {
+      item.id = nextItemId ++;
+    }
+    const baseAmount = product.salesPrice * item.quantity;
 
-for (const item of order.items) {
-  const product = productsMap[item.productId];
-  if (product) {
     item.amount = product.salesPrice;
-    item.totalCost = item.quantity * item.amount;
-  }
-}
+    item.totalCost = baseAmount;
+    item.totalAmount = baseAmount;
+    item.costWithoutDiscount = baseAmount;
+    item.productId = product.id;
 
-neworder.billAmount = neworder.items.reduce(
-  (sum, item) => sum + (item.totalCost ?? 0),
-  0
-);
+    billAmount += baseAmount;
+    // Precompute max addon id for this item
+    let nextAddonId =
+      (item.addons?.reduce((max, a) => (a.id && a.id > max ? a.id : max), 0) || 0) + 1;
 
-  return neworder;
-}
+    // Process addons
+    item.addons?.forEach((addon, addonIndex) => {
+      const productAddOn = product.addonItems?.[addon.addonItemId];
+      if (!productAddOn) return;
+      if (!addon?.id) {
+        addon.id = nextAddonId++;
+      }
+      addon.orderItemsId = item.id; // should link to parent item, not self
+      addon.totalAmount = productAddOn.amount * addon.quantity;
 
-/**
- * 
- * @param product 
- * @returns 
- */
-export function createOrderItem(product: Product): OrderItem{
-    const newOrderItem: OrderItem = {
-    id: Date.now().toString(),
-    productId: product.id,
-    quantity: 1,
-    addons: product.addons || [],
-    name: product.name,
-    note: null,
-    amount: product.salesPrice,
-    discount: 0,
-    totalCost: 0,
-    totalAmount: 0,
-    discountName: null,
-    discountType: null,
-    discountAmount: 0,
-    costWithoutDiscount: 0,
-  };
+      billAmount += addon.totalAmount;
+    });
+  });
 
-  return newOrderItem;
+  order.billAmount = billAmount;
+  return order;
 }
