@@ -18,7 +18,9 @@ console.log(result); // 5
 ```
 
 ## Modules
+
 - `math.js`: Basic math functions (addition, etc.)
 
 ## License
+
 ISC
