@@ -68,6 +68,7 @@ export interface OrderItem {
 }
 
 export interface OrderItemsAddons {
+  name: LocalizedText;
   id: number;                // bigint
   orderItemsId: number;      // bigint (order_items_id)
   addonItemId: number;       // bigint (addon_item_id)

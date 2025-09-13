@@ -59,6 +59,7 @@ export interface OrderItem {
     addons: Array<OrderItemsAddons>;
 }
 export interface OrderItemsAddons {
+    name: LocalizedText;
     id: number;
     orderItemsId: number;
     addonItemId: number;
