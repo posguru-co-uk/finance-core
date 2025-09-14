@@ -3,6 +3,7 @@ import { DeviceProfileAttributes } from "./device";
 import { UserProfileAttributes } from "./user";
 import { LocationProfileAttributes } from "./location";
 import { PartnerProfileAttributes } from "./partner";
+import {AdminProfileAttributes} from './admin';
 import {serviceTypes} from './serviceTypes'
 
 export interface AttributeConfig<T = any> {
@@ -69,4 +70,5 @@ export {
   UserProfileAttributes,
   LocationProfileAttributes,
   DeviceProfileAttributes,
+  AdminProfileAttributes
 };
