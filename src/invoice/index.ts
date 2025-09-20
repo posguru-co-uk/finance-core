@@ -137,7 +137,7 @@ export interface Order {
  * @returns Updated order with recalculated totals
  */
 export function applyInvoice(order: Order, products: Record<string, Product>): Order {
-  let billAmount = 0;
+  let subTotal = 0;
     // Precompute max IDs once to avoid repeated Math.max calls
   let nextItemId =
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
@@ -157,7 +157,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>): O
     item.costWithoutDiscount = baseAmount;
     item.productId = product.id;
 
-    billAmount += baseAmount;
+    subTotal += baseAmount;
     // Precompute max addon id for this item
     let nextAddonId =
       (item.addons?.reduce((max, a) => (a.id && a.id > max ? a.id : max), 0) || 0) + 1;
@@ -172,10 +172,13 @@ export function applyInvoice(order: Order, products: Record<string, Product>): O
       addon.orderItemsId = item.id; // should link to parent item, not self
       addon.totalAmount = productAddOn.amount * addon.quantity;
 
-      billAmount += addon.totalAmount;
+      subTotal += addon.totalAmount;
     });
   });
 
-  order.billAmount = billAmount;
+  order.subTotal = subTotal;
+  // calculate carrybag and service charges
+  order.billAmount = subTotal;
+  
   return order;
 }
