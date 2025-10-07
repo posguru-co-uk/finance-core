@@ -180,4 +180,12 @@ export const PartnerProfileAttributes = {
     cast: (value: any) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<string[]>,
+    SERVICE_CHARGES: {
+    attribute: "service_charges",
+    value: [] as number[],
+    jsonProperty: "serviceCharges",
+    format: (value: any) => JSON.parse(value),
+    cast: (value: any) => JSON.stringify(value),
+    override: true,
+  } as AttributeConfig<number[]>,
 };

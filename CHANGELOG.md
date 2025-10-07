@@ -2,6 +2,8 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+- **New** [POSWEB-1281](https://posguru.atlassian.net/browse/POSWEB-1281) Add Service charge
+
 - **New** [POSWEB-1281](https://posguru.atlassian.net/browse/POSWEB-1281) Add subTotal
   - added subtotal to finace core
 
