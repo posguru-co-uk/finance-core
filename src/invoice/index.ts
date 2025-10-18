@@ -1,4 +1,18 @@
 // Base localized text type
+
+export interface Discount {
+  id: string;
+  name: string;
+  discount: string; // or number, depending on backend
+  code: string;
+  discountType: 'PERCENT' | 'AMOUNT' | string; // can extend with other types
+  description?: string;
+  isDeleted: boolean;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  partnerId: string;
+}
+
 export interface LocalizedText {
   [langCode: string]: string;
 }
@@ -58,7 +72,8 @@ export interface OrderItem {
   note?: string;
   discountAmount: number;
   costWithoutDiscount: number;
-  discountId?: number;
+  discountId?: number | null;
+  discount?:any | null;
   refundId?: number;
   isMiscellaneous?: boolean;
   courseId?: number;
@@ -136,7 +151,7 @@ export interface Order {
  * @param products - Map of productId → Product
  * @returns Updated order with recalculated totals
  */
-export function applyInvoice(order: Order, products: Record<string, Product>): Order {
+export function applyInvoice(order: Order, products: Record<string, Product>,  discounts: Record<string, Discount>): Order {
   let subTotal = 0;
     // Precompute max IDs once to avoid repeated Math.max calls
   let nextItemId =
@@ -152,12 +167,9 @@ export function applyInvoice(order: Order, products: Record<string, Product>): O
     const baseAmount = product.salesPrice * item.quantity;
 
     item.amount = product.salesPrice;
-    item.totalCost = baseAmount;
     item.totalAmount = baseAmount;
-    item.costWithoutDiscount = baseAmount;
     item.productId = product.id;
-
-    subTotal += baseAmount;
+    item.totalCost = baseAmount;
     // Precompute max addon id for this item
     let nextAddonId =
       (item.addons?.reduce((max, a) => (a.id && a.id > max ? a.id : max), 0) || 0) + 1;
@@ -171,9 +183,22 @@ export function applyInvoice(order: Order, products: Record<string, Product>): O
       }
       addon.orderItemsId = item.id; // should link to parent item, not self
       addon.totalAmount = productAddOn.amount * addon.quantity;
-
-      subTotal += addon.totalAmount;
+      item.totalCost += addon.totalAmount;
     });
+    if (item?.discountId) {
+      const discount = discounts[item?.discountId];
+      if (discount.discountType === 'PERCENT') {
+        item.totalCost = (item.totalCost * (parseFloat(discount.discount)/ 100));
+      } else {
+        if (item.totalCost >= parseFloat(discount.discount)) {
+          item.totalCost = (item.totalCost * (parseFloat(discount.discount)/ 100));
+        } else {
+              item.discountId = null;
+              item.discount = null;
+        }
+      }
+    }
+    subTotal += item.totalCost;
   });
 
   order.subTotal = subTotal;
