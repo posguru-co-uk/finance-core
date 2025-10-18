@@ -93,4 +93,11 @@ export const LocationProfileAttributes = {
     format: (value: any) => (Array.isArray(value) ? value : []),
     override: true,
   } as AttributeConfig<string[]>,
+
+  START_TOKEN_NUMBER: {
+    attribute: 'start_token_number',
+    value: false,
+    jsonProperty: "startTokenNumber",
+    format: (value: any) => isBoolean(value),
+  } as AttributeConfig<boolean>,
 };
