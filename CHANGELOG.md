@@ -2,7 +2,7 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 1.0.0-alpha8 (2025-10-18)
+## 1.0.0-alpha9 (2025-10-18)
 - **Fix** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
   - fixed discount calculation 
 

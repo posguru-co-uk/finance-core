@@ -198,7 +198,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
             item.discount = null;
         }
       }
-       item.totalCost += discountAMount;
+       item.totalCost = item.totalCost - discountAMount;
     }
     subTotal += item.totalCost;
   });
