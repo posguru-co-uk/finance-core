@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha8 (2025-10-18)
+- **Fix** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
+  - fixed discount calculation 
+
 ## 1.0.0-alpha7 (2025-10-18)
 - **New** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
   - added START_TOKEN_NUMBER 

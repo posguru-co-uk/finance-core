@@ -164,9 +164,9 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
     if (!item.id) {
       item.id = nextItemId ++;
     }
-    const baseAmount = product.salesPrice * item.quantity;
+    const baseAmount = Number(product.salesPrice) * Number(item.quantity);
 
-    item.amount = product.salesPrice;
+    item.amount = Number(product.salesPrice);
     item.totalAmount = baseAmount;
     item.productId = product.id;
     item.totalCost = baseAmount;
@@ -187,16 +187,18 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
     });
     if (item?.discountId) {
       const discount = discounts[item?.discountId];
+      let discountAMount = 0.00;
       if (discount.discountType === 'PERCENT') {
-        item.totalCost = (item.totalCost * (parseFloat(discount.discount)/ 100));
+        discountAMount = (item.totalCost * (Number(discount.discount)/ 100));
       } else {
-        if (item.totalCost >= parseFloat(discount.discount)) {
-          item.totalCost = (item.totalCost * (parseFloat(discount.discount)/ 100));
+        if (item.totalCost >= Number(discount.discount)) {
+          discountAMount = item.totalCost - Number(discount.discount);
         } else {
-              item.discountId = null;
-              item.discount = null;
+            item.discountId = null;
+            item.discount = null;
         }
       }
+       item.totalCost += discountAMount;
     }
     subTotal += item.totalCost;
   });
