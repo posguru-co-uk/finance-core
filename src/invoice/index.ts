@@ -192,12 +192,13 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
         discountAMount = (item.totalCost * (Number(discount.discount)/ 100));
       } else {
         if (item.totalCost >= Number(discount.discount)) {
-          discountAMount = item.totalCost - Number(discount.discount);
+          discountAMount = item.totalCost - Number(discount.discount); 
         } else {
             item.discountId = null;
             item.discount = null;
         }
       }
+      item.discountAmount = discountAMount;
        item.totalCost = item.totalCost - discountAMount;
     }
     subTotal += item.totalCost;

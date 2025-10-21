@@ -2,9 +2,12 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha11 (2025-10-22)
+- **Fix** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
+  - added discount amount
+
 ## 1.0.0-alpha10 (2025-10-21)
 - **Fix** [POSWEB-1379](https://posguru.atlassian.net/browse/POSWEB-1379) add location attributes to finance core
-  - fixed discount calculation 
 
 ## 1.0.0-alpha9 (2025-10-18)
 - **Fix** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
