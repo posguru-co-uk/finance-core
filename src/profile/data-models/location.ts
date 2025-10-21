@@ -30,6 +30,34 @@ export const LocationProfileAttributes = {
     format: (value: any) => String(value),
   } as AttributeConfig<string | null>,
 
+  COUNTRY: {
+    attribute: "country",
+    value: null,
+    jsonProperty: "country",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+
+  ADDRESS: {
+    attribute: "address",
+    value: null,
+    jsonProperty: "address",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+
+  DESCRIPTION: {
+    attribute: "description",
+    value: null,
+    jsonProperty: "description",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+
+  POSTCODE: {
+    attribute: "postcode",
+    value: null,
+    jsonProperty: "postcode",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+
   STATUS: {
     attribute: "status",
     value: true,
