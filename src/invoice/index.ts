@@ -143,6 +143,7 @@ export interface Order {
   orderType?: string | null; // varchar(16)
   items: Array<OrderItem>;
   invoiceNote?: string | null; // varchar(512)
+  metaData?:any
 }
 
 /**
@@ -154,6 +155,7 @@ export interface Order {
  */
 export function applyInvoice(order: Order, products: Record<string, Product>,  discounts: Record<string, Discount>): Order {
   let subTotal = 0;
+  let totalDiscount = 0;
     // Precompute max IDs once to avoid repeated Math.max calls
   let nextItemId =
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
@@ -199,6 +201,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
             item.discount = null;
         }
       }
+      totalDiscount = totalDiscount + discountAMount;
       item.discountAmount = discountAMount;
        item.totalCost = item.totalCost - discountAMount;
     }
@@ -206,8 +209,8 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
   });
 
   order.subTotal = subTotal;
+  order.totalDiscount = totalDiscount;
   // calculate carrybag and service charges
-
   order.billAmount = subTotal;
   if (Number(order?.carryBagQuantity) && Number(order.carryBagFee)) {
     order.billAmount  = Number(order.billAmount) + (Number(order?.carryBagQuantity) && Number(order.carryBagFee));

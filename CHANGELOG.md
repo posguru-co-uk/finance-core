@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha13 (2025-10-27)
+- **Fix** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
+  - applied totalDiscount
+
 ## 1.0.0-alpha12 (2025-10-27)
 - **Fix** [POSWEB-1373](https://posguru.atlassian.net/browse/POSWEB-1373) Apply discount to posguru core
   - updated carrybag fee to order
