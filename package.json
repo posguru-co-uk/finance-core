@@ -1,6 +1,6 @@
 {
   "name": "@posguru/finance-core",
-  "version": "1.0.0-alpha11",
+  "version": "1.0.0-alpha12",
   "description": "Universal JavaScript library for finance-related math functions, usable in both Node.js (Express) and React applications.",
   "type": "module",
   "main": "./dist/sdk.umd.cjs",

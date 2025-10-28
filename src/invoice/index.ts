@@ -115,6 +115,7 @@ export interface Order {
   paidAmount: number; // numeric(10,2)
   dueAmount: number; // numeric(10,2)
   carryBagFee: number; // numeric(10,2)
+  carryBagQuantity: number;
   totalDiscount: number; // numeric(10,2)
   billWithoutDiscount: number; // numeric(10,2)
   discountId?: number | null; // int8
@@ -206,7 +207,11 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
 
   order.subTotal = subTotal;
   // calculate carrybag and service charges
+
   order.billAmount = subTotal;
+  if (Number(order?.carryBagQuantity) && Number(order.carryBagFee)) {
+    order.billAmount  = Number(order.billAmount) + (Number(order?.carryBagQuantity) && Number(order.carryBagFee));
+  }
   
   return order;
 }
