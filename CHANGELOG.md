@@ -2,7 +2,7 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 1.0.0-alpha15 (2025-10-27)
+## 1.0.0-alpha15 (2025-11-10)
 - **Fix** [POSWEB-1451](https://posguru.atlassian.net/browse/POSWEB-1451) apply service charge to order
   - apply delivery charge
 
