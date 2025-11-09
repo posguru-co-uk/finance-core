@@ -220,6 +220,11 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
     order.billAmount = Number(order.billAmount) + serviceCharge;
     order.serviceCharge = serviceCharge;
   }
+
+  if (order?.serviceType === 'DELIVERY' && order?.deliveryChargeId && order?.deliveryCharge) {
+    const deliveryCharge = Number(order?.deliveryCharge);
+    order.billAmount = Number(order.billAmount) + deliveryCharge;
+  }
   
   return order;
 }
