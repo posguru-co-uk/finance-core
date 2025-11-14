@@ -1,6 +1,6 @@
 import { isBoolean } from "../../utils";
 
-import {AttributeConfig} from './type'
+import { AttributeConfig } from './type'
 
 export const PartnerProfileAttributes = {
   NAME: {
@@ -180,7 +180,7 @@ export const PartnerProfileAttributes = {
     cast: (value: any) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<string[]>,
-    SERVICE_CHARGES: {
+  SERVICE_CHARGES: {
     attribute: "service_charges",
     value: [] as number[],
     jsonProperty: "serviceCharges",
@@ -188,4 +188,17 @@ export const PartnerProfileAttributes = {
     cast: (value: any) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<number[]>,
+  LATITUDE: {
+    attribute: 'latitude',
+    value: null,
+    jsonProperty: "latitude",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+  LONGITUDE: {
+    attribute: 'longitude',
+    value: null,
+    jsonProperty: "longitude",
+    format: (value: any) => String(value),
+    override: true,
+  } as AttributeConfig<string | null>,
 };

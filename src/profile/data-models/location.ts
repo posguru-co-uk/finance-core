@@ -1,5 +1,5 @@
 import { isBoolean } from '../../utils';
-import {AttributeConfig} from './type'
+import { AttributeConfig } from './type'
 export const LocationProfileAttributes = {
   NAME: {
     attribute: "name",
@@ -127,5 +127,19 @@ export const LocationProfileAttributes = {
     value: false,
     jsonProperty: "startTokenNumber",
     format: (value: any) => isBoolean(value),
+    override: true,
   } as AttributeConfig<boolean>,
+  LATITUDE: {
+    attribute: 'latitude',
+    value: null,
+    jsonProperty: "latitude",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+  LONGITUDE: {
+    attribute: 'longitude',
+    value: null,
+    jsonProperty: "longitude",
+    format: (value: any) => String(value),
+    override: true,
+  } as AttributeConfig<string | null>,
 };
