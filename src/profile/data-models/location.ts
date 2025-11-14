@@ -134,6 +134,7 @@ export const LocationProfileAttributes = {
     value: null,
     jsonProperty: "latitude",
     format: (value: any) => String(value),
+    override: true,
   } as AttributeConfig<string | null>,
   LONGITUDE: {
     attribute: 'longitude',

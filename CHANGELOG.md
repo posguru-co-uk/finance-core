@@ -2,7 +2,7 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 1.0.0-alpha16 (2025-11-14)
+## 1.0.0-alpha17 (2025-11-14)
 - **New** [POSWEB-1503](https://posguru.atlassian.net/browse/POSWEB-1503) add latitude and longitude
   - added  latitude and longitude to partner and location
 

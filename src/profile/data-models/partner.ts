@@ -199,6 +199,5 @@ export const PartnerProfileAttributes = {
     value: null,
     jsonProperty: "longitude",
     format: (value: any) => String(value),
-    override: true,
   } as AttributeConfig<string | null>,
 };
