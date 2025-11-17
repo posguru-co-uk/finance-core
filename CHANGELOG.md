@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha18 (2025-11-18)
+- **Fix** [POSWEB-1503](https://posguru.atlassian.net/browse/POSWEB-1521) fix discount calculation
+  - fix discount calculation
+
 ## 1.0.0-alpha17 (2025-11-14)
 - **New** [POSWEB-1503](https://posguru.atlassian.net/browse/POSWEB-1503) add latitude and longitude
   - added  latitude and longitude to partner and location

@@ -192,7 +192,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
       const discount = discounts[item?.discountId];
       let discountAMount = 0.00;
       if (discount.discountType === 'PERCENT') {
-        discountAMount = (item.totalCost * (Number(discount.discount)/ 100));
+        discountAMount = Number((item.totalCost * (Number(discount.discount)/ 100)).toFixed(2));
       } else {
         if (item.totalCost >= Number(discount.discount)) {
           discountAMount = item.totalCost - Number(discount.discount); 
