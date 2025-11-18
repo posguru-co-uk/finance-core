@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha19 (2025-11-18)
+- **New** [POSWEB-1523](https://posguru.atlassian.net/browse/POSWEB-1523) apply totalAmount
+  - apply totalAmount calculation to order
+
 ## 1.0.0-alpha18 (2025-11-18)
 - **Fix** [POSWEB-1503](https://posguru.atlassian.net/browse/POSWEB-1521) fix discount calculation
   - fix discount calculation

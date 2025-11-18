@@ -136,6 +136,7 @@ export interface Order {
   partnerId: string; // uuid
   paid?: number | null; // numeric
   subTotal?: number | null; // numeric
+  totalAmount?:number | null;
   cashCollected?: number | null; // numeric
   changeDue?: number | null; // numeric
   checkoutType?: string | null; // varchar(32)
@@ -156,6 +157,7 @@ export interface Order {
 export function applyInvoice(order: Order, products: Record<string, Product>,  discounts: Record<string, Discount>): Order {
   let subTotal = 0;
   let totalDiscount = 0;
+  let totalAmount = 0;
     // Precompute max IDs once to avoid repeated Math.max calls
   let nextItemId =
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
@@ -188,6 +190,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
       addon.totalAmount = productAddOn.amount * addon.quantity;
       item.totalCost += addon.totalAmount;
     });
+    totalAmount = totalAmount + item.totalCost;
     if (item?.discountId) {
       const discount = discounts[item?.discountId];
       let discountAMount = 0.00;
@@ -209,6 +212,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
   });
 
   order.subTotal = subTotal;
+  order.totalAmount = totalAmount;
   order.totalDiscount = totalDiscount;
   // calculate carrybag and service charges
   order.billAmount = subTotal;
