@@ -18,7 +18,8 @@ export async function generateProfile(
   partners: any[],
   rootPartner: string,
   readProfilesAdapter: ReadProfilesAdapter,
-  prfoileAttributesAdapter: ProfileAttributesAdapter
+  prfoileAttributesAdapter: ProfileAttributesAdapter,
+  withParent = false
 ): Promise<PartnerMap> {
   const partnersMap: PartnerMap = {};
 
@@ -42,8 +43,9 @@ export async function generateProfile(
   removeDeletedPartners(partnersMap, childMap);
   alignPrivateProfile(partnersMap);
   alignHorizontalOwnedProfiles(partnersMap);
-
-  delete partnersMap[rootPartner];
+  if (!withParent) {
+    delete partnersMap[rootPartner];
+  }
 
   return partnersMap;
 }

@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha20 (2025-11-29)
+- **New** [POSWEB-1523](https://posguru.atlassian.net/browse/POSWEB-1523) with partner
+  - with partner
+
 ## 1.0.0-alpha19 (2025-11-18)
 - **New** [POSWEB-1523](https://posguru.atlassian.net/browse/POSWEB-1523) apply totalAmount
   - apply totalAmount calculation to order
