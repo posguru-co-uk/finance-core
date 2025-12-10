@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha21 (2025-12-10)
+- **New** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1591) with staff
+  - with staff
+
 ## 1.0.0-alpha20 (2025-11-29)
 - **New** [POSWEB-1523](https://posguru.atlassian.net/browse/POSWEB-1523) with partner
   - with partner
