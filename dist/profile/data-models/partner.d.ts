@@ -1,0 +1,31 @@
+import { AttributeConfig } from './type';
+
+export declare const PartnerProfileAttributes: {
+    NAME: AttributeConfig<string | null>;
+    EMAIL: AttributeConfig<string | null>;
+    TYPE: AttributeConfig<string | null>;
+    LANGUAGES: AttributeConfig<string[]>;
+    PHONE: AttributeConfig<string | null>;
+    ORDER_TAB_ACCESS_TOKEN: AttributeConfig<string | null>;
+    MAX_ALLOWED_DEVICES: AttributeConfig<number | null>;
+    STATUS: AttributeConfig<boolean>;
+    DOMAIN: AttributeConfig<string | null>;
+    CITY: AttributeConfig<string>;
+    COUNTRY: AttributeConfig<string | null>;
+    POSTCODE: AttributeConfig<string | null>;
+    CURRENCY: AttributeConfig<string>;
+    SUBSCRIPTION: AttributeConfig<string>;
+    LOGO_URL: AttributeConfig<string | null>;
+    MINIMUM_CASH_ORDER: AttributeConfig<number>;
+    CARRY_BAG_FEE: AttributeConfig<number>;
+    VAT: AttributeConfig<number>;
+    CERTIFICATION_DETAILS: AttributeConfig<string | null>;
+    PARTNER_TYPE: AttributeConfig<string>;
+    TIME_ZONE: AttributeConfig<string | null>;
+    IS_DELETED: AttributeConfig<boolean>;
+    ADDRESS: AttributeConfig<string | null>;
+    SERVICE_TYPES: AttributeConfig<string[]>;
+    SERVICE_CHARGES: AttributeConfig<number[]>;
+    LATITUDE: AttributeConfig<string | null>;
+    LONGITUDE: AttributeConfig<string | null>;
+};

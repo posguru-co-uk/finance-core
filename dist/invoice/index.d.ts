@@ -1,3 +1,15 @@
+export interface Discount {
+    id: string;
+    name: string;
+    discount: string;
+    code: string;
+    discountType: 'PERCENT' | 'AMOUNT' | string;
+    description?: string;
+    isDeleted: boolean;
+    createdAt: string;
+    updatedAt: string;
+    partnerId: string;
+}
 export interface LocalizedText {
     [langCode: string]: string;
 }
@@ -50,7 +62,8 @@ export interface OrderItem {
     note?: string;
     discountAmount: number;
     costWithoutDiscount: number;
-    discountId?: number;
+    discountId?: number | null;
+    discount?: any | null;
     refundId?: number;
     isMiscellaneous?: boolean;
     courseId?: number;
@@ -90,6 +103,7 @@ export interface Order {
     paidAmount: number;
     dueAmount: number;
     carryBagFee: number;
+    carryBagQuantity: number;
     totalDiscount: number;
     billWithoutDiscount: number;
     discountId?: number | null;
@@ -110,6 +124,7 @@ export interface Order {
     partnerId: string;
     paid?: number | null;
     subTotal?: number | null;
+    totalAmount?: number | null;
     cashCollected?: number | null;
     changeDue?: number | null;
     checkoutType?: string | null;
@@ -117,6 +132,8 @@ export interface Order {
     orderType?: string | null;
     items: Array<OrderItem>;
     invoiceNote?: string | null;
+    metaData?: any;
+    tables?: Array<any>;
 }
 /**
  * Recalculates an order invoice based on products and their addons.
@@ -125,4 +142,4 @@ export interface Order {
  * @param products - Map of productId → Product
  * @returns Updated order with recalculated totals
  */
-export declare function applyInvoice(order: Order, products: Record<string, Product>): Order;
+export declare function applyInvoice(order: Order, products: Record<string, Product>, discounts: Record<string, Discount>): Order;

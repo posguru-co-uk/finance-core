@@ -2,8 +2,13 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.0.0-alpha0 (2025-12-12)
+
+**Breaking** [POSWEB-1598](https://posguru.atlassian.net/browse/POSWEB-1598) Remove price calculation fetching from products
+- remove price calculation fetching from products
+
 ## 1.0.0-alpha22 (2025-12-11)
-- **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1597) Add STAFF partner type and integrate StaffProfileAttributes
+- **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1597) Add STAFF partner type and      integrate StaffProfileAttributes
   - Add STAFF partner type and integrate StaffProfileAttributes
 
 ## 1.0.0-alpha21 (2025-12-10)

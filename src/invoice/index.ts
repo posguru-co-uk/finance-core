@@ -163,18 +163,15 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
   let nextItemId =
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
   order.items?.forEach((item, itemIndex) => {
-    const product = products[item.productId];
-    if (!product) return;
-
+    let salesPrice = Number(item?.amount || 0.00);
     // Assign an ID if missing
     if (!item.id) {
       item.id = nextItemId++;
     }
-    const baseAmount = Number(product.salesPrice) * Number(item.quantity);
+    const baseAmount = Number(salesPrice) * Number(item.quantity);
 
-    item.amount = Number(product.salesPrice);
+    item.amount = Number(salesPrice);
     item.totalAmount = baseAmount;
-    item.productId = product.id;
     item.totalCost = baseAmount;
     // Precompute max addon id for this item
     let nextAddonId =
@@ -182,13 +179,12 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
 
     // Process addons
     item.addons?.forEach((addon, addonIndex) => {
-      const productAddOn = product.addonItems?.[addon.addonItemId];
-      if (!productAddOn) return;
+      let amount = Number(addon?.amount || 0);
       if (!addon?.id) {
         addon.id = nextAddonId++;
       }
       addon.orderItemsId = item.id; // should link to parent item, not self
-      addon.totalAmount = productAddOn.amount * addon.quantity;
+      addon.totalAmount = amount * addon.quantity;
       item.totalCost += addon.totalAmount;
     });
     totalAmount = totalAmount + item.totalCost;
