@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 1.0.0-alpha22 (2025-12-11)
+- **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1597) Add STAFF partner type and integrate StaffProfileAttributes
+  - Add STAFF partner type and integrate StaffProfileAttributes
+
 ## 1.0.0-alpha21 (2025-12-10)
 - **New** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1591) with staff
   - with staff

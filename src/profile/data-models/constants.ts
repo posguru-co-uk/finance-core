@@ -3,7 +3,8 @@ export const partnerTypes = {
   USER: "USER",
   LOCATION: "LOCATION",
   DEVICE: "DEVICE",
-  VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE"] as const,
+  STAFF: "STAFF",
+  VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF"] as const,
 };
 
 export type PartnerType = (typeof partnerTypes.VALUES)[number];

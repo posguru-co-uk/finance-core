@@ -5,6 +5,7 @@ import {
   PartnerProfileAttributes,
   partnerTypes,
   UserProfileAttributes,
+  StaffProfileAttributes,
 } from "./data-models";
 
 // --- Type overrides to skip strict typing ---
@@ -203,6 +204,8 @@ const convertProfile = (profile: any, partner: any): any => {
     result = deserializeProfileAttribute(DeviceProfileAttributes, profile.attributes, false, false);
   } else if (partner.type === partnerTypes.USER) {
     result = deserializeProfileAttribute(UserProfileAttributes, profile.attributes, false, false);
+  } else if (partner.type === partnerTypes.STAFF) {
+    result = deserializeProfileAttribute(StaffProfileAttributes, profile.attributes, false, false);
   }
 
   for (const attr of Object.values(result)) {
