@@ -71,6 +71,6 @@ export {
   UserProfileAttributes,
   LocationProfileAttributes,
   DeviceProfileAttributes,
-  AdminProfileAttributes
-  StaffProfileAttributes,
+  AdminProfileAttributes,
+  StaffProfileAttributes
 };
