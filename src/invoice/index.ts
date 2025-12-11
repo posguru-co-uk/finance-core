@@ -73,7 +73,7 @@ export interface OrderItem {
   discountAmount: number;
   costWithoutDiscount: number;
   discountId?: number | null;
-  discount?:any | null;
+  discount?: any | null;
   refundId?: number;
   isMiscellaneous?: boolean;
   courseId?: number;
@@ -136,7 +136,7 @@ export interface Order {
   partnerId: string; // uuid
   paid?: number | null; // numeric
   subTotal?: number | null; // numeric
-  totalAmount?:number | null;
+  totalAmount?: number | null;
   cashCollected?: number | null; // numeric
   changeDue?: number | null; // numeric
   checkoutType?: string | null; // varchar(32)
@@ -144,7 +144,8 @@ export interface Order {
   orderType?: string | null; // varchar(16)
   items: Array<OrderItem>;
   invoiceNote?: string | null; // varchar(512)
-  metaData?:any
+  metaData?: any
+  tables?: Array<any>
 }
 
 /**
@@ -154,11 +155,11 @@ export interface Order {
  * @param products - Map of productId → Product
  * @returns Updated order with recalculated totals
  */
-export function applyInvoice(order: Order, products: Record<string, Product>,  discounts: Record<string, Discount>): Order {
+export function applyInvoice(order: Order, products: Record<string, Product>, discounts: Record<string, Discount>): Order {
   let subTotal = 0;
   let totalDiscount = 0;
   let totalAmount = 0;
-    // Precompute max IDs once to avoid repeated Math.max calls
+  // Precompute max IDs once to avoid repeated Math.max calls
   let nextItemId =
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
   order.items?.forEach((item, itemIndex) => {
@@ -167,7 +168,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
 
     // Assign an ID if missing
     if (!item.id) {
-      item.id = nextItemId ++;
+      item.id = nextItemId++;
     }
     const baseAmount = Number(product.salesPrice) * Number(item.quantity);
 
@@ -195,18 +196,18 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
       const discount = discounts[item?.discountId];
       let discountAMount = 0.00;
       if (discount.discountType === 'PERCENT') {
-        discountAMount = Number((item.totalCost * (Number(discount.discount)/ 100)).toFixed(2));
+        discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
       } else {
         if (item.totalCost >= Number(discount.discount)) {
-          discountAMount = item.totalCost - Number(discount.discount); 
+          discountAMount = item.totalCost - Number(discount.discount);
         } else {
-            item.discountId = null;
-            item.discount = null;
+          item.discountId = null;
+          item.discount = null;
         }
       }
       totalDiscount = totalDiscount + discountAMount;
       item.discountAmount = discountAMount;
-       item.totalCost = item.totalCost - discountAMount;
+      item.totalCost = item.totalCost - discountAMount;
     }
     subTotal += item.totalCost;
   });
@@ -217,10 +218,10 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
   // calculate carrybag and service charges
   order.billAmount = subTotal;
   if (Number(order?.carryBagQuantity) && Number(order.carryBagFee)) {
-    order.billAmount  = Number(order.billAmount) + (Number(order?.carryBagQuantity) && Number(order.carryBagFee));
+    order.billAmount = Number(order.billAmount) + (Number(order?.carryBagQuantity) && Number(order.carryBagFee));
   }
   if (order?.serviceChargePercent && Number(order.serviceChargePercent)) {
-    const serviceCharge = (Number(subTotal) * (Number(order.serviceChargePercent)/ 100));
+    const serviceCharge = (Number(subTotal) * (Number(order.serviceChargePercent) / 100));
     order.billAmount = Number(order.billAmount) + serviceCharge;
     order.serviceCharge = serviceCharge;
   }
@@ -229,6 +230,16 @@ export function applyInvoice(order: Order, products: Record<string, Product>,  d
     const deliveryCharge = Number(order?.deliveryCharge);
     order.billAmount = Number(order.billAmount) + deliveryCharge;
   }
-  
+
+  if (order?.tables?.length && order?.serviceType === 'DINE_IN') {
+
+    let nextTableId = (order.tables?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
+    order.tables?.forEach((item, itemIndex) => {
+      if (!item.id) {
+        item.id = nextTableId++;
+      }
+    })
+  }
+
   return order;
 }
