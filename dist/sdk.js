@@ -1,16 +1,16 @@
 function V(t, e, a) {
-  var i, c, f, A, S;
-  let o = 0, s = 0, r = 0, u = (((i = t.items) == null ? void 0 : i.reduce((n, b) => b.id && b.id > n ? b.id : n, 0)) || 0) + 1;
-  if ((c = t.items) == null || c.forEach((n, b) => {
+  var u, p, f, S, A;
+  let o = 0, s = 0, r = 0, i = (((u = t.items) == null ? void 0 : u.reduce((n, b) => b.id && b.id > n ? b.id : n, 0)) || 0) + 1;
+  if ((p = t.items) == null || p.forEach((n, b) => {
     var N, I;
     let y = Number((n == null ? void 0 : n.amount) || 0);
-    n.id || (n.id = u++);
+    n.id || (n.id = i++);
     const d = Number(y) * Number(n.quantity);
     n.amount = Number(y), n.totalAmount = d, n.totalCost = d;
     let j = (((N = n.addons) == null ? void 0 : N.reduce((l, m) => m.id && m.id > l ? m.id : l, 0)) || 0) + 1;
     if ((I = n.addons) == null || I.forEach((l, m) => {
-      let g = Number((l == null ? void 0 : l.amount) || 0);
-      l != null && l.id || (l.id = j++), l.orderItemsId = n.id, l.totalAmount = g * l.quantity, n.totalCost += l.totalAmount;
+      let O = Number((l == null ? void 0 : l.amount) || 0);
+      l != null && l.id || (l.id = j++), l.orderItemsId = n.id, l.totalAmount = O * l.quantity, n.totalCost += l.totalAmount;
     }), r = r + n.totalCost, n != null && n.discountId) {
       const l = a[n == null ? void 0 : n.discountId];
       let m = 0;
@@ -26,8 +26,8 @@ function V(t, e, a) {
     t.billAmount = Number(t.billAmount) + n;
   }
   if ((f = t == null ? void 0 : t.tables) != null && f.length && (t == null ? void 0 : t.serviceType) === "DINE_IN") {
-    let n = (((A = t.tables) == null ? void 0 : A.reduce((b, y) => y.id && y.id > b ? y.id : b, 0)) || 0) + 1;
-    (S = t.tables) == null || S.forEach((b, y) => {
+    let n = (((S = t.tables) == null ? void 0 : S.reduce((b, y) => y.id && y.id > b ? y.id : b, 0)) || 0) + 1;
+    (A = t.tables) == null || A.forEach((b, y) => {
       b.id || (b.id = n++);
     });
   }
@@ -48,7 +48,7 @@ const v = {
   PRIVATE: "PRIVATE",
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
-}, p = (t) => typeof t == "string" ? t.toLowerCase() === "true" : !!t, O = {
+}, c = (t) => typeof t == "string" ? t.toLowerCase() === "true" : !!t, _ = {
   NAME: {
     attribute: "name",
     value: null,
@@ -66,7 +66,7 @@ const v = {
     attribute: "status",
     value: !0,
     jsonProperty: "status",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   CURRENCY: {
@@ -108,7 +108,7 @@ const v = {
     attribute: "is_deleted",
     value: !1,
     jsonProperty: "isDeleted",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   SERVICE_TYPES: {
@@ -119,7 +119,7 @@ const v = {
     format: (t) => Array.isArray(t) ? t : [],
     override: !0
   }
-}, _ = {
+}, g = {
   PASSWORD: {
     attribute: "password",
     value: null,
@@ -154,14 +154,14 @@ const v = {
     attribute: "status",
     value: !0,
     jsonProperty: "status",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   IS_DELETED: {
     attribute: "is_deleted",
     value: !1,
     jsonProperty: "isDeleted",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   FP_TOKEN: {
@@ -180,7 +180,7 @@ const v = {
     attribute: "is_owner",
     value: !1,
     jsonProperty: "isOwner",
-    format: (t) => p(t)
+    format: (t) => c(t)
   }
 }, C = {
   NAME: {
@@ -236,7 +236,7 @@ const v = {
     attribute: "status",
     value: !0,
     jsonProperty: "status",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   CURRENCY: {
@@ -278,7 +278,7 @@ const v = {
     attribute: "is_deleted",
     value: !1,
     jsonProperty: "isDeleted",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   SERVICE_TYPES: {
@@ -292,7 +292,7 @@ const v = {
     attribute: "start_token_number",
     value: !1,
     jsonProperty: "startTokenNumber",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   LATITUDE: {
@@ -358,7 +358,7 @@ const v = {
     attribute: "status",
     value: !0,
     jsonProperty: "status",
-    format: (t) => p(t)
+    format: (t) => c(t)
   },
   DOMAIN: {
     attribute: "domain",
@@ -447,7 +447,7 @@ const v = {
     attribute: "is_deleted",
     value: !1,
     jsonProperty: "isDeleted",
-    format: (t) => p(t),
+    format: (t) => c(t),
     override: !0
   },
   ADDRESS: {
@@ -484,7 +484,7 @@ const v = {
     jsonProperty: "longitude",
     format: (t) => String(t)
   }
-}, H = {
+}, J = {
   PASSWORD: {
     attribute: "password",
     value: null,
@@ -519,7 +519,7 @@ const v = {
     attribute: "status",
     value: !0,
     jsonProperty: "status",
-    format: (t) => p(t)
+    format: (t) => c(t)
   },
   CREATED_AT: {
     attribute: "created_at",
@@ -531,7 +531,7 @@ const v = {
     attribute: "is_deleted",
     value: !1,
     jsonProperty: "isDeleted",
-    format: (t) => p(t)
+    format: (t) => c(t)
   },
   FP_TOKEN: {
     attribute: "fp_token",
@@ -549,9 +549,9 @@ const v = {
     attribute: "is_admin",
     value: !1,
     jsonProperty: "isAdmin",
-    format: (t) => p(t)
+    format: (t) => c(t)
   }
-}, R = {
+}, D = {
   NAME: {
     attribute: "name",
     value: null,
@@ -580,9 +580,17 @@ const v = {
     attribute: "permissions",
     value: [],
     jsonProperty: "permissions",
-    format: (t) => Array.isArray(t) ? t : []
+    format: (t) => JSON.parse(t),
+    cast: (t) => JSON.stringify(t)
+  },
+  IS_DELETED: {
+    attribute: "is_deleted",
+    value: !1,
+    jsonProperty: "isDeleted",
+    format: (t) => c(t),
+    override: !0
   }
-}, W = {
+}, H = {
   TAKE_AWAY: "TAKE_AWAY",
   DELIVERY: "DELIVERY",
   DINE_IN: "DINE_IN",
@@ -600,45 +608,45 @@ const v = {
 }, E = (t, e, a = !1, o = !0) => {
   const s = {};
   return Object.values(t).forEach((r) => {
-    let u = null;
-    e[r.attribute] ? u = r.format(e[r.attribute].value) : a && (u = r.value), o ? s[r.jsonProperty] = u : s[r.jsonProperty] = { ...r, value: u };
+    let i = null;
+    e[r.attribute] ? i = r.format(e[r.attribute].value) : a && (i = r.value), o ? s[r.jsonProperty] = i : s[r.jsonProperty] = { ...r, value: i };
   }), s;
-}, J = Object.values(
+}, W = Object.values(
   P
 ).map((t) => t.jsonProperty), x = Object.values(
   P
 ).map((t) => t.attribute);
 async function Z(t, e, a, o, s = !1) {
   const r = {};
-  for (const c of t)
-    r[c.id] = c;
+  for (const p of t)
+    r[p.id] = p;
   r[e] = {
     id: e,
     type: v.PARTNER,
     parent: null
   }, await U(r, a, o);
-  const u = L(r), i = h(r);
-  return T(i, r, u), B(r, u), M(r), s || delete r[e], r;
+  const i = L(r), u = h(r);
+  return T(u, r, i), B(r, i), M(r), s || delete r[e], r;
 }
-const D = async (t, e, a) => {
+const R = async (t, e, a) => {
   const o = await e(t), s = {};
-  for (const i of o) {
-    const c = i.partnerId;
-    let f = s[c];
-    f || (f = {}, s[c] = f), f[i.name] = i;
+  for (const u of o) {
+    const p = u.partnerId;
+    let f = s[p];
+    f || (f = {}, s[p] = f), f[u.name] = u;
   }
   const r = /* @__PURE__ */ new Set();
-  for (const i of Object.keys(s)) {
-    const c = s[i];
-    for (const f of Object.values(c))
+  for (const u of Object.keys(s)) {
+    const p = s[u];
+    for (const f of Object.values(p))
       r.add(f);
   }
-  const u = await a(t);
-  for (const i of u) {
-    const c = s[i == null ? void 0 : i.partnerId];
-    if (!c) continue;
-    const f = c[i == null ? void 0 : i.profileName];
-    f && (f.attributes || (f.attributes = {}), f.attributes[i.name] = i);
+  const i = await a(t);
+  for (const u of i) {
+    const p = s[u == null ? void 0 : u.partnerId];
+    if (!p) continue;
+    const f = p[u == null ? void 0 : u.profileName];
+    f && (f.attributes || (f.attributes = {}), f.attributes[u.name] = u);
   }
   return r;
 }, L = (t) => {
@@ -657,14 +665,14 @@ const D = async (t, e, a) => {
   if (!e) throw new Error("No root partner found");
   return e;
 }, U = async (t, e, a) => {
-  const o = Object.keys(t), s = await D(o, e, a);
+  const o = Object.keys(t), s = await R(o, e, a);
   for (const r of s) {
-    const u = t[r.partnerId], i = w(r, u);
-    u.privateProfile = i;
+    const i = t[r.partnerId], u = w(r, i);
+    i.privateProfile = u;
   }
   for (const r of Object.keys(t)) {
-    const u = t[r];
-    u != null && u.privateProfile;
+    const i = t[r];
+    i != null && i.privateProfile;
   }
 }, M = (t) => {
   const e = [];
@@ -672,9 +680,9 @@ const D = async (t, e, a) => {
     const o = a == null ? void 0 : a.privateProfile;
     if (o) {
       const s = (o == null ? void 0 : o.attributes) || {}, r = {};
-      for (const u of Object.keys(s)) {
-        const i = s[u];
-        r[u] = i.value ?? i.overriden;
+      for (const i of Object.keys(s)) {
+        const u = s[i];
+        r[i] = u.value ?? u.overriden;
       }
       o.attributes = { ...r };
     } else
@@ -685,12 +693,12 @@ const D = async (t, e, a) => {
 }, B = (t, e) => {
   var o, s, r;
   const a = /* @__PURE__ */ new Set();
-  for (const u of Object.values(t))
-    if ((r = (s = (o = u.privateProfile) == null ? void 0 : o.attributes) == null ? void 0 : s.isDeleted) != null && r.value && (a.add(u.id), e[u.id]))
-      for (const i of e[u.id])
-        a.add(i);
-  for (const u of a)
-    delete t[u];
+  for (const i of Object.values(t))
+    if ((r = (s = (o = i.privateProfile) == null ? void 0 : o.attributes) == null ? void 0 : s.isDeleted) != null && r.value && (a.add(i.id), e[i.id]))
+      for (const u of e[i.id])
+        a.add(u);
+  for (const i of a)
+    delete t[i];
 }, w = (t, e) => {
   const a = {
     name: t.name,
@@ -699,7 +707,7 @@ const D = async (t, e, a) => {
     attributes: t.attributes
   };
   let o = {};
-  e.type === v.PARTNER ? o = E(P, t.attributes, !1, !1) : e.type === v.LOCATION ? o = E(C, t.attributes, !1, !1) : e.type === v.DEVICE ? o = E(O, t.attributes, !1, !1) : e.type === v.USER ? o = E(_, t.attributes, !1, !1) : e.type === v.STAFF && (o = E(R, t.attributes, !1, !1));
+  e.type === v.PARTNER ? o = E(P, t.attributes, !1, !1) : e.type === v.LOCATION ? o = E(C, t.attributes, !1, !1) : e.type === v.DEVICE ? o = E(_, t.attributes, !1, !1) : e.type === v.USER ? o = E(g, t.attributes, !1, !1) : e.type === v.STAFF && (o = E(D, t.attributes, !1, !1));
   for (const s of Object.values(o))
     s.owner = e.id, s.profile = a.name;
   return a.attributes = o, a;
@@ -707,8 +715,8 @@ const D = async (t, e, a) => {
   if (!t || !e) return;
   const a = t.attributes || {}, o = e.attributes || {};
   for (const s of Object.keys(a)) {
-    const r = a[s], u = o[s];
-    u && (u && r && u.value === null && u.override === !0 && r.value ? o[s] = { ...r } : o[s] = { ...u });
+    const r = a[s], i = o[s];
+    i && (i && r && i.value === null && i.override === !0 && r.value ? o[s] = { ...r } : o[s] = { ...i });
   }
   e.attributes = o;
 }, Y = (t, e) => {
@@ -726,19 +734,19 @@ const D = async (t, e, a) => {
       T(e[s], e, a);
 };
 export {
-  H as AdminProfileAttributes,
-  O as DeviceProfileAttributes,
+  J as AdminProfileAttributes,
+  _ as DeviceProfileAttributes,
   C as LocationProfileAttributes,
   P as PartnerProfileAttributes,
   x as PartnerProfileAttributesDbKeys,
-  J as PartnerProfileAttributesJsonKeys,
-  R as StaffProfileAttributes,
-  _ as UserProfileAttributes,
+  W as PartnerProfileAttributesJsonKeys,
+  D as StaffProfileAttributes,
+  g as UserProfileAttributes,
   V as applyInvoice,
   E as deserializeProfileAttribute,
   Z as generateProfile,
   K as partnerModes,
   v as partnerTypes,
   k as profileTypes,
-  W as serviceTypes
+  H as serviceTypes
 };

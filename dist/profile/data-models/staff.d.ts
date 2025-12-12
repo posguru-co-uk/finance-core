@@ -6,4 +6,5 @@ export declare const StaffProfileAttributes: {
     EMAIL: AttributeConfig<string | null>;
     PASSCODE: AttributeConfig<string | null>;
     PERMISSIONS: AttributeConfig<string[]>;
+    IS_DELETED: AttributeConfig<boolean>;
 };
