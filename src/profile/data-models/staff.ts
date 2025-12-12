@@ -1,4 +1,5 @@
 
+import { isBoolean } from '../../utils'
 import { AttributeConfig } from './type'
 
 export const StaffProfileAttributes = {
@@ -34,6 +35,15 @@ export const StaffProfileAttributes = {
         attribute: "permissions",
         value: [] as string[],
         jsonProperty: "permissions",
-        format: (value: any) => (Array.isArray(value) ? value : []),
-    } as AttributeConfig<string[]>
+        format: (value: any) => JSON.parse(value),
+        cast: (value: any) => JSON.stringify(value),
+    } as AttributeConfig<string[]>,
+
+    IS_DELETED: {
+        attribute: "is_deleted",
+        value: false,
+        jsonProperty: "isDeleted",
+        format: (value: any) => isBoolean(value),
+        override: true,
+    } as AttributeConfig<boolean>,
 }

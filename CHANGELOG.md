@@ -2,6 +2,11 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+
+## 2.0.0-alpha1 (2025-12-11)
+- **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1602) Add IS_DELETED attribute to StaffProfileAttributes and update permissions format
+  - Add IS_DELETED attribute to StaffProfileAttributes and update permissions format
+
 ## 2.0.0-alpha0 (2025-12-12)
 
 **Breaking** [POSWEB-1598](https://posguru.atlassian.net/browse/POSWEB-1598) Remove price calculation fetching from products
