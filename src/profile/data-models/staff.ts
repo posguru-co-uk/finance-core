@@ -10,13 +10,6 @@ export const StaffProfileAttributes = {
         format: (value: any) => String(value)
     } as AttributeConfig<string | null>,
 
-    PASSWORD: {
-        attribute: "password",
-        value: null,
-        jsonProperty: "password",
-        format: (value: any) => String(value),
-    } as AttributeConfig<string | null>,
-
     EMAIL: {
         attribute: "email",
         value: null,
@@ -30,6 +23,18 @@ export const StaffProfileAttributes = {
         jsonProperty: "passcode",
         format: (value: any) => String(value),
     } as AttributeConfig<string | null>,
+
+    HOURLY_RATE: {
+        attribute: "hourly_rate",
+        value: null,
+        jsonProperty: "hourlyRate",
+        format: (value: any) =>{
+            if (value === null || value === undefined) return null;
+            const num = Number(value);
+            return isNaN(num) ? null : num;
+        },
+    } as AttributeConfig<number | null>,
+
 
     PERMISSIONS: {
         attribute: "permissions",
