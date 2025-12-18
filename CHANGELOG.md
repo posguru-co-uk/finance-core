@@ -3,6 +3,10 @@
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
 
+## 2.0.0-alpha2 (2025-12-17)
+- **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1619) Update the staff model in finance core
+  - fix: update staff model to remove password property and enforce hourly rate validation
+
 ## 2.0.0-alpha1 (2025-12-11)
 - **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1602) Add IS_DELETED attribute to StaffProfileAttributes and update permissions format
   - Add IS_DELETED attribute to StaffProfileAttributes and update permissions format
