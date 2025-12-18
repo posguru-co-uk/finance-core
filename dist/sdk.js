@@ -1,16 +1,16 @@
 function V(t, e, a) {
-  var u, p, f, S, A;
-  let o = 0, s = 0, r = 0, i = (((u = t.items) == null ? void 0 : u.reduce((n, b) => b.id && b.id > n ? b.id : n, 0)) || 0) + 1;
+  var i, p, f, A, S;
+  let o = 0, s = 0, r = 0, u = (((i = t.items) == null ? void 0 : i.reduce((n, b) => b.id && b.id > n ? b.id : n, 0)) || 0) + 1;
   if ((p = t.items) == null || p.forEach((n, b) => {
     var N, I;
     let y = Number((n == null ? void 0 : n.amount) || 0);
-    n.id || (n.id = i++);
+    n.id || (n.id = u++);
     const d = Number(y) * Number(n.quantity);
     n.amount = Number(y), n.totalAmount = d, n.totalCost = d;
-    let j = (((N = n.addons) == null ? void 0 : N.reduce((l, m) => m.id && m.id > l ? m.id : l, 0)) || 0) + 1;
+    let _ = (((N = n.addons) == null ? void 0 : N.reduce((l, m) => m.id && m.id > l ? m.id : l, 0)) || 0) + 1;
     if ((I = n.addons) == null || I.forEach((l, m) => {
-      let O = Number((l == null ? void 0 : l.amount) || 0);
-      l != null && l.id || (l.id = j++), l.orderItemsId = n.id, l.totalAmount = O * l.quantity, n.totalCost += l.totalAmount;
+      let j = Number((l == null ? void 0 : l.amount) || 0);
+      l != null && l.id || (l.id = _++), l.orderItemsId = n.id, l.totalAmount = j * l.quantity, n.totalCost += l.totalAmount;
     }), r = r + n.totalCost, n != null && n.discountId) {
       const l = a[n == null ? void 0 : n.discountId];
       let m = 0;
@@ -26,8 +26,8 @@ function V(t, e, a) {
     t.billAmount = Number(t.billAmount) + n;
   }
   if ((f = t == null ? void 0 : t.tables) != null && f.length && (t == null ? void 0 : t.serviceType) === "DINE_IN") {
-    let n = (((S = t.tables) == null ? void 0 : S.reduce((b, y) => y.id && y.id > b ? y.id : b, 0)) || 0) + 1;
-    (A = t.tables) == null || A.forEach((b, y) => {
+    let n = (((A = t.tables) == null ? void 0 : A.reduce((b, y) => y.id && y.id > b ? y.id : b, 0)) || 0) + 1;
+    (S = t.tables) == null || S.forEach((b, y) => {
       b.id || (b.id = n++);
     });
   }
@@ -48,7 +48,7 @@ const v = {
   PRIVATE: "PRIVATE",
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
-}, c = (t) => typeof t == "string" ? t.toLowerCase() === "true" : !!t, _ = {
+}, c = (t) => typeof t == "string" ? t.toLowerCase() === "true" : !!t, O = {
   NAME: {
     attribute: "name",
     value: null,
@@ -484,7 +484,7 @@ const v = {
     jsonProperty: "longitude",
     format: (t) => String(t)
   }
-}, J = {
+}, H = {
   PASSWORD: {
     attribute: "password",
     value: null,
@@ -551,17 +551,11 @@ const v = {
     jsonProperty: "isAdmin",
     format: (t) => c(t)
   }
-}, D = {
+}, R = {
   NAME: {
     attribute: "name",
     value: null,
     jsonProperty: "name",
-    format: (t) => String(t)
-  },
-  PASSWORD: {
-    attribute: "password",
-    value: null,
-    jsonProperty: "password",
     format: (t) => String(t)
   },
   EMAIL: {
@@ -575,6 +569,20 @@ const v = {
     value: null,
     jsonProperty: "passcode",
     format: (t) => String(t)
+  },
+  HOURLY_RATE: {
+    attribute: "hourly_rate",
+    value: 0,
+    jsonProperty: "hourlyRate",
+    format: (t) => Number(t),
+    cast: (t) => {
+      if (t == null)
+        throw new Error("Invalid hourly_rate: value is null or undefined");
+      const e = Number(t);
+      if (Number.isNaN(e))
+        throw new Error("Invalid hourly_rate: not a number");
+      return e;
+    }
   },
   PERMISSIONS: {
     attribute: "permissions",
@@ -590,7 +598,7 @@ const v = {
     format: (t) => c(t),
     override: !0
   }
-}, H = {
+}, J = {
   TAKE_AWAY: "TAKE_AWAY",
   DELIVERY: "DELIVERY",
   DINE_IN: "DINE_IN",
@@ -608,8 +616,8 @@ const v = {
 }, E = (t, e, a = !1, o = !0) => {
   const s = {};
   return Object.values(t).forEach((r) => {
-    let i = null;
-    e[r.attribute] ? i = r.format(e[r.attribute].value) : a && (i = r.value), o ? s[r.jsonProperty] = i : s[r.jsonProperty] = { ...r, value: i };
+    let u = null;
+    e[r.attribute] ? u = r.format(e[r.attribute].value) : a && (u = r.value), o ? s[r.jsonProperty] = u : s[r.jsonProperty] = { ...r, value: u };
   }), s;
 }, W = Object.values(
   P
@@ -625,28 +633,28 @@ async function Z(t, e, a, o, s = !1) {
     type: v.PARTNER,
     parent: null
   }, await U(r, a, o);
-  const i = L(r), u = h(r);
-  return T(u, r, i), B(r, i), M(r), s || delete r[e], r;
+  const u = L(r), i = h(r);
+  return T(i, r, u), B(r, u), M(r), s || delete r[e], r;
 }
-const R = async (t, e, a) => {
+const D = async (t, e, a) => {
   const o = await e(t), s = {};
-  for (const u of o) {
-    const p = u.partnerId;
+  for (const i of o) {
+    const p = i.partnerId;
     let f = s[p];
-    f || (f = {}, s[p] = f), f[u.name] = u;
+    f || (f = {}, s[p] = f), f[i.name] = i;
   }
   const r = /* @__PURE__ */ new Set();
-  for (const u of Object.keys(s)) {
-    const p = s[u];
+  for (const i of Object.keys(s)) {
+    const p = s[i];
     for (const f of Object.values(p))
       r.add(f);
   }
-  const i = await a(t);
-  for (const u of i) {
-    const p = s[u == null ? void 0 : u.partnerId];
+  const u = await a(t);
+  for (const i of u) {
+    const p = s[i == null ? void 0 : i.partnerId];
     if (!p) continue;
-    const f = p[u == null ? void 0 : u.profileName];
-    f && (f.attributes || (f.attributes = {}), f.attributes[u.name] = u);
+    const f = p[i == null ? void 0 : i.profileName];
+    f && (f.attributes || (f.attributes = {}), f.attributes[i.name] = i);
   }
   return r;
 }, L = (t) => {
@@ -665,14 +673,14 @@ const R = async (t, e, a) => {
   if (!e) throw new Error("No root partner found");
   return e;
 }, U = async (t, e, a) => {
-  const o = Object.keys(t), s = await R(o, e, a);
+  const o = Object.keys(t), s = await D(o, e, a);
   for (const r of s) {
-    const i = t[r.partnerId], u = w(r, i);
-    i.privateProfile = u;
+    const u = t[r.partnerId], i = w(r, u);
+    u.privateProfile = i;
   }
   for (const r of Object.keys(t)) {
-    const i = t[r];
-    i != null && i.privateProfile;
+    const u = t[r];
+    u != null && u.privateProfile;
   }
 }, M = (t) => {
   const e = [];
@@ -680,9 +688,9 @@ const R = async (t, e, a) => {
     const o = a == null ? void 0 : a.privateProfile;
     if (o) {
       const s = (o == null ? void 0 : o.attributes) || {}, r = {};
-      for (const i of Object.keys(s)) {
-        const u = s[i];
-        r[i] = u.value ?? u.overriden;
+      for (const u of Object.keys(s)) {
+        const i = s[u];
+        r[u] = i.value ?? i.overriden;
       }
       o.attributes = { ...r };
     } else
@@ -693,12 +701,12 @@ const R = async (t, e, a) => {
 }, B = (t, e) => {
   var o, s, r;
   const a = /* @__PURE__ */ new Set();
-  for (const i of Object.values(t))
-    if ((r = (s = (o = i.privateProfile) == null ? void 0 : o.attributes) == null ? void 0 : s.isDeleted) != null && r.value && (a.add(i.id), e[i.id]))
-      for (const u of e[i.id])
-        a.add(u);
-  for (const i of a)
-    delete t[i];
+  for (const u of Object.values(t))
+    if ((r = (s = (o = u.privateProfile) == null ? void 0 : o.attributes) == null ? void 0 : s.isDeleted) != null && r.value && (a.add(u.id), e[u.id]))
+      for (const i of e[u.id])
+        a.add(i);
+  for (const u of a)
+    delete t[u];
 }, w = (t, e) => {
   const a = {
     name: t.name,
@@ -707,7 +715,7 @@ const R = async (t, e, a) => {
     attributes: t.attributes
   };
   let o = {};
-  e.type === v.PARTNER ? o = E(P, t.attributes, !1, !1) : e.type === v.LOCATION ? o = E(C, t.attributes, !1, !1) : e.type === v.DEVICE ? o = E(_, t.attributes, !1, !1) : e.type === v.USER ? o = E(g, t.attributes, !1, !1) : e.type === v.STAFF && (o = E(D, t.attributes, !1, !1));
+  e.type === v.PARTNER ? o = E(P, t.attributes, !1, !1) : e.type === v.LOCATION ? o = E(C, t.attributes, !1, !1) : e.type === v.DEVICE ? o = E(O, t.attributes, !1, !1) : e.type === v.USER ? o = E(g, t.attributes, !1, !1) : e.type === v.STAFF && (o = E(R, t.attributes, !1, !1));
   for (const s of Object.values(o))
     s.owner = e.id, s.profile = a.name;
   return a.attributes = o, a;
@@ -715,8 +723,8 @@ const R = async (t, e, a) => {
   if (!t || !e) return;
   const a = t.attributes || {}, o = e.attributes || {};
   for (const s of Object.keys(a)) {
-    const r = a[s], i = o[s];
-    i && (i && r && i.value === null && i.override === !0 && r.value ? o[s] = { ...r } : o[s] = { ...i });
+    const r = a[s], u = o[s];
+    u && (u && r && u.value === null && u.override === !0 && r.value ? o[s] = { ...r } : o[s] = { ...u });
   }
   e.attributes = o;
 }, Y = (t, e) => {
@@ -734,13 +742,13 @@ const R = async (t, e, a) => {
       T(e[s], e, a);
 };
 export {
-  J as AdminProfileAttributes,
-  _ as DeviceProfileAttributes,
+  H as AdminProfileAttributes,
+  O as DeviceProfileAttributes,
   C as LocationProfileAttributes,
   P as PartnerProfileAttributes,
   x as PartnerProfileAttributesDbKeys,
   W as PartnerProfileAttributesJsonKeys,
-  D as StaffProfileAttributes,
+  R as StaffProfileAttributes,
   g as UserProfileAttributes,
   V as applyInvoice,
   E as deserializeProfileAttribute,
@@ -748,5 +756,5 @@ export {
   K as partnerModes,
   v as partnerTypes,
   k as profileTypes,
-  H as serviceTypes
+  J as serviceTypes
 };
