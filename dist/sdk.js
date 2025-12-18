@@ -575,14 +575,7 @@ const v = {
     value: 0,
     jsonProperty: "hourlyRate",
     format: (t) => Number(t),
-    cast: (t) => {
-      if (t == null)
-        throw new Error("Invalid hourly_rate: value is null or undefined");
-      const e = Number(t);
-      if (Number.isNaN(e))
-        throw new Error("Invalid hourly_rate: not a number");
-      return e;
-    }
+    cast: (t) => Number(t)
   },
   PERMISSIONS: {
     attribute: "permissions",
@@ -675,7 +668,7 @@ const D = async (t, e, a) => {
 }, U = async (t, e, a) => {
   const o = Object.keys(t), s = await D(o, e, a);
   for (const r of s) {
-    const u = t[r.partnerId], i = w(r, u);
+    const u = t[r.partnerId], i = F(r, u);
     u.privateProfile = i;
   }
   for (const r of Object.keys(t)) {
@@ -707,7 +700,7 @@ const D = async (t, e, a) => {
         a.add(i);
   for (const u of a)
     delete t[u];
-}, w = (t, e) => {
+}, F = (t, e) => {
   const a = {
     name: t.name,
     partnerId: e.id,
@@ -719,7 +712,7 @@ const D = async (t, e, a) => {
   for (const s of Object.values(o))
     s.owner = e.id, s.profile = a.name;
   return a.attributes = o, a;
-}, F = (t, e) => {
+}, w = (t, e) => {
   if (!t || !e) return;
   const a = t.attributes || {}, o = e.attributes || {};
   for (const s of Object.keys(a)) {
@@ -728,7 +721,7 @@ const D = async (t, e, a) => {
   }
   e.attributes = o;
 }, Y = (t, e) => {
-  F(t, e);
+  w(t, e);
 }, G = (t, e) => {
   const a = t == null ? void 0 : t.parent;
   if (!a) return;

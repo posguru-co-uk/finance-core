@@ -29,19 +29,7 @@ export const StaffProfileAttributes = {
         value: 0,
         jsonProperty: "hourlyRate",
         format: (value: any) => Number(value),
-        cast: (value: any) => {
-            if (value === null || value === undefined) {
-                throw new Error("Invalid hourly_rate: value is null or undefined");
-            }
-
-            const num = Number(value);
-
-            if (Number.isNaN(num)) {
-                throw new Error("Invalid hourly_rate: not a number");
-            }
-
-            return num;
-        },
+        cast: (value: any) => Number(value),
     } as AttributeConfig<number>,
 
 
