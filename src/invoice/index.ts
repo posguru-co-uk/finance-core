@@ -54,6 +54,7 @@ export interface Product {
   isDeleted: boolean;
   addonItems: Record<string, AddonItem>;
   addons: Record<string, Addon>;
+  serviceTypeCharges?: any
 }
 
 export interface OrderItem {
@@ -80,6 +81,7 @@ export interface OrderItem {
   isPrinted?: boolean;
   partnerId: string;
   addons: Array<OrderItemsAddons>;
+  isManualPrice?: boolean;
 }
 
 export interface OrderItemsAddons {
@@ -164,15 +166,24 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
   order.items?.forEach((item, itemIndex) => {
     let salesPrice = Number(item?.amount || 0.00);
+    const product = products[item.productId];
+    if (product && !item?.isManualPrice) {
+      if (product?.serviceTypeCharges?.[order.serviceType]) {
+        salesPrice = product?.serviceTypeCharges?.[order.serviceType].salesPrice;
+      } else {
+        salesPrice = product.salesPrice;
+      }
+    }
     // Assign an ID if missing
     if (!item.id) {
       item.id = nextItemId++;
     }
     const baseAmount = Number(salesPrice) * Number(item.quantity);
-
     item.amount = Number(salesPrice);
     item.totalAmount = baseAmount;
-    item.totalCost = baseAmount;
+    if (!item?.isManualPrice) {
+      item.totalCost = baseAmount;
+    }
     // Precompute max addon id for this item
     let nextAddonId =
       (item.addons?.reduce((max, a) => (a.id && a.id > max ? a.id : max), 0) || 0) + 1;
@@ -184,7 +195,9 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
         addon.id = nextAddonId++;
       }
       addon.orderItemsId = item.id; // should link to parent item, not self
-      addon.totalAmount = amount * addon.quantity;
+      if (item?.isManualPrice) {
+        addon.totalAmount = 0.00
+      }
       item.totalCost += addon.totalAmount;
     });
     totalAmount = totalAmount + item.totalCost;
