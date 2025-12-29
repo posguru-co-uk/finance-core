@@ -1,54 +1,54 @@
-function V(t, e, a) {
-  var i, p, f, A, S;
-  let o = 0, s = 0, r = 0, u = (((i = t.items) == null ? void 0 : i.reduce((n, b) => b.id && b.id > n ? b.id : n, 0)) || 0) + 1;
-  if ((p = t.items) == null || p.forEach((n, b) => {
-    var N, I;
-    let y = Number((n == null ? void 0 : n.amount) || 0);
-    n.id || (n.id = u++);
-    const d = Number(y) * Number(n.quantity);
-    n.amount = Number(y), n.totalAmount = d, n.totalCost = d;
-    let _ = (((N = n.addons) == null ? void 0 : N.reduce((l, m) => m.id && m.id > l ? m.id : l, 0)) || 0) + 1;
-    if ((I = n.addons) == null || I.forEach((l, m) => {
-      let j = Number((l == null ? void 0 : l.amount) || 0);
-      l != null && l.id || (l.id = _++), l.orderItemsId = n.id, l.totalAmount = j * l.quantity, n.totalCost += l.totalAmount;
-    }), r = r + n.totalCost, n != null && n.discountId) {
-      const l = a[n == null ? void 0 : n.discountId];
-      let m = 0;
-      l.discountType === "PERCENT" ? m = Number((n.totalCost * (Number(l.discount) / 100)).toFixed(2)) : n.totalCost >= Number(l.discount) ? m = n.totalCost - Number(l.discount) : (n.discountId = null, n.discount = null), s = s + m, n.discountAmount = m, n.totalCost = n.totalCost - m;
+function k(t, r, o) {
+  var i, p, f, S, N;
+  let n = 0, s = 0, a = 0, u = (((i = t.items) == null ? void 0 : i.reduce((e, b) => b.id && b.id > e ? b.id : e, 0)) || 0) + 1;
+  if ((p = t.items) == null || p.forEach((e, b) => {
+    var I, T, _, g;
+    let v = Number((e == null ? void 0 : e.amount) || 0);
+    const E = r[e.productId];
+    E && !(e != null && e.isManualPrice) && ((I = E == null ? void 0 : E.serviceTypeCharges) != null && I[t.serviceType] ? v = (T = E == null ? void 0 : E.serviceTypeCharges) == null ? void 0 : T[t.serviceType].salesPrice : v = E.salesPrice), e.id || (e.id = u++);
+    const d = Number(v) * Number(e.quantity);
+    e.amount = Number(v), e.totalAmount = d, e != null && e.isManualPrice || (e.totalCost = d);
+    let O = (((_ = e.addons) == null ? void 0 : _.reduce((l, y) => y.id && y.id > l ? y.id : l, 0)) || 0) + 1;
+    if ((g = e.addons) == null || g.forEach((l, y) => {
+      Number((l == null ? void 0 : l.amount) || 0), l != null && l.id || (l.id = O++), l.orderItemsId = e.id, e != null && e.isManualPrice && (l.totalAmount = 0), e.totalCost += l.totalAmount;
+    }), a = a + e.totalCost, e != null && e.discountId) {
+      const l = o[e == null ? void 0 : e.discountId];
+      let y = 0;
+      l.discountType === "PERCENT" ? y = Number((e.totalCost * (Number(l.discount) / 100)).toFixed(2)) : e.totalCost >= Number(l.discount) ? y = e.totalCost - Number(l.discount) : (e.discountId = null, e.discount = null), s = s + y, e.discountAmount = y, e.totalCost = e.totalCost - y;
     }
-    o += n.totalCost;
-  }), t.subTotal = o, t.totalAmount = r, t.totalDiscount = s, t.billAmount = o, Number(t == null ? void 0 : t.carryBagQuantity) && Number(t.carryBagFee) && (t.billAmount = Number(t.billAmount) + (Number(t == null ? void 0 : t.carryBagQuantity) && Number(t.carryBagFee))), t != null && t.serviceChargePercent && Number(t.serviceChargePercent)) {
-    const n = Number(o) * (Number(t.serviceChargePercent) / 100);
-    t.billAmount = Number(t.billAmount) + n, t.serviceCharge = n;
+    n += e.totalCost;
+  }), t.subTotal = n, t.totalAmount = a, t.totalDiscount = s, t.billAmount = n, Number(t == null ? void 0 : t.carryBagQuantity) && Number(t.carryBagFee) && (t.billAmount = Number(t.billAmount) + (Number(t == null ? void 0 : t.carryBagQuantity) && Number(t.carryBagFee))), t != null && t.serviceChargePercent && Number(t.serviceChargePercent)) {
+    const e = Number(n) * (Number(t.serviceChargePercent) / 100);
+    t.billAmount = Number(t.billAmount) + e, t.serviceCharge = e;
   }
   if ((t == null ? void 0 : t.serviceType) === "DELIVERY" && (t != null && t.deliveryChargeId) && (t != null && t.deliveryCharge)) {
-    const n = Number(t == null ? void 0 : t.deliveryCharge);
-    t.billAmount = Number(t.billAmount) + n;
+    const e = Number(t == null ? void 0 : t.deliveryCharge);
+    t.billAmount = Number(t.billAmount) + e;
   }
   if ((f = t == null ? void 0 : t.tables) != null && f.length && (t == null ? void 0 : t.serviceType) === "DINE_IN") {
-    let n = (((A = t.tables) == null ? void 0 : A.reduce((b, y) => y.id && y.id > b ? y.id : b, 0)) || 0) + 1;
-    (S = t.tables) == null || S.forEach((b, y) => {
-      b.id || (b.id = n++);
+    let e = (((S = t.tables) == null ? void 0 : S.reduce((b, v) => v.id && v.id > b ? v.id : b, 0)) || 0) + 1;
+    (N = t.tables) == null || N.forEach((b, v) => {
+      b.id || (b.id = e++);
     });
   }
   return t;
 }
-const v = {
+const P = {
   PARTNER: "PARTNER",
   USER: "USER",
   LOCATION: "LOCATION",
   DEVICE: "DEVICE",
   STAFF: "STAFF",
   VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF"]
-}, K = {
+}, H = {
   CLOUDE_KITCHEN: "CLOUDE_KITCHEN",
   RESTAURANT: "RESTAURANT",
   VALUES: ["CLOUDE_KITCHEN", "RESTAURANT"]
-}, k = {
+}, J = {
   PRIVATE: "PRIVATE",
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
-}, c = (t) => typeof t == "string" ? t.toLowerCase() === "true" : !!t, O = {
+}, c = (t) => typeof t == "string" ? t.toLowerCase() === "true" : !!t, C = {
   NAME: {
     attribute: "name",
     value: null,
@@ -119,7 +119,7 @@ const v = {
     format: (t) => Array.isArray(t) ? t : [],
     override: !0
   }
-}, g = {
+}, R = {
   PASSWORD: {
     attribute: "password",
     value: null,
@@ -182,7 +182,7 @@ const v = {
     jsonProperty: "isOwner",
     format: (t) => c(t)
   }
-}, C = {
+}, D = {
   NAME: {
     attribute: "name",
     value: null,
@@ -309,7 +309,7 @@ const v = {
     format: (t) => String(t),
     override: !0
   }
-}, P = {
+}, A = {
   NAME: {
     attribute: "name",
     value: null,
@@ -484,7 +484,7 @@ const v = {
     jsonProperty: "longitude",
     format: (t) => String(t)
   }
-}, H = {
+}, W = {
   PASSWORD: {
     attribute: "password",
     value: null,
@@ -551,7 +551,7 @@ const v = {
     jsonProperty: "isAdmin",
     format: (t) => c(t)
   }
-}, R = {
+}, L = {
   NAME: {
     attribute: "name",
     value: null,
@@ -591,7 +591,7 @@ const v = {
     format: (t) => c(t),
     override: !0
   }
-}, J = {
+}, x = {
   TAKE_AWAY: "TAKE_AWAY",
   DELIVERY: "DELIVERY",
   DINE_IN: "DINE_IN",
@@ -606,148 +606,148 @@ const v = {
     "TABLE_BOOKING",
     "WEBSITE_BOOKING"
   ]
-}, E = (t, e, a = !1, o = !0) => {
+}, m = (t, r, o = !1, n = !0) => {
   const s = {};
-  return Object.values(t).forEach((r) => {
+  return Object.values(t).forEach((a) => {
     let u = null;
-    e[r.attribute] ? u = r.format(e[r.attribute].value) : a && (u = r.value), o ? s[r.jsonProperty] = u : s[r.jsonProperty] = { ...r, value: u };
+    r[a.attribute] ? u = a.format(r[a.attribute].value) : o && (u = a.value), n ? s[a.jsonProperty] = u : s[a.jsonProperty] = { ...a, value: u };
   }), s;
-}, W = Object.values(
-  P
-).map((t) => t.jsonProperty), x = Object.values(
-  P
+}, Z = Object.values(
+  A
+).map((t) => t.jsonProperty), z = Object.values(
+  A
 ).map((t) => t.attribute);
-async function Z(t, e, a, o, s = !1) {
-  const r = {};
+async function Q(t, r, o, n, s = !1) {
+  const a = {};
   for (const p of t)
-    r[p.id] = p;
-  r[e] = {
-    id: e,
-    type: v.PARTNER,
+    a[p.id] = p;
+  a[r] = {
+    id: r,
+    type: P.PARTNER,
     parent: null
-  }, await U(r, a, o);
-  const u = L(r), i = h(r);
-  return T(i, r, u), B(r, u), M(r), s || delete r[e], r;
+  }, await B(a, o, n);
+  const u = U(a), i = M(a);
+  return j(i, a, u), w(a, u), F(a), s || delete a[r], a;
 }
-const D = async (t, e, a) => {
-  const o = await e(t), s = {};
-  for (const i of o) {
+const h = async (t, r, o) => {
+  const n = await r(t), s = {};
+  for (const i of n) {
     const p = i.partnerId;
     let f = s[p];
     f || (f = {}, s[p] = f), f[i.name] = i;
   }
-  const r = /* @__PURE__ */ new Set();
+  const a = /* @__PURE__ */ new Set();
   for (const i of Object.keys(s)) {
     const p = s[i];
     for (const f of Object.values(p))
-      r.add(f);
+      a.add(f);
   }
-  const u = await a(t);
+  const u = await o(t);
   for (const i of u) {
     const p = s[i == null ? void 0 : i.partnerId];
     if (!p) continue;
     const f = p[i == null ? void 0 : i.profileName];
     f && (f.attributes || (f.attributes = {}), f.attributes[i.name] = i);
   }
-  return r;
-}, L = (t) => {
-  const e = {};
-  for (const a of Object.values(t)) {
-    const o = a != null && a.parent ? t[a.parent] : null;
-    o && (e[o.id] || (e[o.id] = []), e[o.id].push(a.id));
+  return a;
+}, U = (t) => {
+  const r = {};
+  for (const o of Object.values(t)) {
+    const n = o != null && o.parent ? t[o.parent] : null;
+    n && (r[n.id] || (r[n.id] = []), r[n.id].push(o.id));
   }
-  return e;
-}, h = (t) => {
-  let e = null;
-  for (const a of Object.values(t))
-    if (!a.parent)
-      if (!e) e = a;
+  return r;
+}, M = (t) => {
+  let r = null;
+  for (const o of Object.values(t))
+    if (!o.parent)
+      if (!r) r = o;
       else throw new Error("find root faild: more than one root parent found");
-  if (!e) throw new Error("No root partner found");
-  return e;
-}, U = async (t, e, a) => {
-  const o = Object.keys(t), s = await D(o, e, a);
-  for (const r of s) {
-    const u = t[r.partnerId], i = F(r, u);
+  if (!r) throw new Error("No root partner found");
+  return r;
+}, B = async (t, r, o) => {
+  const n = Object.keys(t), s = await h(n, r, o);
+  for (const a of s) {
+    const u = t[a.partnerId], i = Y(a, u);
     u.privateProfile = i;
   }
-  for (const r of Object.keys(t)) {
-    const u = t[r];
+  for (const a of Object.keys(t)) {
+    const u = t[a];
     u != null && u.privateProfile;
   }
-}, M = (t) => {
-  const e = [];
-  for (const a of Object.values(t)) {
-    const o = a == null ? void 0 : a.privateProfile;
-    if (o) {
-      const s = (o == null ? void 0 : o.attributes) || {}, r = {};
+}, F = (t) => {
+  const r = [];
+  for (const o of Object.values(t)) {
+    const n = o == null ? void 0 : o.privateProfile;
+    if (n) {
+      const s = (n == null ? void 0 : n.attributes) || {}, a = {};
       for (const u of Object.keys(s)) {
         const i = s[u];
-        r[u] = i.value ?? i.overriden;
+        a[u] = i.value ?? i.overriden;
       }
-      o.attributes = { ...r };
+      n.attributes = { ...a };
     } else
-      e.push(a.id), console.warn("no user assigned this partner", JSON.stringify(a));
+      r.push(o.id), console.warn("no user assigned this partner", JSON.stringify(o));
   }
-  for (const a of e)
-    delete t[a];
-}, B = (t, e) => {
-  var o, s, r;
-  const a = /* @__PURE__ */ new Set();
+  for (const o of r)
+    delete t[o];
+}, w = (t, r) => {
+  var n, s, a;
+  const o = /* @__PURE__ */ new Set();
   for (const u of Object.values(t))
-    if ((r = (s = (o = u.privateProfile) == null ? void 0 : o.attributes) == null ? void 0 : s.isDeleted) != null && r.value && (a.add(u.id), e[u.id]))
-      for (const i of e[u.id])
-        a.add(i);
-  for (const u of a)
+    if ((a = (s = (n = u.privateProfile) == null ? void 0 : n.attributes) == null ? void 0 : s.isDeleted) != null && a.value && (o.add(u.id), r[u.id]))
+      for (const i of r[u.id])
+        o.add(i);
+  for (const u of o)
     delete t[u];
-}, F = (t, e) => {
-  const a = {
+}, Y = (t, r) => {
+  const o = {
     name: t.name,
-    partnerId: e.id,
+    partnerId: r.id,
     type: t.type,
     attributes: t.attributes
   };
-  let o = {};
-  e.type === v.PARTNER ? o = E(P, t.attributes, !1, !1) : e.type === v.LOCATION ? o = E(C, t.attributes, !1, !1) : e.type === v.DEVICE ? o = E(O, t.attributes, !1, !1) : e.type === v.USER ? o = E(g, t.attributes, !1, !1) : e.type === v.STAFF && (o = E(R, t.attributes, !1, !1));
-  for (const s of Object.values(o))
-    s.owner = e.id, s.profile = a.name;
-  return a.attributes = o, a;
-}, w = (t, e) => {
-  if (!t || !e) return;
-  const a = t.attributes || {}, o = e.attributes || {};
-  for (const s of Object.keys(a)) {
-    const r = a[s], u = o[s];
-    u && (u && r && u.value === null && u.override === !0 && r.value ? o[s] = { ...r } : o[s] = { ...u });
+  let n = {};
+  r.type === P.PARTNER ? n = m(A, t.attributes, !1, !1) : r.type === P.LOCATION ? n = m(D, t.attributes, !1, !1) : r.type === P.DEVICE ? n = m(C, t.attributes, !1, !1) : r.type === P.USER ? n = m(R, t.attributes, !1, !1) : r.type === P.STAFF && (n = m(L, t.attributes, !1, !1));
+  for (const s of Object.values(n))
+    s.owner = r.id, s.profile = o.name;
+  return o.attributes = n, o;
+}, G = (t, r) => {
+  if (!t || !r) return;
+  const o = t.attributes || {}, n = r.attributes || {};
+  for (const s of Object.keys(o)) {
+    const a = o[s], u = n[s];
+    u && (u && a && u.value === null && u.override === !0 && a.value ? n[s] = { ...a } : n[s] = { ...u });
   }
-  e.attributes = o;
-}, Y = (t, e) => {
-  w(t, e);
-}, G = (t, e) => {
-  const a = t == null ? void 0 : t.parent;
-  if (!a) return;
-  const s = e[a].privateProfile || null, r = t.privateProfile || null;
-  r && s && Y(s, r), t.privateProfile = r || void 0;
-}, T = (t, e, a) => {
-  G(t, e);
-  const o = a[t.id];
-  if (o)
-    for (const s of o)
-      T(e[s], e, a);
+  r.attributes = n;
+}, V = (t, r) => {
+  G(t, r);
+}, K = (t, r) => {
+  const o = t == null ? void 0 : t.parent;
+  if (!o) return;
+  const s = r[o].privateProfile || null, a = t.privateProfile || null;
+  a && s && V(s, a), t.privateProfile = a || void 0;
+}, j = (t, r, o) => {
+  K(t, r);
+  const n = o[t.id];
+  if (n)
+    for (const s of n)
+      j(r[s], r, o);
 };
 export {
-  H as AdminProfileAttributes,
-  O as DeviceProfileAttributes,
-  C as LocationProfileAttributes,
-  P as PartnerProfileAttributes,
-  x as PartnerProfileAttributesDbKeys,
-  W as PartnerProfileAttributesJsonKeys,
-  R as StaffProfileAttributes,
-  g as UserProfileAttributes,
-  V as applyInvoice,
-  E as deserializeProfileAttribute,
-  Z as generateProfile,
-  K as partnerModes,
-  v as partnerTypes,
-  k as profileTypes,
-  J as serviceTypes
+  W as AdminProfileAttributes,
+  C as DeviceProfileAttributes,
+  D as LocationProfileAttributes,
+  A as PartnerProfileAttributes,
+  z as PartnerProfileAttributesDbKeys,
+  Z as PartnerProfileAttributesJsonKeys,
+  L as StaffProfileAttributes,
+  R as UserProfileAttributes,
+  k as applyInvoice,
+  m as deserializeProfileAttribute,
+  Q as generateProfile,
+  H as partnerModes,
+  P as partnerTypes,
+  J as profileTypes,
+  x as serviceTypes
 };

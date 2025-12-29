@@ -45,6 +45,7 @@ export interface Product {
     isDeleted: boolean;
     addonItems: Record<string, AddonItem>;
     addons: Record<string, Addon>;
+    serviceTypeCharges?: any;
 }
 export interface OrderItem {
     id: number;
@@ -70,6 +71,7 @@ export interface OrderItem {
     isPrinted?: boolean;
     partnerId: string;
     addons: Array<OrderItemsAddons>;
+    isManualPrice?: boolean;
 }
 export interface OrderItemsAddons {
     name: LocalizedText;
