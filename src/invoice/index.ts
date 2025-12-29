@@ -197,26 +197,33 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
       addon.orderItemsId = item.id; // should link to parent item, not self
       if (item?.isManualPrice) {
         addon.totalAmount = 0.00
+      }else {
+        addon.totalAmount = amount * Number(addon.quantity);
       }
       item.totalCost += addon.totalAmount;
     });
     totalAmount = totalAmount + item.totalCost;
     if (item?.discountId) {
-      const discount = discounts[item?.discountId];
-      let discountAMount = 0.00;
-      if (discount.discountType === 'PERCENT') {
-        discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
-      } else {
-        if (item.totalCost >= Number(discount.discount)) {
-          discountAMount = item.totalCost - Number(discount.discount);
+      if (!item?.isManualPrice) {
+        const discount = discounts[item?.discountId];
+        let discountAMount = 0.00;
+        if (discount.discountType === 'PERCENT') {
+          discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
         } else {
-          item.discountId = null;
-          item.discount = null;
+          if (item.totalCost >= Number(discount.discount)) {
+            discountAMount = item.totalCost - Number(discount.discount);
+          } else {
+            item.discountId = null;
+            item.discount = null;
+          }
         }
+        totalDiscount = totalDiscount + discountAMount;
+        item.discountAmount = discountAMount;
+        item.totalCost = item.totalCost - discountAMount;
       }
-      totalDiscount = totalDiscount + discountAMount;
-      item.discountAmount = discountAMount;
-      item.totalCost = item.totalCost - discountAMount;
+    } else {
+      item.discountId = null;
+      item.discount = null;
     }
     subTotal += item.totalCost;
   });
