@@ -54,6 +54,7 @@ export interface Product {
   isDeleted: boolean;
   addonItems: Record<string, AddonItem>;
   addons: Record<string, Addon>;
+  serviceTypeCharges?: any
 }
 
 export interface OrderItem {
@@ -80,6 +81,7 @@ export interface OrderItem {
   isPrinted?: boolean;
   partnerId: string;
   addons: Array<OrderItemsAddons>;
+  isManualPrice?: boolean;
 }
 
 export interface OrderItemsAddons {
@@ -164,15 +166,24 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
     (order.items?.reduce((max, i) => (i.id && i.id > max ? i.id : max), 0) || 0) + 1;
   order.items?.forEach((item, itemIndex) => {
     let salesPrice = Number(item?.amount || 0.00);
+    const product = products[item.productId];
+    if (product && !item?.isManualPrice) {
+      if (product?.serviceTypeCharges?.[order.serviceType]) {
+        salesPrice = product?.serviceTypeCharges?.[order.serviceType].salesPrice;
+      } else {
+        salesPrice = product.salesPrice;
+      }
+    }
     // Assign an ID if missing
     if (!item.id) {
       item.id = nextItemId++;
     }
     const baseAmount = Number(salesPrice) * Number(item.quantity);
-
     item.amount = Number(salesPrice);
     item.totalAmount = baseAmount;
-    item.totalCost = baseAmount;
+    if (!item?.isManualPrice) {
+      item.totalCost = baseAmount;
+    }
     // Precompute max addon id for this item
     let nextAddonId =
       (item.addons?.reduce((max, a) => (a.id && a.id > max ? a.id : max), 0) || 0) + 1;
@@ -184,26 +195,35 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
         addon.id = nextAddonId++;
       }
       addon.orderItemsId = item.id; // should link to parent item, not self
-      addon.totalAmount = amount * addon.quantity;
+      if (item?.isManualPrice) {
+        addon.totalAmount = 0.00
+      }else {
+        addon.totalAmount = amount * Number(addon.quantity);
+      }
       item.totalCost += addon.totalAmount;
     });
     totalAmount = totalAmount + item.totalCost;
     if (item?.discountId) {
-      const discount = discounts[item?.discountId];
-      let discountAMount = 0.00;
-      if (discount.discountType === 'PERCENT') {
-        discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
-      } else {
-        if (item.totalCost >= Number(discount.discount)) {
-          discountAMount = item.totalCost - Number(discount.discount);
+      if (!item?.isManualPrice) {
+        const discount = discounts[item?.discountId];
+        let discountAMount = 0.00;
+        if (discount.discountType === 'PERCENT') {
+          discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
         } else {
-          item.discountId = null;
-          item.discount = null;
+          if (item.totalCost >= Number(discount.discount)) {
+            discountAMount = item.totalCost - Number(discount.discount);
+          } else {
+            item.discountId = null;
+            item.discount = null;
+          }
         }
+        totalDiscount = totalDiscount + discountAMount;
+        item.discountAmount = discountAMount;
+        item.totalCost = item.totalCost - discountAMount;
       }
-      totalDiscount = totalDiscount + discountAMount;
-      item.discountAmount = discountAMount;
-      item.totalCost = item.totalCost - discountAMount;
+    } else {
+      item.discountId = null;
+      item.discount = null;
     }
     subTotal += item.totalCost;
   });

@@ -2,6 +2,8 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.0.0-alpha3 (2025-12-29)
+- **FIX** [POSWEB-1649](https://posguru.atlassian.net/browse/POSWEB-1649) service type based price change
 
 ## 2.0.0-alpha2 (2025-12-17)
 - **FIX** [POSWEB-1591](https://posguru.atlassian.net/browse/POSWEB-1619) Update the staff model in finance core
