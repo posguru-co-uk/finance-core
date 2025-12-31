@@ -2,7 +2,7 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 1.0.0 (2025-12-31)
+## 2.0.0 (2025-12-31)
 - **New** [POSWEB-1656](https://posguru.atlassian.net/browse/POSWEB-1656) checkout discount
 - **New** [POSWEB-1656](https://posguru.atlassian.net/browse/POSWEB-1656) checkout discount
 - **FIX** [POSWEB-1649](https://posguru.atlassian.net/browse/POSWEB-1649) service type based price change
@@ -43,6 +43,7 @@
   - added START_TOKEN_NUMBER
 - **New** [POSWEB-1281](https://posguru.atlassian.net/browse/POSWEB-1281) Add subTotal
   - added subtotal to finace core
+## 1.0.0 (2025-11-18)
 - **New** [POSWEB-1210](https://posguru.atlassian.net/browse/POSWEB-1210) Add calculation for invoice
   - Add types of `Order`, `OrderItem` and `OrderItemsAddons`
   - Created method `applyInvoice` it will calculate order related.
