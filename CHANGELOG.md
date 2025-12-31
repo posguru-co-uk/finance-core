@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.0.0-alpha4 (2025-12-29)
+- **New** [POSWEB-1656](https://posguru.atlassian.net/browse/POSWEB-1656) checkout discount
+
 ## 2.0.0-alpha3 (2025-12-29)
 - **FIX** [POSWEB-1649](https://posguru.atlassian.net/browse/POSWEB-1649) service type based price change
 
