@@ -8,8 +8,9 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'FinanceCore',
-      fileName: (format) => (format === 'es' ? 'sdk.js' : 'sdk.umd.cjs'),
-      formats: ['es', 'umd'],
+       fileName: (format) =>
+      format === 'es' ? 'sdk.esm.js' : 'sdk.cjs.js',
+       formats: ['es', 'cjs'],
     },
     rollupOptions: {
       treeshake: false, // ⬅ reduces helper vars (_a, _b)

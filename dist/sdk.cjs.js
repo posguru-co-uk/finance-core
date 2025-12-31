@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 function applyInvoice(order, products, discounts) {
   var _a, _b, _c, _d, _e;
   let subTotal = 0;
@@ -911,21 +913,19 @@ const applyInheritanceFromParent = (rootPartner, partners, childPartners) => {
     }
   }
 };
-export {
-  AdminProfileAttributes,
-  DeviceProfileAttributes,
-  LocationProfileAttributes,
-  PartnerProfileAttributes,
-  PartnerProfileAttributesDbKeys,
-  PartnerProfileAttributesJsonKeys,
-  StaffProfileAttributes,
-  UserProfileAttributes,
-  applyInvoice,
-  deserializeProfileAttribute,
-  generateProfile,
-  partnerModes,
-  partnerTypes,
-  profileTypes,
-  serviceTypes
-};
-//# sourceMappingURL=sdk.js.map
+exports.AdminProfileAttributes = AdminProfileAttributes;
+exports.DeviceProfileAttributes = DeviceProfileAttributes;
+exports.LocationProfileAttributes = LocationProfileAttributes;
+exports.PartnerProfileAttributes = PartnerProfileAttributes;
+exports.PartnerProfileAttributesDbKeys = PartnerProfileAttributesDbKeys;
+exports.PartnerProfileAttributesJsonKeys = PartnerProfileAttributesJsonKeys;
+exports.StaffProfileAttributes = StaffProfileAttributes;
+exports.UserProfileAttributes = UserProfileAttributes;
+exports.applyInvoice = applyInvoice;
+exports.deserializeProfileAttribute = deserializeProfileAttribute;
+exports.generateProfile = generateProfile;
+exports.partnerModes = partnerModes;
+exports.partnerTypes = partnerTypes;
+exports.profileTypes = profileTypes;
+exports.serviceTypes = serviceTypes;
+//# sourceMappingURL=sdk.cjs.js.map
