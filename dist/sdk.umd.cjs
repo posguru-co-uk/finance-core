@@ -1,1 +1,935 @@
-(function(l,S){typeof exports=="object"&&typeof module<"u"?S(exports):typeof define=="function"&&define.amd?define(["exports"],S):(l=typeof globalThis<"u"?globalThis:l||self,S(l.FinanceCore={}))})(this,function(l){"use strict";function S(t,r,o){var u,p,b,_,O;let n=0,s=0,a=0,i=(((u=t.items)==null?void 0:u.reduce((e,y)=>y.id&&y.id>e?y.id:e,0))||0)+1;if((p=t.items)==null||p.forEach((e,y)=>{var R,D,L,h;let v=Number((e==null?void 0:e.amount)||0);const E=r[e.productId];E&&!(e!=null&&e.isManualPrice)&&((R=E==null?void 0:E.serviceTypeCharges)!=null&&R[t.serviceType]?v=(D=E==null?void 0:E.serviceTypeCharges)==null?void 0:D[t.serviceType].salesPrice:v=E.salesPrice),e.id||(e.id=i++);const C=Number(v)*Number(e.quantity);e.amount=Number(v),e.totalAmount=C,e!=null&&e.isManualPrice||(e.totalCost=C);let X=(((L=e.addons)==null?void 0:L.reduce((f,P)=>P.id&&P.id>f?P.id:f,0))||0)+1;if((h=e.addons)==null||h.forEach((f,P)=>{let $=Number((f==null?void 0:f.amount)||0);f!=null&&f.id||(f.id=X++),f.orderItemsId=e.id,e!=null&&e.isManualPrice?f.totalAmount=0:f.totalAmount=$*Number(f.quantity),e.totalCost+=f.totalAmount}),a=a+e.totalCost,e!=null&&e.discountId){if(!(e!=null&&e.isManualPrice)){const f=o[e==null?void 0:e.discountId];let P=0;f.discountType==="PERCENT"?P=Number((e.totalCost*(Number(f.discount)/100)).toFixed(2)):e.totalCost>=Number(f.discount)?P=e.totalCost-Number(f.discount):(e.discountId=null,e.discount=null),s=s+P,e.discountAmount=P,e.totalCost=e.totalCost-P}}else e.discountId=null,e.discount=null;n+=e.totalCost}),t.subTotal=n,t.totalAmount=a,t.totalDiscount=s,t.billAmount=n,Number(t==null?void 0:t.carryBagQuantity)&&Number(t.carryBagFee)&&(t.billAmount=Number(t.billAmount)+(Number(t==null?void 0:t.carryBagQuantity)&&Number(t.carryBagFee))),t!=null&&t.serviceChargePercent&&Number(t.serviceChargePercent)){const e=Number(n)*(Number(t.serviceChargePercent)/100);t.billAmount=Number(t.billAmount)+e,t.serviceCharge=e}if((t==null?void 0:t.serviceType)==="DELIVERY"&&(t!=null&&t.deliveryChargeId)&&(t!=null&&t.deliveryCharge)){const e=Number(t==null?void 0:t.deliveryCharge);t.billAmount=Number(t.billAmount)+e}if((b=t==null?void 0:t.tables)!=null&&b.length&&(t==null?void 0:t.serviceType)==="DINE_IN"){let e=(((_=t.tables)==null?void 0:_.reduce((y,v)=>v.id&&v.id>y?v.id:y,0))||0)+1;(O=t.tables)==null||O.forEach((y,v)=>{y.id||(y.id=e++)})}return t}const m={PARTNER:"PARTNER",USER:"USER",LOCATION:"LOCATION",DEVICE:"DEVICE",STAFF:"STAFF",VALUES:["PARTNER","USER","LOCATION","DEVICE","STAFF"]},U={CLOUDE_KITCHEN:"CLOUDE_KITCHEN",RESTAURANT:"RESTAURANT",VALUES:["CLOUDE_KITCHEN","RESTAURANT"]},M={PRIVATE:"PRIVATE",STYLE:"STYLE",APPLICATION:"APPLICATION"},c=t=>typeof t=="string"?t.toLowerCase()==="true":!!t,N={NAME:{attribute:"name",value:null,jsonProperty:"name",format:t=>String(t)},LANGUAGES:{attribute:"languages",value:["en-"],jsonProperty:"languages",format:t=>JSON.parse(t),override:!0},STATUS:{attribute:"status",value:!0,jsonProperty:"status",format:t=>c(t),override:!0},CURRENCY:{attribute:"currency",value:"GBP",jsonProperty:"currency",format:t=>String(t),override:!0},MINIMUM_CASH_ORDER:{attribute:"minimum_cash_order",value:0,jsonProperty:"minimumCashOrder",format:t=>Number(t),override:!0},CARRY_BAG_FEE:{attribute:"carry_bag_fee",value:0,jsonProperty:"carryBagFee",format:t=>Number(t),override:!0},VAT:{attribute:"vat",value:0,jsonProperty:"vat",format:t=>Number(t),override:!0},TIME_ZONE:{attribute:"time_zone",value:null,jsonProperty:"timeZone",format:t=>String(t),override:!0},IS_DELETED:{attribute:"is_deleted",value:!1,jsonProperty:"isDeleted",format:t=>c(t),override:!0},SERVICE_TYPES:{attribute:"service_types",value:[],jsonProperty:"serviceTypes",format:t=>Array.isArray(t)?t:[],override:!0}},T={PASSWORD:{attribute:"password",value:null,jsonProperty:"password",format:t=>String(t)},EMAIL:{attribute:"email",value:null,jsonProperty:"email",format:t=>String(t)},NAME:{attribute:"name",value:null,jsonProperty:"name",format:t=>String(t)},PHONE:{attribute:"phone",value:null,jsonProperty:"phone",format:t=>String(t)},PERMISSIONS:{attribute:"permissions",value:[],jsonProperty:"permissions",format:t=>Array.isArray(t)?t:[]},STATUS:{attribute:"status",value:!0,jsonProperty:"status",format:t=>c(t),override:!0},IS_DELETED:{attribute:"is_deleted",value:!1,jsonProperty:"isDeleted",format:t=>c(t),override:!0},FP_TOKEN:{attribute:"fp_token",value:null,jsonProperty:"fpToken",format:t=>String(t)},FP_DURATION:{attribute:"fp_duration",value:null,jsonProperty:"fpDuration",format:t=>t?new Date(t):null},IS_OWNER:{attribute:"is_owner",value:!1,jsonProperty:"isOwner",format:t=>c(t)}},I={NAME:{attribute:"name",value:null,jsonProperty:"name",format:t=>String(t)},EMAIL:{attribute:"email",value:null,jsonProperty:"email",format:t=>String(t)},LANGUAGES:{attribute:"languages",value:["en-US"],jsonProperty:"languages",format:t=>JSON.parse(t),override:!0},PHONE:{attribute:"phone",value:null,jsonProperty:"phone",format:t=>String(t)},COUNTRY:{attribute:"country",value:null,jsonProperty:"country",format:t=>String(t)},ADDRESS:{attribute:"address",value:null,jsonProperty:"address",format:t=>String(t)},DESCRIPTION:{attribute:"description",value:null,jsonProperty:"description",format:t=>String(t)},POSTCODE:{attribute:"postcode",value:null,jsonProperty:"postcode",format:t=>String(t)},STATUS:{attribute:"status",value:!0,jsonProperty:"status",format:t=>c(t),override:!0},CURRENCY:{attribute:"currency",value:"GBP",jsonProperty:"currency",format:t=>String(t),override:!0},MINIMUM_CASH_ORDER:{attribute:"minimum_cash_order",value:0,jsonProperty:"minimumCashOrder",format:t=>Number(t),override:!0},CARRY_BAG_FEE:{attribute:"carry_bag_fee",value:0,jsonProperty:"carryBagFee",format:t=>Number(t),override:!0},VAT:{attribute:"vat",value:0,jsonProperty:"vat",format:t=>Number(t),override:!0},TIME_ZONE:{attribute:"time_zone",value:null,jsonProperty:"timeZone",format:t=>String(t),override:!0},IS_DELETED:{attribute:"is_deleted",value:!1,jsonProperty:"isDeleted",format:t=>c(t),override:!0},SERVICE_TYPES:{attribute:"service_types",value:[],jsonProperty:"serviceTypes",format:t=>Array.isArray(t)?t:[],override:!0},START_TOKEN_NUMBER:{attribute:"start_token_number",value:!1,jsonProperty:"startTokenNumber",format:t=>c(t),override:!0},LATITUDE:{attribute:"latitude",value:null,jsonProperty:"latitude",format:t=>String(t),override:!0},LONGITUDE:{attribute:"longitude",value:null,jsonProperty:"longitude",format:t=>String(t),override:!0}},d={NAME:{attribute:"name",value:null,jsonProperty:"name",format:t=>String(t)},EMAIL:{attribute:"email",value:null,jsonProperty:"email",format:t=>String(t)},TYPE:{attribute:"type",value:null,jsonProperty:"type",format:t=>String(t)},LANGUAGES:{attribute:"languages",value:["en-US"],jsonProperty:"languages",format:t=>JSON.parse(t),cast:t=>JSON.stringify(t),override:!0},PHONE:{attribute:"phone",value:null,jsonProperty:"phone",format:t=>String(t)},ORDER_TAB_ACCESS_TOKEN:{attribute:"order_tab_access_token",value:null,jsonProperty:"orderTabAccessToken",format:t=>String(t)},MAX_ALLOWED_DEVICES:{attribute:"max_allowed_devices",value:null,jsonProperty:"maxAllowedDevices",format:t=>Number(t)},STATUS:{attribute:"status",value:!0,jsonProperty:"status",format:t=>c(t)},DOMAIN:{attribute:"domain",value:null,jsonProperty:"domain",format:t=>String(t)},CITY:{attribute:"city",value:"",jsonProperty:"city",format:t=>String(t)},COUNTRY:{attribute:"country",value:null,jsonProperty:"country",format:t=>String(t)},POSTCODE:{attribute:"postcode",value:null,jsonProperty:"postcode",format:t=>String(t)},CURRENCY:{attribute:"currency",value:"GBP",jsonProperty:"currency",format:t=>String(t),override:!0},SUBSCRIPTION:{attribute:"subscription",value:"BASIC",jsonProperty:"subscription",format:t=>String(t)},LOGO_URL:{attribute:"logo_url",value:null,jsonProperty:"logoUrl",format:t=>String(t),override:!0},MINIMUM_CASH_ORDER:{attribute:"minimum_cash_order",value:0,jsonProperty:"minimumCashOrder",format:t=>Number(t),override:!0},CARRY_BAG_FEE:{attribute:"carry_bag_fee",value:0,jsonProperty:"carryBagFee",format:t=>Number(t)},VAT:{attribute:"vat",value:0,jsonProperty:"vat",format:t=>Number(t),override:!0},CERTIFICATION_DETAILS:{attribute:"certification_details",value:null,jsonProperty:"certificationDetails",format:t=>String(t)},PARTNER_TYPE:{attribute:"partner_type",value:"",jsonProperty:"partnerType",format:t=>String(t)},TIME_ZONE:{attribute:"time_zone",value:null,jsonProperty:"timeZone",format:t=>String(t),override:!0},IS_DELETED:{attribute:"is_deleted",value:!1,jsonProperty:"isDeleted",format:t=>c(t),override:!0},ADDRESS:{attribute:"address",value:null,jsonProperty:"address",format:t=>String(t)},SERVICE_TYPES:{attribute:"service_types",value:[],jsonProperty:"serviceTypes",format:t=>JSON.parse(t),cast:t=>JSON.stringify(t),override:!0},SERVICE_CHARGES:{attribute:"service_charges",value:[],jsonProperty:"serviceCharges",format:t=>JSON.parse(t),cast:t=>JSON.stringify(t),override:!0},LATITUDE:{attribute:"latitude",value:null,jsonProperty:"latitude",format:t=>String(t)},LONGITUDE:{attribute:"longitude",value:null,jsonProperty:"longitude",format:t=>String(t)}},B={PASSWORD:{attribute:"password",value:null,jsonProperty:"password",format:t=>String(t)},EMAIL:{attribute:"email",value:null,jsonProperty:"email",format:t=>String(t)},NAME:{attribute:"name",value:null,jsonProperty:"name",format:t=>String(t)},PHONE:{attribute:"phone",value:null,jsonProperty:"phone",format:t=>String(t)},PERMISSIONS:{attribute:"permissions",value:[],jsonProperty:"permissions",format:t=>Array.isArray(t)?t:[]},STATUS:{attribute:"status",value:!0,jsonProperty:"status",format:t=>c(t)},CREATED_AT:{attribute:"created_at",value:null,jsonProperty:"createdAt",format:t=>t?new Date(t):null},IS_DELETED:{attribute:"is_deleted",value:!1,jsonProperty:"isDeleted",format:t=>c(t)},FP_TOKEN:{attribute:"fp_token",value:null,jsonProperty:"fpToken",format:t=>String(t)},FP_DURATION:{attribute:"fp_duration",value:null,jsonProperty:"fpDuration",format:t=>t?new Date(t):null},IS_ADMIN:{attribute:"is_admin",value:!1,jsonProperty:"isAdmin",format:t=>c(t)}},g={NAME:{attribute:"name",value:null,jsonProperty:"name",format:t=>String(t)},EMAIL:{attribute:"email",value:null,jsonProperty:"email",format:t=>String(t)},PASSCODE:{attribute:"passcode",value:null,jsonProperty:"passcode",format:t=>String(t)},HOURLY_RATE:{attribute:"hourly_rate",value:0,jsonProperty:"hourlyRate",format:t=>Number(t),cast:t=>Number(t)},PERMISSIONS:{attribute:"permissions",value:[],jsonProperty:"permissions",format:t=>JSON.parse(t),cast:t=>JSON.stringify(t)},IS_DELETED:{attribute:"is_deleted",value:!1,jsonProperty:"isDeleted",format:t=>c(t),override:!0}},F={TAKE_AWAY:"TAKE_AWAY",DELIVERY:"DELIVERY",DINE_IN:"DINE_IN",WEBSITE_BOOKING:"WEBSITE_BOOKING",COLLECTION:"COLLECTION",TABLE_BOOKING:"TABLE_BOOKING",VALUES:["TAKE_AWAY","DELIVERY","DINE_IN","COLLECTION","TABLE_BOOKING","WEBSITE_BOOKING"]},A=(t,r,o=!1,n=!0)=>{const s={};return Object.values(t).forEach(a=>{let i=null;r[a.attribute]?i=a.format(r[a.attribute].value):o&&(i=a.value),n?s[a.jsonProperty]=i:s[a.jsonProperty]={...a,value:i}}),s},w=Object.values(d).map(t=>t.jsonProperty),Y=Object.values(d).map(t=>t.attribute);async function G(t,r,o,n,s=!1){const a={};for(const p of t)a[p.id]=p;a[r]={id:r,type:m.PARTNER,parent:null},await J(a,o,n);const i=K(a),u=k(a);return j(u,a,i),W(a,i),H(a),s||delete a[r],a}const V=async(t,r,o)=>{const n=await r(t),s={};for(const u of n){const p=u.partnerId;let b=s[p];b||(b={},s[p]=b),b[u.name]=u}const a=new Set;for(const u of Object.keys(s)){const p=s[u];for(const b of Object.values(p))a.add(b)}const i=await o(t);for(const u of i){const p=s[u==null?void 0:u.partnerId];if(!p)continue;const b=p[u==null?void 0:u.profileName];b&&(b.attributes||(b.attributes={}),b.attributes[u.name]=u)}return a},K=t=>{const r={};for(const o of Object.values(t)){const n=o!=null&&o.parent?t[o.parent]:null;n&&(r[n.id]||(r[n.id]=[]),r[n.id].push(o.id))}return r},k=t=>{let r=null;for(const o of Object.values(t))if(!o.parent)if(!r)r=o;else throw new Error("find root faild: more than one root parent found");if(!r)throw new Error("No root partner found");return r},J=async(t,r,o)=>{const n=Object.keys(t),s=await V(n,r,o);for(const a of s){const i=t[a.partnerId],u=Z(a,i);i.privateProfile=u}for(const a of Object.keys(t)){const i=t[a];i!=null&&i.privateProfile}},H=t=>{const r=[];for(const o of Object.values(t)){const n=o==null?void 0:o.privateProfile;if(n){const s=(n==null?void 0:n.attributes)||{},a={};for(const i of Object.keys(s)){const u=s[i];a[i]=u.value??u.overriden}n.attributes={...a}}else r.push(o.id),console.warn("no user assigned this partner",JSON.stringify(o))}for(const o of r)delete t[o]},W=(t,r)=>{var n,s,a;const o=new Set;for(const i of Object.values(t))if((a=(s=(n=i.privateProfile)==null?void 0:n.attributes)==null?void 0:s.isDeleted)!=null&&a.value&&(o.add(i.id),r[i.id]))for(const u of r[i.id])o.add(u);for(const i of o)delete t[i]},Z=(t,r)=>{const o={name:t.name,partnerId:r.id,type:t.type,attributes:t.attributes};let n={};r.type===m.PARTNER?n=A(d,t.attributes,!1,!1):r.type===m.LOCATION?n=A(I,t.attributes,!1,!1):r.type===m.DEVICE?n=A(N,t.attributes,!1,!1):r.type===m.USER?n=A(T,t.attributes,!1,!1):r.type===m.STAFF&&(n=A(g,t.attributes,!1,!1));for(const s of Object.values(n))s.owner=r.id,s.profile=o.name;return o.attributes=n,o},z=(t,r)=>{if(!t||!r)return;const o=t.attributes||{},n=r.attributes||{};for(const s of Object.keys(o)){const a=o[s],i=n[s];i&&(i&&a&&i.value===null&&i.override===!0&&a.value?n[s]={...a}:n[s]={...i})}r.attributes=n},q=(t,r)=>{z(t,r)},Q=(t,r)=>{const o=t==null?void 0:t.parent;if(!o)return;const s=r[o].privateProfile||null,a=t.privateProfile||null;a&&s&&q(s,a),t.privateProfile=a||void 0},j=(t,r,o)=>{Q(t,r);const n=o[t.id];if(n)for(const s of n)j(r[s],r,o)};l.AdminProfileAttributes=B,l.DeviceProfileAttributes=N,l.LocationProfileAttributes=I,l.PartnerProfileAttributes=d,l.PartnerProfileAttributesDbKeys=Y,l.PartnerProfileAttributesJsonKeys=w,l.StaffProfileAttributes=g,l.UserProfileAttributes=T,l.applyInvoice=S,l.deserializeProfileAttribute=A,l.generateProfile=G,l.partnerModes=U,l.partnerTypes=m,l.profileTypes=M,l.serviceTypes=F,Object.defineProperty(l,Symbol.toStringTag,{value:"Module"})});
+(function(global, factory) {
+  typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.FinanceCore = {}));
+})(this, function(exports2) {
+  "use strict";
+  function applyInvoice(order, products, discounts) {
+    var _a, _b, _c, _d, _e;
+    let subTotal = 0;
+    let totalDiscount = 0;
+    let totalAmount = 0;
+    let nextItemId = (((_a = order.items) == null ? void 0 : _a.reduce((max, i) => i.id && i.id > max ? i.id : max, 0)) || 0) + 1;
+    (_b = order.items) == null ? void 0 : _b.forEach((item, itemIndex) => {
+      var _a2, _b2, _c2, _d2;
+      let salesPrice = Number((item == null ? void 0 : item.amount) || 0);
+      const product = products[item.productId];
+      if (product && !(item == null ? void 0 : item.isManualPrice)) {
+        if ((_a2 = product == null ? void 0 : product.serviceTypeCharges) == null ? void 0 : _a2[order.serviceType]) {
+          salesPrice = (_b2 = product == null ? void 0 : product.serviceTypeCharges) == null ? void 0 : _b2[order.serviceType].salesPrice;
+        } else {
+          salesPrice = product.salesPrice;
+        }
+      }
+      if (!item.id) {
+        item.id = nextItemId++;
+      }
+      const baseAmount = Number(salesPrice) * Number(item.quantity);
+      item.amount = Number(salesPrice);
+      item.totalAmount = baseAmount;
+      if (!(item == null ? void 0 : item.isManualPrice)) {
+        item.totalCost = baseAmount;
+      }
+      let nextAddonId = (((_c2 = item.addons) == null ? void 0 : _c2.reduce((max, a) => a.id && a.id > max ? a.id : max, 0)) || 0) + 1;
+      (_d2 = item.addons) == null ? void 0 : _d2.forEach((addon, addonIndex) => {
+        let amount = Number((addon == null ? void 0 : addon.amount) || 0);
+        if (!(addon == null ? void 0 : addon.id)) {
+          addon.id = nextAddonId++;
+        }
+        addon.orderItemsId = item.id;
+        if (item == null ? void 0 : item.isManualPrice) {
+          addon.totalAmount = 0;
+        } else {
+          addon.totalAmount = amount * Number(addon.quantity);
+        }
+        item.totalCost += addon.totalAmount;
+      });
+      totalAmount = totalAmount + item.totalCost;
+      if (item == null ? void 0 : item.discountId) {
+        if (!(item == null ? void 0 : item.isManualPrice)) {
+          const discount = discounts[item == null ? void 0 : item.discountId];
+          let discountAMount = 0;
+          if (discount.discountType === "PERCENT") {
+            discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
+          } else {
+            if (item.totalCost >= Number(discount.discount)) {
+              discountAMount = Number(discount.discount);
+            } else {
+              item.discountId = null;
+              item.discount = null;
+            }
+          }
+          totalDiscount = totalDiscount + discountAMount;
+          item.discountAmount = discountAMount;
+          item.totalCost = item.totalCost - discountAMount;
+        }
+      } else {
+        item.discountId = null;
+        item.discount = null;
+      }
+      subTotal += item.totalCost;
+    });
+    let discountAmount = 0;
+    if (order == null ? void 0 : order.discountId) {
+      const discount = discounts[order == null ? void 0 : order.discountId];
+      if (discount) {
+        if ((discount == null ? void 0 : discount.discountType) === "PERCENT") {
+          discountAmount = Number((subTotal * (Number(discount.discount) / 100)).toFixed(2));
+        } else {
+          if (subTotal >= Number(discount.discount)) {
+            discountAmount = Number(discount.discount);
+          } else {
+            order.discountId = null;
+          }
+        }
+      }
+    }
+    subTotal = Number(subTotal) - Number(discountAmount);
+    order.subTotal = subTotal;
+    order.totalAmount = totalAmount;
+    order.totalDiscount = totalDiscount;
+    order.discountAmount = discountAmount;
+    order.billAmount = subTotal;
+    if (Number(order == null ? void 0 : order.carryBagQuantity) && Number(order.carryBagFee)) {
+      order.billAmount = Number(order.billAmount) + (Number(order == null ? void 0 : order.carryBagQuantity) && Number(order.carryBagFee));
+    }
+    if ((order == null ? void 0 : order.serviceChargePercent) && Number(order.serviceChargePercent)) {
+      const serviceCharge = Number(subTotal) * (Number(order.serviceChargePercent) / 100);
+      order.billAmount = Number(order.billAmount) + serviceCharge;
+      order.serviceCharge = serviceCharge;
+    }
+    if ((order == null ? void 0 : order.serviceType) === "DELIVERY" && (order == null ? void 0 : order.deliveryChargeId) && (order == null ? void 0 : order.deliveryCharge)) {
+      const deliveryCharge = Number(order == null ? void 0 : order.deliveryCharge);
+      order.billAmount = Number(order.billAmount) + deliveryCharge;
+    }
+    if (((_c = order == null ? void 0 : order.tables) == null ? void 0 : _c.length) && (order == null ? void 0 : order.serviceType) === "DINE_IN") {
+      let nextTableId = (((_d = order.tables) == null ? void 0 : _d.reduce((max, i) => i.id && i.id > max ? i.id : max, 0)) || 0) + 1;
+      (_e = order.tables) == null ? void 0 : _e.forEach((item, itemIndex) => {
+        if (!item.id) {
+          item.id = nextTableId++;
+        }
+      });
+    }
+    return order;
+  }
+  const partnerTypes = {
+    PARTNER: "PARTNER",
+    USER: "USER",
+    LOCATION: "LOCATION",
+    DEVICE: "DEVICE",
+    STAFF: "STAFF",
+    VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF"]
+  };
+  const partnerModes = {
+    CLOUDE_KITCHEN: "CLOUDE_KITCHEN",
+    RESTAURANT: "RESTAURANT",
+    VALUES: ["CLOUDE_KITCHEN", "RESTAURANT"]
+  };
+  const profileTypes = {
+    PRIVATE: "PRIVATE",
+    STYLE: "STYLE",
+    APPLICATION: "APPLICATION"
+  };
+  const isBoolean = (value) => {
+    if (typeof value === "string") {
+      return value.toLowerCase() === "true";
+    }
+    return Boolean(value);
+  };
+  const DeviceProfileAttributes = {
+    NAME: {
+      attribute: "name",
+      value: null,
+      jsonProperty: "name",
+      format: (value) => String(value)
+    },
+    LANGUAGES: {
+      attribute: "languages",
+      value: ["en-"],
+      jsonProperty: "languages",
+      format: (value) => JSON.parse(value),
+      override: true
+    },
+    STATUS: {
+      attribute: "status",
+      value: true,
+      jsonProperty: "status",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    CURRENCY: {
+      attribute: "currency",
+      value: "GBP",
+      jsonProperty: "currency",
+      format: (value) => String(value),
+      override: true
+    },
+    MINIMUM_CASH_ORDER: {
+      attribute: "minimum_cash_order",
+      value: 0,
+      jsonProperty: "minimumCashOrder",
+      format: (value) => Number(value),
+      override: true
+    },
+    CARRY_BAG_FEE: {
+      attribute: "carry_bag_fee",
+      value: 0,
+      jsonProperty: "carryBagFee",
+      format: (value) => Number(value),
+      override: true
+    },
+    VAT: {
+      attribute: "vat",
+      value: 0,
+      jsonProperty: "vat",
+      format: (value) => Number(value),
+      override: true
+    },
+    TIME_ZONE: {
+      attribute: "time_zone",
+      value: null,
+      jsonProperty: "timeZone",
+      format: (value) => String(value),
+      override: true
+    },
+    IS_DELETED: {
+      attribute: "is_deleted",
+      value: false,
+      jsonProperty: "isDeleted",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    SERVICE_TYPES: {
+      attribute: "service_types",
+      value: [],
+      // ✅ fixed instead of false
+      jsonProperty: "serviceTypes",
+      format: (value) => Array.isArray(value) ? value : [],
+      override: true
+    }
+  };
+  const UserProfileAttributes = {
+    PASSWORD: {
+      attribute: "password",
+      value: null,
+      jsonProperty: "password",
+      format: (value) => String(value)
+    },
+    EMAIL: {
+      attribute: "email",
+      value: null,
+      jsonProperty: "email",
+      format: (value) => String(value)
+    },
+    NAME: {
+      attribute: "name",
+      value: null,
+      jsonProperty: "name",
+      format: (value) => String(value)
+    },
+    PHONE: {
+      attribute: "phone",
+      value: null,
+      jsonProperty: "phone",
+      format: (value) => String(value)
+    },
+    PERMISSIONS: {
+      attribute: "permissions",
+      value: [],
+      jsonProperty: "permissions",
+      format: (value) => Array.isArray(value) ? value : []
+    },
+    STATUS: {
+      attribute: "status",
+      value: true,
+      jsonProperty: "status",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    IS_DELETED: {
+      attribute: "is_deleted",
+      value: false,
+      jsonProperty: "isDeleted",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    FP_TOKEN: {
+      attribute: "fp_token",
+      value: null,
+      jsonProperty: "fpToken",
+      format: (value) => String(value)
+    },
+    FP_DURATION: {
+      attribute: "fp_duration",
+      value: null,
+      jsonProperty: "fpDuration",
+      format: (value) => value ? new Date(value) : null
+    },
+    IS_OWNER: {
+      attribute: "is_owner",
+      value: false,
+      jsonProperty: "isOwner",
+      format: (value) => isBoolean(value)
+    }
+  };
+  const LocationProfileAttributes = {
+    NAME: {
+      attribute: "name",
+      value: null,
+      jsonProperty: "name",
+      format: (value) => String(value)
+    },
+    EMAIL: {
+      attribute: "email",
+      value: null,
+      jsonProperty: "email",
+      format: (value) => String(value)
+    },
+    LANGUAGES: {
+      attribute: "languages",
+      value: ["en-US"],
+      jsonProperty: "languages",
+      format: (value) => JSON.parse(value),
+      override: true
+    },
+    PHONE: {
+      attribute: "phone",
+      value: null,
+      jsonProperty: "phone",
+      format: (value) => String(value)
+    },
+    COUNTRY: {
+      attribute: "country",
+      value: null,
+      jsonProperty: "country",
+      format: (value) => String(value)
+    },
+    ADDRESS: {
+      attribute: "address",
+      value: null,
+      jsonProperty: "address",
+      format: (value) => String(value)
+    },
+    DESCRIPTION: {
+      attribute: "description",
+      value: null,
+      jsonProperty: "description",
+      format: (value) => String(value)
+    },
+    POSTCODE: {
+      attribute: "postcode",
+      value: null,
+      jsonProperty: "postcode",
+      format: (value) => String(value)
+    },
+    STATUS: {
+      attribute: "status",
+      value: true,
+      jsonProperty: "status",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    CURRENCY: {
+      attribute: "currency",
+      value: "GBP",
+      jsonProperty: "currency",
+      format: (value) => String(value),
+      override: true
+    },
+    MINIMUM_CASH_ORDER: {
+      attribute: "minimum_cash_order",
+      value: 0,
+      jsonProperty: "minimumCashOrder",
+      format: (value) => Number(value),
+      override: true
+    },
+    CARRY_BAG_FEE: {
+      attribute: "carry_bag_fee",
+      value: 0,
+      jsonProperty: "carryBagFee",
+      format: (value) => Number(value),
+      override: true
+    },
+    VAT: {
+      attribute: "vat",
+      value: 0,
+      jsonProperty: "vat",
+      format: (value) => Number(value),
+      override: true
+    },
+    TIME_ZONE: {
+      attribute: "time_zone",
+      value: null,
+      jsonProperty: "timeZone",
+      format: (value) => String(value),
+      override: true
+    },
+    IS_DELETED: {
+      attribute: "is_deleted",
+      value: false,
+      jsonProperty: "isDeleted",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    SERVICE_TYPES: {
+      attribute: "service_types",
+      value: [],
+      jsonProperty: "serviceTypes",
+      format: (value) => Array.isArray(value) ? value : [],
+      override: true
+    },
+    START_TOKEN_NUMBER: {
+      attribute: "start_token_number",
+      value: false,
+      jsonProperty: "startTokenNumber",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    LATITUDE: {
+      attribute: "latitude",
+      value: null,
+      jsonProperty: "latitude",
+      format: (value) => String(value),
+      override: true
+    },
+    LONGITUDE: {
+      attribute: "longitude",
+      value: null,
+      jsonProperty: "longitude",
+      format: (value) => String(value),
+      override: true
+    }
+  };
+  const PartnerProfileAttributes = {
+    NAME: {
+      attribute: "name",
+      value: null,
+      jsonProperty: "name",
+      format: (value) => String(value)
+    },
+    EMAIL: {
+      attribute: "email",
+      value: null,
+      jsonProperty: "email",
+      format: (value) => String(value)
+    },
+    TYPE: {
+      attribute: "type",
+      value: null,
+      jsonProperty: "type",
+      format: (value) => String(value)
+    },
+    LANGUAGES: {
+      attribute: "languages",
+      value: ["en-US"],
+      jsonProperty: "languages",
+      format: (value) => JSON.parse(value),
+      cast: (value) => JSON.stringify(value),
+      override: true
+    },
+    PHONE: {
+      attribute: "phone",
+      value: null,
+      jsonProperty: "phone",
+      format: (value) => String(value)
+    },
+    ORDER_TAB_ACCESS_TOKEN: {
+      attribute: "order_tab_access_token",
+      value: null,
+      jsonProperty: "orderTabAccessToken",
+      format: (value) => String(value)
+    },
+    MAX_ALLOWED_DEVICES: {
+      attribute: "max_allowed_devices",
+      value: null,
+      jsonProperty: "maxAllowedDevices",
+      format: (value) => Number(value)
+    },
+    STATUS: {
+      attribute: "status",
+      value: true,
+      jsonProperty: "status",
+      format: (value) => isBoolean(value)
+    },
+    DOMAIN: {
+      attribute: "domain",
+      value: null,
+      jsonProperty: "domain",
+      format: (value) => String(value)
+    },
+    CITY: {
+      attribute: "city",
+      value: "",
+      jsonProperty: "city",
+      format: (value) => String(value)
+    },
+    COUNTRY: {
+      attribute: "country",
+      value: null,
+      jsonProperty: "country",
+      format: (value) => String(value)
+    },
+    POSTCODE: {
+      attribute: "postcode",
+      value: null,
+      jsonProperty: "postcode",
+      format: (value) => String(value)
+    },
+    CURRENCY: {
+      attribute: "currency",
+      value: "GBP",
+      jsonProperty: "currency",
+      format: (value) => String(value),
+      override: true
+    },
+    SUBSCRIPTION: {
+      attribute: "subscription",
+      value: "BASIC",
+      jsonProperty: "subscription",
+      format: (value) => String(value)
+    },
+    LOGO_URL: {
+      attribute: "logo_url",
+      value: null,
+      jsonProperty: "logoUrl",
+      format: (value) => String(value),
+      override: true
+    },
+    MINIMUM_CASH_ORDER: {
+      attribute: "minimum_cash_order",
+      value: 0,
+      jsonProperty: "minimumCashOrder",
+      format: (value) => Number(value),
+      override: true
+    },
+    CARRY_BAG_FEE: {
+      attribute: "carry_bag_fee",
+      value: 0,
+      jsonProperty: "carryBagFee",
+      format: (value) => Number(value)
+    },
+    VAT: {
+      attribute: "vat",
+      value: 0,
+      jsonProperty: "vat",
+      format: (value) => Number(value),
+      override: true
+    },
+    CERTIFICATION_DETAILS: {
+      attribute: "certification_details",
+      value: null,
+      jsonProperty: "certificationDetails",
+      format: (value) => String(value)
+    },
+    PARTNER_TYPE: {
+      attribute: "partner_type",
+      value: "",
+      jsonProperty: "partnerType",
+      format: (value) => String(value)
+    },
+    TIME_ZONE: {
+      attribute: "time_zone",
+      value: null,
+      jsonProperty: "timeZone",
+      format: (value) => String(value),
+      override: true
+    },
+    IS_DELETED: {
+      attribute: "is_deleted",
+      value: false,
+      jsonProperty: "isDeleted",
+      format: (value) => isBoolean(value),
+      override: true
+    },
+    ADDRESS: {
+      attribute: "address",
+      value: null,
+      jsonProperty: "address",
+      format: (value) => String(value)
+    },
+    SERVICE_TYPES: {
+      attribute: "service_types",
+      value: [],
+      jsonProperty: "serviceTypes",
+      format: (value) => JSON.parse(value),
+      cast: (value) => JSON.stringify(value),
+      override: true
+    },
+    SERVICE_CHARGES: {
+      attribute: "service_charges",
+      value: [],
+      jsonProperty: "serviceCharges",
+      format: (value) => JSON.parse(value),
+      cast: (value) => JSON.stringify(value),
+      override: true
+    },
+    LATITUDE: {
+      attribute: "latitude",
+      value: null,
+      jsonProperty: "latitude",
+      format: (value) => String(value)
+    },
+    LONGITUDE: {
+      attribute: "longitude",
+      value: null,
+      jsonProperty: "longitude",
+      format: (value) => String(value)
+    }
+  };
+  const AdminProfileAttributes = {
+    PASSWORD: {
+      attribute: "password",
+      value: null,
+      jsonProperty: "password",
+      format: (value) => String(value)
+    },
+    EMAIL: {
+      attribute: "email",
+      value: null,
+      jsonProperty: "email",
+      format: (value) => String(value)
+    },
+    NAME: {
+      attribute: "name",
+      value: null,
+      jsonProperty: "name",
+      format: (value) => String(value)
+    },
+    PHONE: {
+      attribute: "phone",
+      value: null,
+      jsonProperty: "phone",
+      format: (value) => String(value)
+    },
+    PERMISSIONS: {
+      attribute: "permissions",
+      value: [],
+      jsonProperty: "permissions",
+      format: (value) => Array.isArray(value) ? value : []
+    },
+    STATUS: {
+      attribute: "status",
+      value: true,
+      jsonProperty: "status",
+      format: (value) => isBoolean(value)
+    },
+    CREATED_AT: {
+      attribute: "created_at",
+      value: null,
+      jsonProperty: "createdAt",
+      format: (value) => value ? new Date(value) : null
+    },
+    IS_DELETED: {
+      attribute: "is_deleted",
+      value: false,
+      jsonProperty: "isDeleted",
+      format: (value) => isBoolean(value)
+    },
+    FP_TOKEN: {
+      attribute: "fp_token",
+      value: null,
+      jsonProperty: "fpToken",
+      format: (value) => String(value)
+    },
+    FP_DURATION: {
+      attribute: "fp_duration",
+      value: null,
+      jsonProperty: "fpDuration",
+      format: (value) => value ? new Date(value) : null
+    },
+    IS_ADMIN: {
+      attribute: "is_admin",
+      value: false,
+      jsonProperty: "isAdmin",
+      format: (value) => isBoolean(value)
+    }
+  };
+  const StaffProfileAttributes = {
+    NAME: {
+      attribute: "name",
+      value: null,
+      jsonProperty: "name",
+      format: (value) => String(value)
+    },
+    EMAIL: {
+      attribute: "email",
+      value: null,
+      jsonProperty: "email",
+      format: (value) => String(value)
+    },
+    PASSCODE: {
+      attribute: "passcode",
+      value: null,
+      jsonProperty: "passcode",
+      format: (value) => String(value)
+    },
+    HOURLY_RATE: {
+      attribute: "hourly_rate",
+      value: 0,
+      jsonProperty: "hourlyRate",
+      format: (value) => Number(value),
+      cast: (value) => Number(value)
+    },
+    PERMISSIONS: {
+      attribute: "permissions",
+      value: [],
+      jsonProperty: "permissions",
+      format: (value) => JSON.parse(value),
+      cast: (value) => JSON.stringify(value)
+    },
+    IS_DELETED: {
+      attribute: "is_deleted",
+      value: false,
+      jsonProperty: "isDeleted",
+      format: (value) => isBoolean(value),
+      override: true
+    }
+  };
+  const serviceTypes = {
+    TAKE_AWAY: "TAKE_AWAY",
+    DELIVERY: "DELIVERY",
+    DINE_IN: "DINE_IN",
+    WEBSITE_BOOKING: "WEBSITE_BOOKING",
+    COLLECTION: "COLLECTION",
+    TABLE_BOOKING: "TABLE_BOOKING",
+    VALUES: [
+      "TAKE_AWAY",
+      "DELIVERY",
+      "DINE_IN",
+      "COLLECTION",
+      "TABLE_BOOKING",
+      "WEBSITE_BOOKING"
+    ]
+  };
+  const deserializeProfileAttribute = (attributes, values, overrideSettings = false, onlyFormat = true) => {
+    const result = {};
+    Object.values(attributes).forEach((item) => {
+      let formattedValue = null;
+      if (values[item.attribute]) {
+        formattedValue = item.format(values[item.attribute].value);
+      } else if (overrideSettings) {
+        formattedValue = item.value;
+      }
+      if (onlyFormat) {
+        result[item.jsonProperty] = formattedValue;
+      } else {
+        result[item.jsonProperty] = { ...item, value: formattedValue };
+      }
+    });
+    return result;
+  };
+  const PartnerProfileAttributesJsonKeys = Object.values(
+    PartnerProfileAttributes
+  ).map((item) => item.jsonProperty);
+  const PartnerProfileAttributesDbKeys = Object.values(
+    PartnerProfileAttributes
+  ).map((item) => item.attribute);
+  async function generateProfile(partners, rootPartner, readProfilesAdapter, prfoileAttributesAdapter, withParent = false) {
+    const partnersMap = {};
+    for (const partner of partners) {
+      partnersMap[partner.id] = partner;
+    }
+    partnersMap[rootPartner] = {
+      id: rootPartner,
+      type: partnerTypes.PARTNER,
+      parent: null
+    };
+    await readDetaildData(partnersMap, readProfilesAdapter, prfoileAttributesAdapter);
+    const childMap = generateChildMap(partnersMap);
+    const root = findRootPartner(partnersMap);
+    applyInheritanceFromParent(root, partnersMap, childMap);
+    removeDeletedPartners(partnersMap, childMap);
+    alignPrivateProfile(partnersMap);
+    alignHorizontalOwnedProfiles(partnersMap);
+    if (!withParent) {
+      delete partnersMap[rootPartner];
+    }
+    return partnersMap;
+  }
+  const readProfiles = async (partnerIds, readProfilesAdapter, prfoileAttributesAdapter) => {
+    const partnerDBProfiles = await readProfilesAdapter(partnerIds);
+    const partnerProfiles = {};
+    for (const partnerProfile of partnerDBProfiles) {
+      const partnerId = partnerProfile.partnerId;
+      let profiles2 = partnerProfiles[partnerId];
+      if (!profiles2) {
+        profiles2 = {};
+        partnerProfiles[partnerId] = profiles2;
+      }
+      profiles2[partnerProfile.name] = partnerProfile;
+    }
+    const profiles = /* @__PURE__ */ new Set();
+    for (const partnerId of Object.keys(partnerProfiles)) {
+      const profileForPartner = partnerProfiles[partnerId];
+      for (const profile of Object.values(profileForPartner)) {
+        profiles.add(profile);
+      }
+    }
+    const profileAttributes = await prfoileAttributesAdapter(partnerIds);
+    for (const attr of profileAttributes) {
+      const profileForPartner = partnerProfiles[attr == null ? void 0 : attr.partnerId];
+      if (!profileForPartner) continue;
+      const profile = profileForPartner[attr == null ? void 0 : attr.profileName];
+      if (!profile) continue;
+      if (!profile.attributes) profile.attributes = {};
+      profile.attributes[attr.name] = attr;
+    }
+    return profiles;
+  };
+  const generateChildMap = (partners) => {
+    const result = {};
+    for (const partner of Object.values(partners)) {
+      const parent = (partner == null ? void 0 : partner.parent) ? partners[partner.parent] : null;
+      if (parent) {
+        if (!result[parent.id]) result[parent.id] = [];
+        result[parent.id].push(partner.id);
+      }
+    }
+    return result;
+  };
+  const findRootPartner = (partners) => {
+    let root = null;
+    for (const partner of Object.values(partners)) {
+      if (!partner.parent) {
+        if (!root) root = partner;
+        else throw new Error("find root faild: more than one root parent found");
+      }
+    }
+    if (!root) throw new Error("No root partner found");
+    return root;
+  };
+  const readDetaildData = async (partners, readProfilesAdapter, prfoileAttributesAdapter) => {
+    const partnerIds = Object.keys(partners);
+    const dbProfilesList = await readProfiles(partnerIds, readProfilesAdapter, prfoileAttributesAdapter);
+    for (const dbProfiles of dbProfilesList) {
+      const partner = partners[dbProfiles.partnerId];
+      const profile = convertProfile(dbProfiles, partner);
+      partner.privateProfile = profile;
+    }
+    for (const partnerId of Object.keys(partners)) {
+      const partner = partners[partnerId];
+      if (!(partner == null ? void 0 : partner.privateProfile)) {
+      }
+    }
+  };
+  const alignPrivateProfile = (partners) => {
+    const deleted = [];
+    for (const partner of Object.values(partners)) {
+      const profile = partner == null ? void 0 : partner.privateProfile;
+      if (profile) {
+        const attributes = (profile == null ? void 0 : profile.attributes) || {};
+        const privateAttributes = {};
+        for (const attrKey of Object.keys(attributes)) {
+          const attr = attributes[attrKey];
+          privateAttributes[attrKey] = attr.value ?? attr.overriden;
+        }
+        profile.attributes = { ...privateAttributes };
+      } else {
+        deleted.push(partner.id);
+        console.warn("no user assigned this partner", JSON.stringify(partner));
+      }
+    }
+    for (const partnerId of deleted) {
+      delete partners[partnerId];
+    }
+  };
+  const alignHorizontalOwnedProfiles = (_partners) => {
+  };
+  const removeDeletedPartners = (partners, childMap) => {
+    var _a, _b, _c;
+    const deletedIds = /* @__PURE__ */ new Set();
+    for (const partner of Object.values(partners)) {
+      if ((_c = (_b = (_a = partner.privateProfile) == null ? void 0 : _a.attributes) == null ? void 0 : _b.isDeleted) == null ? void 0 : _c.value) {
+        deletedIds.add(partner.id);
+        if (childMap[partner.id]) {
+          for (const childId of childMap[partner.id]) {
+            deletedIds.add(childId);
+          }
+        }
+      }
+    }
+    for (const id of deletedIds) {
+      delete partners[id];
+    }
+  };
+  const convertProfile = (profile, partner) => {
+    const targetProfile = {
+      name: profile.name,
+      partnerId: partner.id,
+      type: profile.type,
+      attributes: profile.attributes
+    };
+    let result = {};
+    if (partner.type === partnerTypes.PARTNER) {
+      result = deserializeProfileAttribute(PartnerProfileAttributes, profile.attributes, false, false);
+    } else if (partner.type === partnerTypes.LOCATION) {
+      result = deserializeProfileAttribute(LocationProfileAttributes, profile.attributes, false, false);
+    } else if (partner.type === partnerTypes.DEVICE) {
+      result = deserializeProfileAttribute(DeviceProfileAttributes, profile.attributes, false, false);
+    } else if (partner.type === partnerTypes.USER) {
+      result = deserializeProfileAttribute(UserProfileAttributes, profile.attributes, false, false);
+    } else if (partner.type === partnerTypes.STAFF) {
+      result = deserializeProfileAttribute(StaffProfileAttributes, profile.attributes, false, false);
+    }
+    for (const attr of Object.values(result)) {
+      attr.owner = partner.id;
+      attr.profile = targetProfile.name;
+    }
+    targetProfile.attributes = result;
+    return targetProfile;
+  };
+  const mergeProfileAttributes = (sourceProfile, destinationProfile) => {
+    if (!sourceProfile || !destinationProfile) return;
+    const sourceAttributes = sourceProfile.attributes || {};
+    const destinationAttributes = destinationProfile.attributes || {};
+    for (const attrName of Object.keys(sourceAttributes)) {
+      const parentAttr = sourceAttributes[attrName];
+      const childAttr = destinationAttributes[attrName];
+      if (!childAttr) {
+      } else if (childAttr && parentAttr && childAttr.value === null && childAttr.override === true && parentAttr.value) {
+        destinationAttributes[attrName] = { ...parentAttr };
+      } else {
+        destinationAttributes[attrName] = { ...childAttr };
+      }
+    }
+    destinationProfile.attributes = destinationAttributes;
+  };
+  const mergeProfiles = (sourceProfile, destinationProfile) => {
+    mergeProfileAttributes(sourceProfile, destinationProfile);
+  };
+  const applyInheritanceRoot = (root, partners) => {
+    const parentId = root == null ? void 0 : root.parent;
+    if (!parentId) return;
+    const parent = partners[parentId];
+    const parentProfilesMap = parent.privateProfile || null;
+    const childProfilesMap = root.privateProfile || null;
+    if (childProfilesMap && parentProfilesMap) {
+      mergeProfiles(parentProfilesMap, childProfilesMap);
+    }
+    root.privateProfile = childProfilesMap || void 0;
+  };
+  const applyInheritanceFromParent = (rootPartner, partners, childPartners) => {
+    applyInheritanceRoot(rootPartner, partners);
+    const children = childPartners[rootPartner.id];
+    if (children) {
+      for (const childId of children) {
+        applyInheritanceFromParent(partners[childId], partners, childPartners);
+      }
+    }
+  };
+  exports2.AdminProfileAttributes = AdminProfileAttributes;
+  exports2.DeviceProfileAttributes = DeviceProfileAttributes;
+  exports2.LocationProfileAttributes = LocationProfileAttributes;
+  exports2.PartnerProfileAttributes = PartnerProfileAttributes;
+  exports2.PartnerProfileAttributesDbKeys = PartnerProfileAttributesDbKeys;
+  exports2.PartnerProfileAttributesJsonKeys = PartnerProfileAttributesJsonKeys;
+  exports2.StaffProfileAttributes = StaffProfileAttributes;
+  exports2.UserProfileAttributes = UserProfileAttributes;
+  exports2.applyInvoice = applyInvoice;
+  exports2.deserializeProfileAttribute = deserializeProfileAttribute;
+  exports2.generateProfile = generateProfile;
+  exports2.partnerModes = partnerModes;
+  exports2.partnerTypes = partnerTypes;
+  exports2.profileTypes = profileTypes;
+  exports2.serviceTypes = serviceTypes;
+  Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
+});
+//# sourceMappingURL=sdk.umd.cjs.map
