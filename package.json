@@ -3,13 +3,13 @@
   "version": "2.0.0-alpha4",
   "description": "Universal JavaScript library for finance-related math functions, usable in both Node.js (Express) and React applications.",
   "type": "module",
-  "main": "./dist/sdk.cjs.js",
+  "main": "./dist/sdk.cjs",
   "module": "./dist/sdk.esm.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-   "require": "./dist/sdk.cjs.js",
-    "import": "./dist/sdk.esm.js"
+      "require": "./dist/sdk.cjs",
+      "import": "./dist/sdk.esm.js"
     }
   },
   "files": [
