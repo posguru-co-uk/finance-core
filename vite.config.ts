@@ -3,14 +3,16 @@ import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   build: {
+    minify: false,
+    sourcemap: true,
     lib: {
       entry: 'src/index.ts',
-      name: 'FinanceCore',
-      fileName: (format) => (format === 'es' ? 'sdk.js' : 'sdk.umd.cjs'),
-      formats: ['es', 'umd'],
+      formats: ['es', 'cjs'],
+      fileName: (format) =>
+        format === 'es' ? 'sdk.esm.js' : 'sdk.cjs',
     },
     rollupOptions: {
-      external: [], // put peer deps here if needed
+      treeshake: false, // ⬅ reduces helper vars (_a, _b)
     },
   },
   plugins: [

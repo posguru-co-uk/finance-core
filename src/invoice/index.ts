@@ -197,7 +197,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
       addon.orderItemsId = item.id; // should link to parent item, not self
       if (item?.isManualPrice) {
         addon.totalAmount = 0.00
-      }else {
+      } else {
         addon.totalAmount = amount * Number(addon.quantity);
       }
       item.totalCost += addon.totalAmount;
@@ -211,7 +211,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
           discountAMount = Number((item.totalCost * (Number(discount.discount) / 100)).toFixed(2));
         } else {
           if (item.totalCost >= Number(discount.discount)) {
-            discountAMount = item.totalCost - Number(discount.discount);
+            discountAMount = Number(discount.discount);
           } else {
             item.discountId = null;
             item.discount = null;
@@ -228,9 +228,29 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
     subTotal += item.totalCost;
   });
 
+  let discountAmount = 0.00;
+  if (order?.discountId) {
+    const discount = discounts[order?.discountId];
+    if (discount) {
+      if (discount?.discountType === 'PERCENT') {
+        discountAmount = Number((subTotal * (Number(discount.discount) / 100)).toFixed(2));
+      } else {
+        if (subTotal >= Number(discount.discount)) {
+          discountAmount = Number(discount.discount);
+        }
+        else {
+          order.discountId = null;
+        }
+      }
+    }
+  }
+
+  subTotal = Number(subTotal) - Number(discountAmount);
+
   order.subTotal = subTotal;
   order.totalAmount = totalAmount;
   order.totalDiscount = totalDiscount;
+  order.discountAmount = discountAmount;
   // calculate carrybag and service charges
   order.billAmount = subTotal;
   if (Number(order?.carryBagQuantity) && Number(order.carryBagFee)) {
