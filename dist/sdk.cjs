@@ -661,13 +661,13 @@ const DriverProfileAttributes = {
     format: (value) => String(value)
   },
   ADDRESS_LINE_1: {
-    attribute: "addressLine1",
+    attribute: "address_line_1",
     value: null,
     jsonProperty: "addressLine1",
     format: (value) => String(value)
   },
   ADDRESS_LINE_2: {
-    attribute: "addressLine2",
+    attribute: "address_line_2",
     value: null,
     jsonProperty: "addressLine2",
     format: (value) => String(value)
