@@ -4,7 +4,8 @@ export const partnerTypes = {
   LOCATION: "LOCATION",
   DEVICE: "DEVICE",
   STAFF: "STAFF",
-  VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF"] as const,
+  DRIVER: "DRIVER",
+  VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF","DRIVER"] as const,
 };
 
 export type PartnerType = (typeof partnerTypes.VALUES)[number];

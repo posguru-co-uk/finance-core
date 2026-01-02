@@ -4,6 +4,7 @@ import { UserProfileAttributes } from './user';
 import { LocationProfileAttributes } from './location';
 import { PartnerProfileAttributes } from './partner';
 import { AdminProfileAttributes } from './admin';
+import { DriverProfileAttributes } from './driver';
 import { StaffProfileAttributes } from './staff';
 import { serviceTypes } from './serviceTypes';
 
@@ -29,4 +30,4 @@ export declare const deserializeProfileAttribute: (attributes: AttributesMap, va
 }>, overrideSettings?: boolean, onlyFormat?: boolean) => Record<string, any>;
 export declare const PartnerProfileAttributesJsonKeys: string[];
 export declare const PartnerProfileAttributesDbKeys: string[];
-export { partnerModes, partnerTypes, profileTypes, serviceTypes, PartnerProfileAttributes, UserProfileAttributes, LocationProfileAttributes, DeviceProfileAttributes, AdminProfileAttributes, StaffProfileAttributes };
+export { partnerModes, partnerTypes, profileTypes, serviceTypes, PartnerProfileAttributes, UserProfileAttributes, LocationProfileAttributes, DeviceProfileAttributes, AdminProfileAttributes, StaffProfileAttributes, DriverProfileAttributes, };

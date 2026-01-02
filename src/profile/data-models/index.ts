@@ -4,6 +4,7 @@ import { UserProfileAttributes } from "./user";
 import { LocationProfileAttributes } from "./location";
 import { PartnerProfileAttributes } from "./partner";
 import { AdminProfileAttributes } from './admin';
+import { DriverProfileAttributes } from "./driver";
 import { StaffProfileAttributes } from "./staff";
 import { serviceTypes } from './serviceTypes'
 
@@ -72,5 +73,6 @@ export {
   LocationProfileAttributes,
   DeviceProfileAttributes,
   AdminProfileAttributes,
-  StaffProfileAttributes
+  StaffProfileAttributes,
+  DriverProfileAttributes,
 };
