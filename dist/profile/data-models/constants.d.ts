@@ -4,7 +4,8 @@ export declare const partnerTypes: {
     LOCATION: string;
     DEVICE: string;
     STAFF: string;
-    VALUES: readonly ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF"];
+    DRIVER: string;
+    VALUES: readonly ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF", "DRIVER"];
 };
 export type PartnerType = (typeof partnerTypes.VALUES)[number];
 export declare const partnerModes: {

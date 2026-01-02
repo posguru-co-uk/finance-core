@@ -112,7 +112,8 @@ const partnerTypes = {
   LOCATION: "LOCATION",
   DEVICE: "DEVICE",
   STAFF: "STAFF",
-  VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF"]
+  DRIVER: "DRIVER",
+  VALUES: ["PARTNER", "USER", "LOCATION", "DEVICE", "STAFF", "DRIVER"]
 };
 const partnerModes = {
   CLOUDE_KITCHEN: "CLOUDE_KITCHEN",
@@ -638,6 +639,63 @@ const AdminProfileAttributes = {
     format: (value) => isBoolean(value)
   }
 };
+const DriverProfileAttributes = {
+  NAME: {
+    attribute: "name",
+    value: null,
+    jsonProperty: "name",
+    format: (value) => String(value)
+  },
+  EMAIL: {
+    attribute: "email",
+    value: null,
+    jsonProperty: "email",
+    format: (value) => String(value)
+  },
+  PHONE: {
+    attribute: "phone",
+    value: null,
+    jsonProperty: "phone",
+    format: (value) => String(value)
+  },
+  ADDRESS_LINE_1: {
+    attribute: "addressLine1",
+    value: null,
+    jsonProperty: "addressLine1",
+    format: (value) => String(value)
+  },
+  ADDRESS_LINE_2: {
+    attribute: "addressLine2",
+    value: null,
+    jsonProperty: "addressLine2",
+    format: (value) => String(value)
+  },
+  CITY: {
+    attribute: "city",
+    value: null,
+    jsonProperty: "city",
+    format: (value) => String(value)
+  },
+  POSTCODE: {
+    attribute: "postcode",
+    value: null,
+    jsonProperty: "postcode",
+    format: (value) => String(value)
+  },
+  IS_DELETED: {
+    attribute: "is_deleted",
+    value: false,
+    jsonProperty: "isDeleted",
+    format: (value) => isBoolean(value),
+    override: true
+  },
+  NOTES: {
+    attribute: "notes",
+    value: null,
+    jsonProperty: "notes",
+    format: (value) => String(value)
+  }
+};
 const StaffProfileAttributes = {
   NAME: {
     attribute: "name",
@@ -914,6 +972,7 @@ const applyInheritanceFromParent = (rootPartner, partners, childPartners) => {
 export {
   AdminProfileAttributes,
   DeviceProfileAttributes,
+  DriverProfileAttributes,
   LocationProfileAttributes,
   PartnerProfileAttributes,
   PartnerProfileAttributesDbKeys,
