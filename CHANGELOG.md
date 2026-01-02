@@ -3,6 +3,9 @@
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
 ## 2.1.0 (2026-01-02)
+- **FIX** [POSWEB-1652](https://posguru.atlassian.net/browse/POSWEB-1658) Fix attribute naming for address fields in DriverProfileAttributes
+
+## 2.1.0 (2026-01-02)
 - **New** [POSWEB-1652](https://posguru.atlassian.net/browse/POSWEB-1652) Create Driver Partner
 ## 2.0.0 (2025-12-31)
 - **New** [POSWEB-1656](https://posguru.atlassian.net/browse/POSWEB-1656) checkout discount
