@@ -9,11 +9,19 @@ export const DeviceProfileAttributes = {
     format: (value: any) => String(value),
   } as AttributeConfig<string | null>,
 
+  DESCRIPTION: {
+    attribute: "description",
+    value: null,
+    jsonProperty: "description",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+
   LANGUAGES: {
     attribute: "languages",
-    value: ["en-"],
+    value: ["en-US"],
     jsonProperty: "languages",
     format: (value: any) => JSON.parse(value),
+    cast: (value: any) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<string[]>,
 
@@ -78,6 +86,15 @@ export const DeviceProfileAttributes = {
     value: [] as string[], // ✅ fixed instead of false
     jsonProperty: "serviceTypes",
     format: (value: any) => (Array.isArray(value) ? value : []),
+    cast: (value: any) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<string[]>,
+
+  TYPE: {
+    attribute: "type",
+    value: null,
+    jsonProperty: "type",
+    format: (value: any) => String(value),
+} as AttributeConfig<string|null>,
+
 };
