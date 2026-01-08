@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.1.2 (2026-01-08)
+- **NEW** [POSWEB-1696](https://posguru.atlassian.net/browse/POSWEB-1696) Add TYPE attribute to DeviceProfileAttributes and updated the serviceTypes and langauge attributes
+
 ## 2.1.1 (2026-01-02)
 - **FIX** [POSWEB-1652](https://posguru.atlassian.net/browse/POSWEB-1658) Fix attribute naming for address fields in DriverProfileAttributes
 

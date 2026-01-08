@@ -138,11 +138,18 @@ const DeviceProfileAttributes = {
     jsonProperty: "name",
     format: (value) => String(value)
   },
+  DESCRIPTION: {
+    attribute: "description",
+    value: null,
+    jsonProperty: "description",
+    format: (value) => String(value)
+  },
   LANGUAGES: {
     attribute: "languages",
-    value: ["en-"],
+    value: ["en-US"],
     jsonProperty: "languages",
     format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value),
     override: true
   },
   STATUS: {
@@ -200,7 +207,14 @@ const DeviceProfileAttributes = {
     // ✅ fixed instead of false
     jsonProperty: "serviceTypes",
     format: (value) => Array.isArray(value) ? value : [],
+    cast: (value) => JSON.stringify(value),
     override: true
+  },
+  TYPE: {
+    attribute: "type",
+    value: null,
+    jsonProperty: "type",
+    format: (value) => String(value)
   }
 };
 const UserProfileAttributes = {
