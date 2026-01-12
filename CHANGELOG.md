@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.1.3 (2026-01-12)
+- **Fix** [POSWEB-1708](https://posguru.atlassian.net/browse/POSWEB-1708) fix carrybag issue
+
 ## 2.1.2 (2026-01-08)
 - **NEW** [POSWEB-1696](https://posguru.atlassian.net/browse/POSWEB-1696) Add TYPE attribute to DeviceProfileAttributes and updated the serviceTypes and langauge attributes
 

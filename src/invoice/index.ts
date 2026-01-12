@@ -254,7 +254,7 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
   // calculate carrybag and service charges
   order.billAmount = subTotal;
   if (Number(order?.carryBagQuantity) && Number(order.carryBagFee)) {
-    order.billAmount = Number(order.billAmount) + (Number(order?.carryBagQuantity) && Number(order.carryBagFee));
+    order.billAmount = Number(order.billAmount) + (Number(order?.carryBagQuantity) * Number(order.carryBagFee));
   }
   if (order?.serviceChargePercent && Number(order.serviceChargePercent)) {
     const serviceCharge = (Number(subTotal) * (Number(order.serviceChargePercent) / 100));

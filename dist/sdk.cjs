@@ -87,7 +87,7 @@ function applyInvoice(order, products, discounts) {
   order.discountAmount = discountAmount;
   order.billAmount = subTotal;
   if (Number(order == null ? void 0 : order.carryBagQuantity) && Number(order.carryBagFee)) {
-    order.billAmount = Number(order.billAmount) + (Number(order == null ? void 0 : order.carryBagQuantity) && Number(order.carryBagFee));
+    order.billAmount = Number(order.billAmount) + Number(order == null ? void 0 : order.carryBagQuantity) * Number(order.carryBagFee);
   }
   if ((order == null ? void 0 : order.serviceChargePercent) && Number(order.serviceChargePercent)) {
     const serviceCharge = Number(subTotal) * (Number(order.serviceChargePercent) / 100);
