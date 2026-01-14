@@ -25,3 +25,27 @@ export const profileTypes = {
 } as const;
 
 export type ProfileType = keyof typeof profileTypes;
+
+
+export const PERMISSIONS = {
+  TILL_APP: "Till App",
+  CLOSE_TILL: "Close Till",
+  ADJUST_FLOAT: "Adjust Float",
+  REFUND: "Refund",
+  NO_SALE_PETTY_CASH: "No Sale/Petty Cash",
+} as const;
+
+export type PermissionKey = keyof typeof PERMISSIONS;
+
+export type Permissions = Record<PermissionKey,boolean>
+
+export const DEFAULT_PERMISSIONS: Permissions = {
+  TILL_APP: false,
+  CLOSE_TILL: false,
+  ADJUST_FLOAT: false,
+  REFUND: false,
+  NO_SALE_PETTY_CASH: false,
+};
+
+
+

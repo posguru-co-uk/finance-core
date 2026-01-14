@@ -127,6 +127,20 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
+const PERMISSIONS = {
+  TILL_APP: "Till App",
+  CLOSE_TILL: "Close Till",
+  ADJUST_FLOAT: "Adjust Float",
+  REFUND: "Refund",
+  NO_SALE_PETTY_CASH: "No Sale/Petty Cash"
+};
+const DEFAULT_PERMISSIONS = {
+  TILL_APP: false,
+  CLOSE_TILL: false,
+  ADJUST_FLOAT: false,
+  REFUND: false,
+  NO_SALE_PETTY_CASH: false
+};
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -740,7 +754,7 @@ const StaffProfileAttributes = {
   },
   PERMISSIONS: {
     attribute: "permissions",
-    value: [],
+    value: DEFAULT_PERMISSIONS,
     jsonProperty: "permissions",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)

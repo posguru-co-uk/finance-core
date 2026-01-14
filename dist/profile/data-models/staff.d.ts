@@ -1,3 +1,4 @@
+import { Permissions } from './constants';
 import { AttributeConfig } from './type';
 
 export declare const StaffProfileAttributes: {
@@ -5,6 +6,6 @@ export declare const StaffProfileAttributes: {
     EMAIL: AttributeConfig<string | null>;
     PASSCODE: AttributeConfig<string | null>;
     HOURLY_RATE: AttributeConfig<number>;
-    PERMISSIONS: AttributeConfig<string[]>;
+    PERMISSIONS: AttributeConfig<Permissions>;
     IS_DELETED: AttributeConfig<boolean>;
 };
