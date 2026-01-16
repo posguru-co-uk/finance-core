@@ -125,14 +125,7 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
-const PERMISSIONS = {
-  TILL_APP: "Till App",
-  CLOSE_TILL: "Close Till",
-  ADJUST_FLOAT: "Adjust Float",
-  REFUND: "Refund",
-  NO_SALE_PETTY_CASH: "No Sale/Petty Cash"
-};
-const DEFAULT_PERMISSIONS = {
+const staffPermissions = {
   TILL_APP: false,
   CLOSE_TILL: false,
   ADJUST_FLOAT: false,
@@ -752,7 +745,7 @@ const StaffProfileAttributes = {
   },
   PERMISSIONS: {
     attribute: "permissions",
-    value: DEFAULT_PERMISSIONS,
+    value: staffPermissions,
     jsonProperty: "permissions",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
@@ -1013,6 +1006,7 @@ export {
   partnerModes,
   partnerTypes,
   profileTypes,
-  serviceTypes
+  serviceTypes,
+  staffPermissions
 };
 //# sourceMappingURL=sdk.esm.js.map
