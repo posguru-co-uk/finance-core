@@ -20,3 +20,12 @@ export declare const profileTypes: {
     readonly APPLICATION: "APPLICATION";
 };
 export type ProfileType = keyof typeof profileTypes;
+export declare const staffPermissions: {
+    readonly TILL_APP: false;
+    readonly CLOSE_TILL: false;
+    readonly ADJUST_FLOAT: false;
+    readonly REFUND: false;
+    readonly NO_SALE_PETTY_CASH: false;
+};
+export type StaffPermission = keyof typeof staffPermissions;
+export type StaffPermissionMap = Record<StaffPermission, boolean>;

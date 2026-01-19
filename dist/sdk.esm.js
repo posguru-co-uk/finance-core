@@ -125,6 +125,13 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
+const staffPermissions = {
+  TILL_APP: false,
+  CLOSE_TILL: false,
+  ADJUST_FLOAT: false,
+  REFUND: false,
+  NO_SALE_PETTY_CASH: false
+};
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -738,7 +745,7 @@ const StaffProfileAttributes = {
   },
   PERMISSIONS: {
     attribute: "permissions",
-    value: [],
+    value: staffPermissions,
     jsonProperty: "permissions",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
@@ -999,6 +1006,7 @@ export {
   partnerModes,
   partnerTypes,
   profileTypes,
-  serviceTypes
+  serviceTypes,
+  staffPermissions
 };
 //# sourceMappingURL=sdk.esm.js.map

@@ -25,3 +25,15 @@ export const profileTypes = {
 } as const;
 
 export type ProfileType = keyof typeof profileTypes;
+
+export const staffPermissions = {
+  TILL_APP: false,
+  CLOSE_TILL: false,
+  ADJUST_FLOAT: false,
+  REFUND: false,
+  NO_SALE_PETTY_CASH: false,
+} as const;
+
+export type StaffPermission = keyof typeof staffPermissions;
+
+export type StaffPermissionMap = Record<StaffPermission, boolean>;

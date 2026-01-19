@@ -127,6 +127,13 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
+const staffPermissions = {
+  TILL_APP: false,
+  CLOSE_TILL: false,
+  ADJUST_FLOAT: false,
+  REFUND: false,
+  NO_SALE_PETTY_CASH: false
+};
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -740,7 +747,7 @@ const StaffProfileAttributes = {
   },
   PERMISSIONS: {
     attribute: "permissions",
-    value: [],
+    value: staffPermissions,
     jsonProperty: "permissions",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
@@ -1001,4 +1008,5 @@ exports.partnerModes = partnerModes;
 exports.partnerTypes = partnerTypes;
 exports.profileTypes = profileTypes;
 exports.serviceTypes = serviceTypes;
+exports.staffPermissions = staffPermissions;
 //# sourceMappingURL=sdk.cjs.map
