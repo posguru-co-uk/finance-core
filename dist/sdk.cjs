@@ -38,9 +38,9 @@ function applyInvoice(order, products, discounts) {
       } else {
         addon.totalAmount = amount * Number(addon.quantity);
       }
-      item.totalCost += addon.totalAmount;
+      item.totalCost += Number(addon.totalAmount);
     });
-    totalAmount = totalAmount + item.totalCost;
+    totalAmount = Number(totalAmount) + Number(item.totalCost);
     if (item == null ? void 0 : item.discountId) {
       if (!(item == null ? void 0 : item.isManualPrice)) {
         const discount = discounts[item == null ? void 0 : item.discountId];
@@ -55,15 +55,15 @@ function applyInvoice(order, products, discounts) {
             item.discount = null;
           }
         }
-        totalDiscount = totalDiscount + discountAMount;
-        item.discountAmount = discountAMount;
-        item.totalCost = item.totalCost - discountAMount;
+        totalDiscount = Number(totalDiscount) + Number(discountAMount);
+        item.discountAmount = Number(discountAMount);
+        item.totalCost = Number(item.totalCost) - Number(discountAMount);
       }
     } else {
       item.discountId = null;
       item.discount = null;
     }
-    subTotal += item.totalCost;
+    subTotal += Number(item.totalCost);
   });
   let discountAmount = 0;
   if (order == null ? void 0 : order.discountId) {
