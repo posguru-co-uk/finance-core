@@ -2,8 +2,11 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.1.5 (2026-01-21)
+- **Fix** [POSWEB-1763](https://posguru.atlassian.net/browse/POSWEB-1763) Subtotal issue number is concating to string
+
 ## 2.1.4 (2026-01-14)
-- **New** [POSWEB-1754](https://posguru.atlassian.net/browse/POSWEB-1754) Changed the permissions management in staff profile
+- **Fix** [POSWEB-1754](https://posguru.atlassian.net/browse/POSWEB-1754) Changed the permissions management in staff profile
 
 ## 2.1.3 (2026-01-12)
 - **Fix** [POSWEB-1708](https://posguru.atlassian.net/browse/POSWEB-1708) fix carrybag issue

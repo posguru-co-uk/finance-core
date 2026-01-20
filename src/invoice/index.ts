@@ -200,9 +200,9 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
       } else {
         addon.totalAmount = amount * Number(addon.quantity);
       }
-      item.totalCost += addon.totalAmount;
+      item.totalCost += Number(addon.totalAmount);
     });
-    totalAmount = totalAmount + item.totalCost;
+    totalAmount = Number(totalAmount) + Number(item.totalCost);
     if (item?.discountId) {
       if (!item?.isManualPrice) {
         const discount = discounts[item?.discountId];
@@ -217,15 +217,15 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
             item.discount = null;
           }
         }
-        totalDiscount = totalDiscount + discountAMount;
-        item.discountAmount = discountAMount;
-        item.totalCost = item.totalCost - discountAMount;
+        totalDiscount = Number(totalDiscount) + Number(discountAMount);
+        item.discountAmount = Number(discountAMount);
+        item.totalCost = Number(item.totalCost) - Number(discountAMount);
       }
     } else {
       item.discountId = null;
       item.discount = null;
     }
-    subTotal += item.totalCost;
+    subTotal += Number(item.totalCost);
   });
 
   let discountAmount = 0.00;
