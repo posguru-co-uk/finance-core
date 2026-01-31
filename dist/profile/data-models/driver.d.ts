@@ -10,4 +10,5 @@ export declare const DriverProfileAttributes: {
     POSTCODE: AttributeConfig<string | null>;
     IS_DELETED: AttributeConfig<boolean>;
     NOTES: AttributeConfig<string | null>;
+    PETROL_MONEY: AttributeConfig<number | null>;
 };
