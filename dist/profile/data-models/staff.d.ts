@@ -8,4 +8,6 @@ export declare const StaffProfileAttributes: {
     HOURLY_RATE: AttributeConfig<number>;
     PERMISSIONS: AttributeConfig<StaffPermissionMap>;
     IS_DELETED: AttributeConfig<boolean>;
+    LOCATIONS: AttributeConfig<String[]>;
+    DEVICES: AttributeConfig<String[]>;
 };

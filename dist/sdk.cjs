@@ -764,6 +764,22 @@ const StaffProfileAttributes = {
     jsonProperty: "isDeleted",
     format: (value) => isBoolean(value),
     override: true
+  },
+  LOCATIONS: {
+    attribute: "locations",
+    value: [],
+    jsonProperty: "isDeleted",
+    format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value),
+    override: false
+  },
+  DEVICES: {
+    attribute: "devices",
+    value: [],
+    jsonProperty: "devices",
+    format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value),
+    override: false
   }
 };
 const serviceTypes = {
