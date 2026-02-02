@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.3.1 (2026-02-02)
+- **Fix** [POSWEB-1820](https://posguru.atlassian.net/browse/POSWEB-1820) Fix the json property naming issue of locations in staff profile attributes
+
 ## 2.3.0 (2026-02-02)
 - **New** [POSWEB-1820](https://posguru.atlassian.net/browse/POSWEB-1820) POSWEB-1820: Add locations and devices to the staff
 
