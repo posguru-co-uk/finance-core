@@ -67,4 +67,11 @@ export const DriverProfileAttributes = {
         format: (value: any) => String(value),
     } as AttributeConfig<string | null>,
 
+    PETROL_MONEY: {
+        attribute: "petrol_money",
+        value: 0,
+        jsonProperty: "petrolMoney",
+        format: (value: any) => Number(value),
+    } as AttributeConfig<number>,
+
 }
