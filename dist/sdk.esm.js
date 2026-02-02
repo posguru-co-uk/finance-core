@@ -766,7 +766,7 @@ const StaffProfileAttributes = {
   LOCATIONS: {
     attribute: "locations",
     value: [],
-    jsonProperty: "isDeleted",
+    jsonProperty: "locations",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
     override: false
