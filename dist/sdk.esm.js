@@ -715,6 +715,12 @@ const DriverProfileAttributes = {
     value: null,
     jsonProperty: "notes",
     format: (value) => String(value)
+  },
+  PETROL_MONEY: {
+    attribute: "petrol_money",
+    value: 0,
+    jsonProperty: "petrolMoney",
+    format: (value) => Number(value)
   }
 };
 const StaffProfileAttributes = {

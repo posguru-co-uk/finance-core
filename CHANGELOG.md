@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.2.0 (2026-01-31)
+- **NEW** [POSWEB-1809](https://posguru.atlassian.net/browse/POSWEB-1809) Add Driver Petrol Money 
+
 ## 2.1.5 (2026-01-21)
 - **Fix** [POSWEB-1763](https://posguru.atlassian.net/browse/POSWEB-1763) Subtotal issue number is concating to string
 
