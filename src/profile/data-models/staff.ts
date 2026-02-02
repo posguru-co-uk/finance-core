@@ -42,7 +42,6 @@ export const StaffProfileAttributes = {
 
     } as AttributeConfig<StaffPermissionMap>,
 
-
     IS_DELETED: {
         attribute: "is_deleted",
         value: false,
@@ -50,4 +49,23 @@ export const StaffProfileAttributes = {
         format: (value: any) => isBoolean(value),
         override: true,
     } as AttributeConfig<boolean>,
+
+    LOCATIONS:{
+        attribute:"locations",
+        value:[] as String[],
+        jsonProperty: "isDeleted",
+        format: (value: any) => JSON.parse(value),
+        cast: (value: any) => JSON.stringify(value),
+        override: false,
+    } as AttributeConfig<String[]>,
+
+    DEVICES:{
+        attribute:"devices",
+        value:[] as String[],
+        jsonProperty: "devices",
+        format: (value: any) => JSON.parse(value),
+        cast: (value: any) => JSON.stringify(value),
+        override: false,
+    } as AttributeConfig<String[]>,
+   
 }
