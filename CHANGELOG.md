@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.3.0 (2026-02-02)
+- **New** [POSWEB-1820](https://posguru.atlassian.net/browse/POSWEB-1820) POSWEB-1820: Add locations and devices to the staff
+
 ## 2.2.0 (2026-01-31)
 - **NEW** [POSWEB-1809](https://posguru.atlassian.net/browse/POSWEB-1809) Add Driver Petrol Money 
 
