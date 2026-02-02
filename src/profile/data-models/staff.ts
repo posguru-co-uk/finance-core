@@ -53,7 +53,7 @@ export const StaffProfileAttributes = {
     LOCATIONS:{
         attribute:"locations",
         value:[] as String[],
-        jsonProperty: "isDeleted",
+        jsonProperty: "locations",
         format: (value: any) => JSON.parse(value),
         cast: (value: any) => JSON.stringify(value),
         override: false,
