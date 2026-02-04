@@ -967,6 +967,8 @@ const convertProfile = (profile, partner) => {
     result = deserializeProfileAttribute(UserProfileAttributes, profile.attributes, false, false);
   } else if (partner.type === partnerTypes.STAFF) {
     result = deserializeProfileAttribute(StaffProfileAttributes, profile.attributes, false, false);
+  } else if (partner.type === partnerTypes.DRIVER) {
+    result = deserializeProfileAttribute(DriverProfileAttributes, profile.attributes, false, false);
   }
   for (const attr of Object.values(result)) {
     attr.owner = partner.id;

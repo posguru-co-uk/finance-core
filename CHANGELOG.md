@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.3.2 (2026-02-04)
+- **Fix** [POSWEB-1837](https://posguru.atlassian.net/browse/POSWEB-1837) fix DriverProfileAttribute
+
 ## 2.3.1 (2026-02-02)
 - **Fix** [POSWEB-1820](https://posguru.atlassian.net/browse/POSWEB-1820) Fix the json property naming issue of locations in staff profile attributes
 
