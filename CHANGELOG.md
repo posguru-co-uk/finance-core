@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.4.0 (2026-02-06)
+- **New** [POSWEB-1850](https://posguru.atlassian.net/browse/POSWEB-1850) Custom delivery charge
+
 ## 2.3.2 (2026-02-04)
 - **Fix** [POSWEB-1837](https://posguru.atlassian.net/browse/POSWEB-1837) fix DriverProfileAttribute
 

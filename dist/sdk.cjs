@@ -94,8 +94,8 @@ function applyInvoice(order, products, discounts) {
     order.billAmount = Number(order.billAmount) + serviceCharge;
     order.serviceCharge = serviceCharge;
   }
-  if ((order == null ? void 0 : order.serviceType) === "DELIVERY" && (order == null ? void 0 : order.deliveryChargeId) && (order == null ? void 0 : order.deliveryCharge)) {
-    const deliveryCharge = Number(order == null ? void 0 : order.deliveryCharge);
+  if ((order == null ? void 0 : order.serviceType) === "DELIVERY" && ((order == null ? void 0 : order.deliveryChargeId) || (order == null ? void 0 : order.isManualDeliveryCharge)) && (order == null ? void 0 : order.deliveryCharge)) {
+    const deliveryCharge = Number((order == null ? void 0 : order.deliveryCharge) || 0);
     order.billAmount = Number(order.billAmount) + deliveryCharge;
   }
   if (((_c = order == null ? void 0 : order.tables) == null ? void 0 : _c.length) && (order == null ? void 0 : order.serviceType) === "DINE_IN") {
