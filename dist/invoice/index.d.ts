@@ -136,6 +136,7 @@ export interface Order {
     invoiceNote?: string | null;
     metaData?: any;
     tables?: Array<any>;
+    isManualDeliveryCharge?: boolean;
 }
 /**
  * Recalculates an order invoice based on products and their addons.

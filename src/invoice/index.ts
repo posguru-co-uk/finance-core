@@ -148,6 +148,7 @@ export interface Order {
   invoiceNote?: string | null; // varchar(512)
   metaData?: any
   tables?: Array<any>
+  isManualDeliveryCharge?:boolean;
 }
 
 /**
@@ -262,8 +263,8 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
     order.serviceCharge = serviceCharge;
   }
 
-  if (order?.serviceType === 'DELIVERY' && order?.deliveryChargeId && order?.deliveryCharge) {
-    const deliveryCharge = Number(order?.deliveryCharge);
+  if (order?.serviceType === 'DELIVERY' && (order?.deliveryChargeId || order?.isManualDeliveryCharge) && order?.deliveryCharge) {
+    const deliveryCharge = Number(order?.deliveryCharge || 0);
     order.billAmount = Number(order.billAmount) + deliveryCharge;
   }
 
