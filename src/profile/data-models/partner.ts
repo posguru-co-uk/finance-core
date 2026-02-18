@@ -201,10 +201,10 @@ export const PartnerProfileAttributes = {
     jsonProperty: "longitude",
     format: (value: any) => String(value),
   } as AttributeConfig<string | null>,
-  ADDONS: {
-    attribute: "addons",
+  ADDON_FEATURES: {
+    attribute: "addon_features",
     value: addonFeatures,
-    jsonProperty: "addons",
+    jsonProperty: "addonFeatures",
     format: (value: any): AddonFeaturesMap => JSON.parse(value),
     cast: (value: AddonFeaturesMap) => JSON.stringify(value),
     override: true,

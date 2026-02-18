@@ -594,10 +594,10 @@ const PartnerProfileAttributes = {
     jsonProperty: "longitude",
     format: (value) => String(value)
   },
-  ADDONS: {
-    attribute: "addons",
+  ADDON_FEATURES: {
+    attribute: "addon_features",
     value: addonFeatures,
-    jsonProperty: "addons",
+    jsonProperty: "addonFeatures",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
     override: true

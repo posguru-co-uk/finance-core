@@ -29,5 +29,5 @@ export declare const PartnerProfileAttributes: {
     SERVICE_CHARGES: AttributeConfig<number[]>;
     LATITUDE: AttributeConfig<string | null>;
     LONGITUDE: AttributeConfig<string | null>;
-    ADDONS: AttributeConfig<AddonFeaturesMap>;
+    ADDON_FEATURES: AttributeConfig<AddonFeaturesMap>;
 };

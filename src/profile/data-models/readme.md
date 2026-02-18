@@ -1,4 +1,4 @@
-#ADDONS
+#ADDON_FEATURES
 
 ## feature and codes
 |feature| code  | default |
