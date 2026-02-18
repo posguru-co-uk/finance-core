@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 2.5.0 (2026-02-18)
+- **New** [POSWEB-1900](https://posguru.atlassian.net/browse/POSWEB-1900) addons and features for partner
+
 ## 2.4.0 (2026-02-06)
 - **New** [POSWEB-1850](https://posguru.atlassian.net/browse/POSWEB-1850) Custom delivery charge
 

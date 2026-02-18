@@ -29,3 +29,8 @@ export declare const staffPermissions: {
 };
 export type StaffPermission = keyof typeof staffPermissions;
 export type StaffPermissionMap = Record<StaffPermission, boolean>;
+export declare const addonFeatures: {
+    readonly 1000: false;
+};
+export type AddonFeatures = keyof typeof addonFeatures;
+export type AddonFeaturesMap = Record<AddonFeatures, boolean>;
