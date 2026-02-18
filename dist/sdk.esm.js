@@ -132,6 +132,9 @@ const staffPermissions = {
   REFUND: false,
   NO_SALE_PETTY_CASH: false
 };
+const addonFeatures = {
+  1e3: false
+};
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -590,6 +593,14 @@ const PartnerProfileAttributes = {
     value: null,
     jsonProperty: "longitude",
     format: (value) => String(value)
+  },
+  ADDONS: {
+    attribute: "addons",
+    value: addonFeatures,
+    jsonProperty: "addons",
+    format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value),
+    override: true
   }
 };
 const AdminProfileAttributes = {
@@ -1024,6 +1035,7 @@ export {
   PartnerProfileAttributesJsonKeys,
   StaffProfileAttributes,
   UserProfileAttributes,
+  addonFeatures,
   applyInvoice,
   deserializeProfileAttribute,
   generateProfile,

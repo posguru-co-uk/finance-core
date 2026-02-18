@@ -1,4 +1,4 @@
-import { partnerModes, partnerTypes, profileTypes, staffPermissions} from "./constants";
+import { partnerModes, partnerTypes, profileTypes, staffPermissions, addonFeatures} from "./constants";
 import { DeviceProfileAttributes } from "./device";
 import { UserProfileAttributes } from "./user";
 import { LocationProfileAttributes } from "./location";
@@ -75,5 +75,6 @@ export {
   AdminProfileAttributes,
   StaffProfileAttributes,
   DriverProfileAttributes,
-  staffPermissions
+  staffPermissions,
+  addonFeatures
 };
