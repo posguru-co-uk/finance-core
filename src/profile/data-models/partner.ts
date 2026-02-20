@@ -1,5 +1,5 @@
 import { isBoolean } from "../../utils";
-import { addonFeatures, AddonFeaturesMap } from "./constants";
+import { AddonFeatureList } from "./constants";
 
 import { AttributeConfig } from './type'
 
@@ -203,10 +203,10 @@ export const PartnerProfileAttributes = {
   } as AttributeConfig<string | null>,
   ADDON_FEATURES: {
     attribute: "addon_features",
-    value: addonFeatures,
+    value: [] as AddonFeatureList,
     jsonProperty: "addonFeatures",
-    format: (value: any): AddonFeaturesMap => JSON.parse(value),
-    cast: (value: AddonFeaturesMap) => JSON.stringify(value),
+    format: (value: any): AddonFeatureList => JSON.parse(value),
+    cast: (value: AddonFeatureList) => JSON.stringify(value),
     override: true,
-  } as AttributeConfig<AddonFeaturesMap>,
+  } as AttributeConfig<AddonFeatureList>,
 };

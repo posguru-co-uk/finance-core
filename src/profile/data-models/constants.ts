@@ -26,23 +26,14 @@ export const profileTypes = {
 
 export type ProfileType = keyof typeof profileTypes;
 
-export const staffPermissions = {
-  TILL_APP: false,
-  CLOSE_TILL: false,
-  ADJUST_FLOAT: false,
-  REFUND: false,
-  NO_SALE_PETTY_CASH: false,
-} as const;
+export const StaffPermissions = [1001, 1002, 1003, 1004] as const;
 
-export type StaffPermission = keyof typeof staffPermissions;
+export type StaffPermission = (typeof StaffPermissions)[number];
 
-export type StaffPermissionMap = Record<StaffPermission, boolean>;
+export type StaffPermissionList = StaffPermission[];
 
+export const AddonFeatures = [1000] as const;
 
-export const addonFeatures = {
-  1000: false,
-} as const;
+export type AddonFeature = (typeof AddonFeatures)[number];
 
-export type AddonFeatures = keyof typeof addonFeatures;
-
-export type AddonFeaturesMap = Record<AddonFeatures, boolean>;
+export type AddonFeatureList = AddonFeature[];

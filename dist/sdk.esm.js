@@ -125,16 +125,8 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
-const staffPermissions = {
-  TILL_APP: false,
-  CLOSE_TILL: false,
-  ADJUST_FLOAT: false,
-  REFUND: false,
-  NO_SALE_PETTY_CASH: false
-};
-const addonFeatures = {
-  1e3: false
-};
+const StaffPermissions = [1001, 1002, 1003, 1004];
+const AddonFeatures = [1e3];
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -596,7 +588,7 @@ const PartnerProfileAttributes = {
   },
   ADDON_FEATURES: {
     attribute: "addon_features",
-    value: addonFeatures,
+    value: [],
     jsonProperty: "addonFeatures",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
@@ -762,7 +754,7 @@ const StaffProfileAttributes = {
   },
   PERMISSIONS: {
     attribute: "permissions",
-    value: staffPermissions,
+    value: [],
     jsonProperty: "permissions",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
@@ -1026,6 +1018,7 @@ const applyInheritanceFromParent = (rootPartner, partners, childPartners) => {
   }
 };
 export {
+  AddonFeatures,
   AdminProfileAttributes,
   DeviceProfileAttributes,
   DriverProfileAttributes,
@@ -1033,16 +1026,15 @@ export {
   PartnerProfileAttributes,
   PartnerProfileAttributesDbKeys,
   PartnerProfileAttributesJsonKeys,
+  StaffPermissions,
   StaffProfileAttributes,
   UserProfileAttributes,
-  addonFeatures,
   applyInvoice,
   deserializeProfileAttribute,
   generateProfile,
   partnerModes,
   partnerTypes,
   profileTypes,
-  serviceTypes,
-  staffPermissions
+  serviceTypes
 };
 //# sourceMappingURL=sdk.esm.js.map

@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 3.0.0 (2026-02-20)
+**Breaking** [POSWEB-1911](https://posguru.atlassian.net/browse/POSWEB-1911) Refactor staff permissions and addon features to use numeric codes; update documentation accordingly
+
 ## 2.5.0 (2026-02-18)
 - **New** [POSWEB-1900](https://posguru.atlassian.net/browse/POSWEB-1900) addons and features for partner
 
