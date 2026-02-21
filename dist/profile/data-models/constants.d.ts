@@ -20,17 +20,9 @@ export declare const profileTypes: {
     readonly APPLICATION: "APPLICATION";
 };
 export type ProfileType = keyof typeof profileTypes;
-export declare const staffPermissions: {
-    readonly TILL_APP: false;
-    readonly CLOSE_TILL: false;
-    readonly ADJUST_FLOAT: false;
-    readonly REFUND: false;
-    readonly NO_SALE_PETTY_CASH: false;
-};
-export type StaffPermission = keyof typeof staffPermissions;
-export type StaffPermissionMap = Record<StaffPermission, boolean>;
-export declare const addonFeatures: {
-    readonly 1000: false;
-};
-export type AddonFeatures = keyof typeof addonFeatures;
-export type AddonFeaturesMap = Record<AddonFeatures, boolean>;
+export declare const StaffPermissions: readonly [1001, 1002, 1003, 1004];
+export type StaffPermission = (typeof StaffPermissions)[number];
+export type StaffPermissionList = StaffPermission[];
+export declare const AddonFeatures: readonly [1000];
+export type AddonFeature = (typeof AddonFeatures)[number];
+export type AddonFeatureList = AddonFeature[];

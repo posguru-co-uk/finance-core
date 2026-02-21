@@ -127,16 +127,8 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
-const staffPermissions = {
-  TILL_APP: false,
-  CLOSE_TILL: false,
-  ADJUST_FLOAT: false,
-  REFUND: false,
-  NO_SALE_PETTY_CASH: false
-};
-const addonFeatures = {
-  1e3: false
-};
+const StaffPermissions = [1001, 1002, 1003, 1004];
+const AddonFeatures = [1e3];
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -598,7 +590,7 @@ const PartnerProfileAttributes = {
   },
   ADDON_FEATURES: {
     attribute: "addon_features",
-    value: addonFeatures,
+    value: [],
     jsonProperty: "addonFeatures",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
@@ -764,7 +756,7 @@ const StaffProfileAttributes = {
   },
   PERMISSIONS: {
     attribute: "permissions",
-    value: staffPermissions,
+    value: [],
     jsonProperty: "permissions",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
@@ -1027,6 +1019,7 @@ const applyInheritanceFromParent = (rootPartner, partners, childPartners) => {
     }
   }
 };
+exports.AddonFeatures = AddonFeatures;
 exports.AdminProfileAttributes = AdminProfileAttributes;
 exports.DeviceProfileAttributes = DeviceProfileAttributes;
 exports.DriverProfileAttributes = DriverProfileAttributes;
@@ -1034,9 +1027,9 @@ exports.LocationProfileAttributes = LocationProfileAttributes;
 exports.PartnerProfileAttributes = PartnerProfileAttributes;
 exports.PartnerProfileAttributesDbKeys = PartnerProfileAttributesDbKeys;
 exports.PartnerProfileAttributesJsonKeys = PartnerProfileAttributesJsonKeys;
+exports.StaffPermissions = StaffPermissions;
 exports.StaffProfileAttributes = StaffProfileAttributes;
 exports.UserProfileAttributes = UserProfileAttributes;
-exports.addonFeatures = addonFeatures;
 exports.applyInvoice = applyInvoice;
 exports.deserializeProfileAttribute = deserializeProfileAttribute;
 exports.generateProfile = generateProfile;
@@ -1044,5 +1037,4 @@ exports.partnerModes = partnerModes;
 exports.partnerTypes = partnerTypes;
 exports.profileTypes = profileTypes;
 exports.serviceTypes = serviceTypes;
-exports.staffPermissions = staffPermissions;
 //# sourceMappingURL=sdk.cjs.map
