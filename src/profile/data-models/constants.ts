@@ -25,15 +25,3 @@ export const profileTypes = {
 } as const;
 
 export type ProfileType = keyof typeof profileTypes;
-
-export const StaffPermissions = [1001, 1002, 1003, 1004] as const;
-
-export type StaffPermission = (typeof StaffPermissions)[number];
-
-export type StaffPermissionList = StaffPermission[];
-
-export const AddonFeatures = [1000] as const;
-
-export type AddonFeature = (typeof AddonFeatures)[number];
-
-export type AddonFeatureList = AddonFeature[];

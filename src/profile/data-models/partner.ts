@@ -1,6 +1,4 @@
 import { isBoolean } from "../../utils";
-import { AddonFeatureList } from "./constants";
-
 import { AttributeConfig } from './type'
 
 export const PartnerProfileAttributes = {
@@ -203,10 +201,10 @@ export const PartnerProfileAttributes = {
   } as AttributeConfig<string | null>,
   ADDON_FEATURES: {
     attribute: "addon_features",
-    value: [] as AddonFeatureList,
+    value: [] as number[],
     jsonProperty: "addonFeatures",
-    format: (value: any): AddonFeatureList => JSON.parse(value),
-    cast: (value: AddonFeatureList) => JSON.stringify(value),
+    format: (value: any): number[] => JSON.parse(value),
+    cast: (value: number[]) => JSON.stringify(value),
     override: true,
-  } as AttributeConfig<AddonFeatureList>,
+  } as AttributeConfig<number[]>,
 };

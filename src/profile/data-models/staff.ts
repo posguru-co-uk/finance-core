@@ -1,6 +1,5 @@
 
 import { isBoolean } from '../../utils'
-import { StaffPermissionList } from './constants'
 import { AttributeConfig } from './type'
 
 export const StaffProfileAttributes = {
@@ -35,12 +34,12 @@ export const StaffProfileAttributes = {
 
     PERMISSIONS: {
     attribute: "permissions",
-    value: [] as StaffPermissionList,
+    value: [] as number[],
     jsonProperty: "permissions",
-    format: (value: string): StaffPermissionList => JSON.parse(value),
-    cast: (value: StaffPermissionList) => JSON.stringify(value),
+    format: (value: string): number[] => JSON.parse(value),
+    cast: (value: number[]) => JSON.stringify(value),
 
-    } as AttributeConfig<StaffPermissionList>,
+    } as AttributeConfig<number[]>,
 
     IS_DELETED: {
         attribute: "is_deleted",
