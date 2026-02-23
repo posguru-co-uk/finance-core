@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 3.0.1 (2026-02-23)
+**Fix** [POSWEB-1911](https://posguru.atlassian.net/browse/POSWEB-1915) Refactor profile attribute types to use number arrays for permissions and addon features
+
 ## 3.0.0 (2026-02-20)
 **Breaking** [POSWEB-1911](https://posguru.atlassian.net/browse/POSWEB-1911) Refactor staff permissions and addon features to use numeric codes; update documentation accordingly
 

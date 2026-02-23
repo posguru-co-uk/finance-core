@@ -125,8 +125,6 @@ const profileTypes = {
   STYLE: "STYLE",
   APPLICATION: "APPLICATION"
 };
-const StaffPermissions = [1001, 1002, 1003, 1004];
-const AddonFeatures = [1e3];
 const isBoolean = (value) => {
   if (typeof value === "string") {
     return value.toLowerCase() === "true";
@@ -1018,7 +1016,6 @@ const applyInheritanceFromParent = (rootPartner, partners, childPartners) => {
   }
 };
 export {
-  AddonFeatures,
   AdminProfileAttributes,
   DeviceProfileAttributes,
   DriverProfileAttributes,
@@ -1026,7 +1023,6 @@ export {
   PartnerProfileAttributes,
   PartnerProfileAttributesDbKeys,
   PartnerProfileAttributesJsonKeys,
-  StaffPermissions,
   StaffProfileAttributes,
   UserProfileAttributes,
   applyInvoice,

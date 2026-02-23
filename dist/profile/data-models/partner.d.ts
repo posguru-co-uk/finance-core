@@ -1,4 +1,3 @@
-import { AddonFeatureList } from './constants';
 import { AttributeConfig } from './type';
 
 export declare const PartnerProfileAttributes: {
@@ -29,5 +28,5 @@ export declare const PartnerProfileAttributes: {
     SERVICE_CHARGES: AttributeConfig<number[]>;
     LATITUDE: AttributeConfig<string | null>;
     LONGITUDE: AttributeConfig<string | null>;
-    ADDON_FEATURES: AttributeConfig<AddonFeatureList>;
+    ADDON_FEATURES: AttributeConfig<number[]>;
 };
