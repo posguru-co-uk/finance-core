@@ -9,4 +9,5 @@ export declare const StaffProfileAttributes: {
     IS_DELETED: AttributeConfig<boolean>;
     LOCATIONS: AttributeConfig<String[]>;
     DEVICES: AttributeConfig<String[]>;
+    DEPARTMENTS: AttributeConfig<string[]>;
 };

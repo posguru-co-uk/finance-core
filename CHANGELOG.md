@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 3.1.0 (2026-02-24)
+**New** [POSWEB-1919](https://posguru.atlassian.net/browse/POSWEB-1919) Add departments attribute to Partner and Staff profile models
+
 ## 3.0.1 (2026-02-23)
 **Fix** [POSWEB-1911](https://posguru.atlassian.net/browse/POSWEB-1915) Refactor profile attribute types to use number arrays for permissions and addon features
 

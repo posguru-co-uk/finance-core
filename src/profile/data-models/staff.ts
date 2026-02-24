@@ -66,5 +66,14 @@ export const StaffProfileAttributes = {
         cast: (value: any) => JSON.stringify(value),
         override: false,
     } as AttributeConfig<String[]>,
+
+    DEPARTMENTS : {
+        attribute: "departments",
+        value: [] as string[],
+        jsonProperty: "departments",
+        format: (value: any) => JSON.parse(value),
+        cast: (value: any) => JSON.stringify(value),
+        override: false,
+    } as AttributeConfig<string[]>,
    
 }
