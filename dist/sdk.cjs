@@ -796,7 +796,7 @@ const StaffProfileAttributes = {
     jsonProperty: "departments",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
-    override: false
+    override: true
   }
 };
 const serviceTypes = {
