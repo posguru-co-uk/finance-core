@@ -29,4 +29,5 @@ export declare const PartnerProfileAttributes: {
     LATITUDE: AttributeConfig<string | null>;
     LONGITUDE: AttributeConfig<string | null>;
     ADDON_FEATURES: AttributeConfig<number[]>;
+    DEPARTMENTS: AttributeConfig<string[]>;
 };
