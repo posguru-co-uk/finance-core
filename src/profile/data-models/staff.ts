@@ -73,7 +73,7 @@ export const StaffProfileAttributes = {
         jsonProperty: "departments",
         format: (value: any) => JSON.parse(value),
         cast: (value: any) => JSON.stringify(value),
-        override: true,
+        override: false,
     } as AttributeConfig<string[]>,
    
 }
