@@ -806,13 +806,15 @@ const serviceTypes = {
   WEBSITE_BOOKING: "WEBSITE_BOOKING",
   COLLECTION: "COLLECTION",
   TABLE_BOOKING: "TABLE_BOOKING",
+  ROOM_BOOKING: "ROOM_BOOKING",
   VALUES: [
     "TAKE_AWAY",
     "DELIVERY",
     "DINE_IN",
     "COLLECTION",
     "TABLE_BOOKING",
-    "WEBSITE_BOOKING"
+    "WEBSITE_BOOKING",
+    "ROOM_BOOKING"
   ]
 };
 const deserializeProfileAttribute = (attributes, values, overrideSettings = false, onlyFormat = true) => {
