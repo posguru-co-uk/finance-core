@@ -5,6 +5,7 @@ export const serviceTypes = {
   WEBSITE_BOOKING: "WEBSITE_BOOKING",
   COLLECTION: "COLLECTION",
   TABLE_BOOKING: "TABLE_BOOKING",
+  ROOM_BOOKING:"ROOM_BOOKING",
   VALUES: [
     "TAKE_AWAY",
     "DELIVERY",
@@ -12,6 +13,7 @@ export const serviceTypes = {
     "COLLECTION",
     "TABLE_BOOKING",
     "WEBSITE_BOOKING",
+    "ROOM_BOOKING"
   ] as const,
 };
 

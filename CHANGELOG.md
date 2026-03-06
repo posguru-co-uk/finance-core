@@ -1,6 +1,8 @@
 # Changelog
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
+## 3.2.0 (2026-03-06)
+**New** [POSWEB-1963](https://posguru.atlassian.net/browse/POSWEB-1963) add new service type room booking
 
 ## 3.1.0 (2026-02-24)
 **New** [POSWEB-1919](https://posguru.atlassian.net/browse/POSWEB-1919) Add departments attribute to Partner and Staff profile models
