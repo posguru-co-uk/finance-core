@@ -591,14 +591,6 @@ const PartnerProfileAttributes = {
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
     override: true
-  },
-  DEPARTMENTS: {
-    attribute: "departments",
-    value: [],
-    jsonProperty: "departments",
-    format: (value) => JSON.parse(value),
-    cast: (value) => JSON.stringify(value),
-    override: true
   }
 };
 const AdminProfileAttributes = {
