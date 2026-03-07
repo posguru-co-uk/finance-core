@@ -1,6 +1,10 @@
 # Changelog
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
+
+## 4.0.0 (2026-03-07)
+**Breaking** [POSWEB-1972](https://posguru.atlassian.net/browse/POSWEB-1972) Remove departments attribute from PartnerProfileAttributes
+
 ## 3.2.0 (2026-03-06)
 **New** [POSWEB-1963](https://posguru.atlassian.net/browse/POSWEB-1963) add new service type room booking
 
