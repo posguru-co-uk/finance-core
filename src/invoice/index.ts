@@ -26,6 +26,14 @@ export interface AddonItem {
   defaultSelect: boolean;
 }
 
+
+export interface Room {
+  id: number;
+  roomId: number;
+  orderId: number;
+  status: string;
+  amount: number;
+}
 // Addon Group
 export interface Addon {
   id: number;
@@ -149,6 +157,7 @@ export interface Order {
   metaData?: any
   tables?: Array<any>
   isManualDeliveryCharge?:boolean;
+  rooms?:Array<Room>;
 }
 
 /**
@@ -280,3 +289,49 @@ export function applyInvoice(order: Order, products: Record<string, Product>, di
 
   return order;
 }
+
+
+/**
+ * Processes rooms attached to an order, assigning missing IDs 
+ * and adding room charges to the order's total bill.
+ *
+ * @param order - The order object to update
+ * @returns Updated order with recalculated totals including room charges
+ */
+export const applyInvoiceForRooms = (order: Order): Order => {
+  // If there are no rooms, just return the order as-is
+  if (!order?.rooms?.length) {
+    return order;
+  }
+
+  let roomTotalAmount = 0;
+
+  // Precompute the max ID to assign to new rooms missing an ID
+  let nextRoomId =
+    (order.rooms.reduce((max, r) => (r.id && r.id > max ? r.id : max), 0) || 0) + 1;
+
+  order.rooms.forEach((room) => {
+    // Assign an ID if missing
+    if (!room.id) {
+      room.id = nextRoomId++;
+    }
+
+    // Ensure the room is linked to the current order
+    if (!room.orderId && order.id) {
+      room.orderId = order.id;
+    }
+
+    // Accumulate the room amount
+    const amount = Number(room.amount || 0);
+    roomTotalAmount += amount;
+  });
+
+  // Add the accumulated room total to the order's bill amount
+  order.billAmount = Number(order.billAmount || 0) + roomTotalAmount;
+  
+  // If your business logic dictates that room charges should also 
+  // be part of the subTotal, you can uncomment the line below:
+  order.subTotal = Number(order.subTotal || 0) + roomTotalAmount;
+
+  return order;
+};
