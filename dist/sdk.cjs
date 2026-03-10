@@ -108,6 +108,27 @@ function applyInvoice(order, products, discounts) {
   }
   return order;
 }
+const applyInvoiceForRooms = (order) => {
+  var _a;
+  if (!((_a = order == null ? void 0 : order.rooms) == null ? void 0 : _a.length)) {
+    return order;
+  }
+  let roomTotalAmount = 0;
+  let nextRoomId = (order.rooms.reduce((max, r) => r.id && r.id > max ? r.id : max, 0) || 0) + 1;
+  order.rooms.forEach((room) => {
+    if (!room.id) {
+      room.id = nextRoomId++;
+    }
+    if (!room.orderId && order.id) {
+      room.orderId = order.id;
+    }
+    const amount = Number(room.amount || 0);
+    roomTotalAmount += amount;
+  });
+  order.billAmount = Number(order.billAmount || 0) + roomTotalAmount;
+  order.subTotal = Number(order.subTotal || 0) + roomTotalAmount;
+  return order;
+};
 const partnerTypes = {
   PARTNER: "PARTNER",
   USER: "USER",
@@ -1037,6 +1058,7 @@ exports.PartnerProfileAttributesJsonKeys = PartnerProfileAttributesJsonKeys;
 exports.StaffProfileAttributes = StaffProfileAttributes;
 exports.UserProfileAttributes = UserProfileAttributes;
 exports.applyInvoice = applyInvoice;
+exports.applyInvoiceForRooms = applyInvoiceForRooms;
 exports.deserializeProfileAttribute = deserializeProfileAttribute;
 exports.generateProfile = generateProfile;
 exports.partnerModes = partnerModes;

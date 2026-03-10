@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.1.0 (2026-03-10)
+**New** [POSWEB-1985](https://posguru.atlassian.net/browse/POSWEB-1985) Apply Invoice for room
+
 ## 4.0.0 (2026-03-07)
 **Breaking** [POSWEB-1972](https://posguru.atlassian.net/browse/POSWEB-1972) Remove departments attribute from PartnerProfileAttributes
 

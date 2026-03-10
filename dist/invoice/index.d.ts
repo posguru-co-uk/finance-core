@@ -20,6 +20,13 @@ export interface AddonItem {
     amount: number;
     defaultSelect: boolean;
 }
+export interface Room {
+    id: number;
+    roomId: number;
+    orderId: number;
+    status: string;
+    amount: number;
+}
 export interface Addon {
     id: number;
     name: LocalizedText;
@@ -137,6 +144,7 @@ export interface Order {
     metaData?: any;
     tables?: Array<any>;
     isManualDeliveryCharge?: boolean;
+    rooms?: Array<Room>;
 }
 /**
  * Recalculates an order invoice based on products and their addons.
@@ -146,3 +154,11 @@ export interface Order {
  * @returns Updated order with recalculated totals
  */
 export declare function applyInvoice(order: Order, products: Record<string, Product>, discounts: Record<string, Discount>): Order;
+/**
+ * Processes rooms attached to an order, assigning missing IDs
+ * and adding room charges to the order's total bill.
+ *
+ * @param order - The order object to update
+ * @returns Updated order with recalculated totals including room charges
+ */
+export declare const applyInvoiceForRooms: (order: Order) => Order;
