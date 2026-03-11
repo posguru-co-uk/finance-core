@@ -123,8 +123,10 @@ const applyInvoiceForRooms = (order) => {
     const amount = Number(room.amount || 0);
     roomTotalAmount += amount;
   });
-  order.billAmount = Number(order.billAmount || 0) + roomTotalAmount;
-  order.subTotal = Number(order.subTotal || 0) + roomTotalAmount;
+  order.billAmount = Number(roomTotalAmount);
+  order.totalAmount = Number(roomTotalAmount);
+  order.subTotal = Number(roomTotalAmount);
+  order.totalDiscount = 0;
   return order;
 };
 const partnerTypes = {
