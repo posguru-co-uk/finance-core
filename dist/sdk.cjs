@@ -132,8 +132,8 @@ const applyInvoiceForRooms = (order) => {
     }
   }
   order.billAmount = Number(roomTotalAmount) + Number(additionalChargesTotal);
-  order.totalAmount = Number(roomTotalAmount);
-  order.subTotal = Number(roomTotalAmount);
+  order.totalAmount = Number(roomTotalAmount) + Number(additionalChargesTotal);
+  order.subTotal = Number(roomTotalAmount) + Number(additionalChargesTotal);
   order.totalDiscount = 0;
   return order;
 };

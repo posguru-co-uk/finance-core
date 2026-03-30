@@ -343,10 +343,10 @@ export const applyInvoiceForRooms = (order: Order): Order => {
 
   // Add the accumulated room total to the order's bill amount
   order.billAmount =  Number(roomTotalAmount) + Number(additionalChargesTotal);
-  order.totalAmount = Number(roomTotalAmount);
+  order.totalAmount = Number(roomTotalAmount) + Number(additionalChargesTotal);
   // If your business logic dictates that room charges should also 
   // be part of the subTotal, you can uncomment the line below:
-  order.subTotal = Number(roomTotalAmount);
+  order.subTotal = Number(roomTotalAmount) + Number(additionalChargesTotal);
   order.totalDiscount = 0;
   return order;
 };
