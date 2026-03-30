@@ -27,6 +27,10 @@ export interface Room {
     status: string;
     amount: number;
 }
+export interface AdditionalChargeItem {
+    name: string;
+    charge: number;
+}
 export interface Addon {
     id: number;
     name: LocalizedText;
@@ -145,6 +149,7 @@ export interface Order {
     tables?: Array<any>;
     isManualDeliveryCharge?: boolean;
     rooms?: Array<Room>;
+    additionalCharges?: Array<AdditionalChargeItem>;
 }
 /**
  * Recalculates an order invoice based on products and their addons.

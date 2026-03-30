@@ -34,6 +34,12 @@ export interface Room {
   status: string;
   amount: number;
 }
+
+export interface AdditionalChargeItem {
+  name: string;
+  charge: number;
+}
+
 // Addon Group
 export interface Addon {
   id: number;
@@ -158,6 +164,7 @@ export interface Order {
   tables?: Array<any>
   isManualDeliveryCharge?:boolean;
   rooms?:Array<Room>;
+  additionalCharges?: Array<AdditionalChargeItem>;
 }
 
 /**
@@ -326,12 +333,20 @@ export const applyInvoiceForRooms = (order: Order): Order => {
     roomTotalAmount += amount;
   });
 
+  let additionalChargesTotal = 0;
+
+  if (order?.additionalCharges) {
+    for (const chargeItem of order.additionalCharges) {
+      additionalChargesTotal += Number(chargeItem.charge || 0);
+    }
+  }
+
   // Add the accumulated room total to the order's bill amount
-  order.billAmount =  Number(roomTotalAmount);
-  order.totalAmount = Number(roomTotalAmount);
+  order.billAmount =  Number(roomTotalAmount) + Number(additionalChargesTotal);
+  order.totalAmount = Number(roomTotalAmount) + Number(additionalChargesTotal);
   // If your business logic dictates that room charges should also 
   // be part of the subTotal, you can uncomment the line below:
-  order.subTotal = Number(roomTotalAmount);
+  order.subTotal = Number(roomTotalAmount) + Number(additionalChargesTotal);
   order.totalDiscount = 0;
   return order;
 };
