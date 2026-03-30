@@ -123,7 +123,13 @@ const applyInvoiceForRooms = (order) => {
     const amount = Number(room.amount || 0);
     roomTotalAmount += amount;
   });
-  order.billAmount = Number(roomTotalAmount);
+  let additionalChargesTotal = 0;
+  if (order == null ? void 0 : order.additionalCharges) {
+    for (const chargeItem of order.additionalCharges) {
+      additionalChargesTotal += Number(chargeItem.charge || 0);
+    }
+  }
+  order.billAmount = Number(roomTotalAmount) + Number(additionalChargesTotal);
   order.totalAmount = Number(roomTotalAmount);
   order.subTotal = Number(roomTotalAmount);
   order.totalDiscount = 0;

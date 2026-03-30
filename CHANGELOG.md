@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.2.0 (2026-03-30)
+**New** [POSWEB-2050](https://posguru.atlassian.net/browse/POSWEB-2050)
+Add additionalCharges to Order
+
 ## 4.1.1 (2026-03-11)
 **New** [POSWEB-1985](https://posguru.atlassian.net/browse/POSWEB-1985) Apply Invoice for room
   - fix total amount and subtotal
