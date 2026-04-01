@@ -622,6 +622,26 @@ const PartnerProfileAttributes = {
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
     override: true
+  },
+  License: {
+    attribute: "license",
+    value: [],
+    jsonProperty: "license",
+    format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value)
+  },
+  HardwareCost: {
+    attribute: "hardware_cost",
+    value: 0,
+    jsonProperty: "hardwareCost",
+    format: (value) => Number(value)
+  },
+  Hardwares: {
+    attribute: "hardwares",
+    value: [],
+    jsonProperty: "hardwares",
+    format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value)
   }
 };
 const AdminProfileAttributes = {
