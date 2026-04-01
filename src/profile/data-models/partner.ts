@@ -207,13 +207,6 @@ export const PartnerProfileAttributes = {
     cast: (value: number[]) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<number[]>,
-  Licenses: {
-    attribute: "licenses",
-    value: [] as string[],
-    jsonProperty: "licenses",
-    format: (value: any): string[] => JSON.parse(value),
-    cast: (value: string[]) => JSON.stringify(value),
-  } as AttributeConfig<string[]>,
   HardwareCost: {
     attribute: "hardware_cost",
     value: 0,
