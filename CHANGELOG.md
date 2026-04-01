@@ -2,6 +2,10 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.3.0 (2026-04-01)
+**New** [POSWEB-2056](https://posguru.atlassian.net/browse/POSWEB-2056)
+Add new properties licenses, totat hardwareCost, hardwares etc to the partner profile attributes
+
 ## 4.2.0 (2026-03-30)
 **New** [POSWEB-2050](https://posguru.atlassian.net/browse/POSWEB-2050)
 Add additionalCharges to Order
