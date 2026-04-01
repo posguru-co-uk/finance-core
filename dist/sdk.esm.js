@@ -621,10 +621,10 @@ const PartnerProfileAttributes = {
     cast: (value) => JSON.stringify(value),
     override: true
   },
-  License: {
-    attribute: "license",
+  Licenses: {
+    attribute: "licenses",
     value: [],
-    jsonProperty: "license",
+    jsonProperty: "licenses",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
   },
