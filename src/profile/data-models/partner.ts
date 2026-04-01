@@ -207,10 +207,10 @@ export const PartnerProfileAttributes = {
     cast: (value: number[]) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<number[]>,
-  Licenses: {
-    attribute: "licenses",
+  License: {
+    attribute: "license",
     value: [] as string[],
-    jsonProperty: "licenses",
+    jsonProperty: "license",
     format: (value: any): string[] => JSON.parse(value),
     cast: (value: string[]) => JSON.stringify(value),
   } as AttributeConfig<string[]>,
