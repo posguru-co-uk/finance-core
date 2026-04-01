@@ -4,7 +4,7 @@
 
 ## 4.3.1 (2026-04-01)
 **Fix** [POSWEB-2056](https://posguru.atlassian.net/browse/POSWEB-2057)
-Rename license to licenses
+Remove license Property from partner data-model
 
 ## 4.3.0 (2026-04-01)
 **New** [POSWEB-2056](https://posguru.atlassian.net/browse/POSWEB-2056)

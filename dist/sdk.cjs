@@ -623,13 +623,6 @@ const PartnerProfileAttributes = {
     cast: (value) => JSON.stringify(value),
     override: true
   },
-  Licenses: {
-    attribute: "licenses",
-    value: [],
-    jsonProperty: "licenses",
-    format: (value) => JSON.parse(value),
-    cast: (value) => JSON.stringify(value)
-  },
   HardwareCost: {
     attribute: "hardware_cost",
     value: 0,
