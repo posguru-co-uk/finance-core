@@ -85,7 +85,7 @@ export const DeviceProfileAttributes = {
     attribute: "service_types",
     value: [] as string[], // ✅ fixed instead of false
     jsonProperty: "serviceTypes",
-    format: (value: any) => (Array.isArray(value) ? value : []),
+    format: (value: any) => JSON.parse(value),
     cast: (value: any) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<string[]>,
