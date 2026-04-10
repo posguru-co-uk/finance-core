@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.3.2 (2026-04-11)
+**Fix** [POSWEB-2081](https://posguru.atlassian.net/browse/POSWEB-2081) service type not getting device level
+
 ## 4.3.1 (2026-04-01)
 **Fix** [POSWEB-2056](https://posguru.atlassian.net/browse/POSWEB-2057)
 Remove license Property from partner data-model

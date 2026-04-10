@@ -235,7 +235,7 @@ const DeviceProfileAttributes = {
     value: [],
     // ✅ fixed instead of false
     jsonProperty: "serviceTypes",
-    format: (value) => Array.isArray(value) ? value : [],
+    format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value),
     override: true
   },
@@ -413,7 +413,8 @@ const LocationProfileAttributes = {
     attribute: "service_types",
     value: [],
     jsonProperty: "serviceTypes",
-    format: (value) => Array.isArray(value) ? value : [],
+    format: (value) => JSON.parse(value),
+    cast: (value) => JSON.stringify(value),
     override: true
   },
   START_TOKEN_NUMBER: {
