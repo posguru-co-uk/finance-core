@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 3.0.2 (2026-04-11)
+**Fix** [POSWEB-2081](https://posguru.atlassian.net/browse/POSWEB-2081) service type not getting device level
+
 ## 3.0.1 (2026-02-23)
 **Fix** [POSWEB-1911](https://posguru.atlassian.net/browse/POSWEB-1915) Refactor profile attribute types to use number arrays for permissions and addon features
 
