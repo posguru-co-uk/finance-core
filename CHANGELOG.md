@@ -2,9 +2,6 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 4.4.0 (2026-05-15)
-**New** [POSWEB-2188](https://posguru.atlassian.net/browse/POSWEB-2188) Add checkInAT and checkOutAt
-
 ## 4.3.2 (2026-04-11)
 **Fix** [POSWEB-2081](https://posguru.atlassian.net/browse/POSWEB-2081) service type not getting device level
 
