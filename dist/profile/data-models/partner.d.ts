@@ -31,4 +31,6 @@ export declare const PartnerProfileAttributes: {
     ADDON_FEATURES: AttributeConfig<number[]>;
     HardwareCost: AttributeConfig<number>;
     Hardwares: AttributeConfig<string[]>;
+    CHECK_IN_TIME: AttributeConfig<string | null>;
+    CHECK_OUT_TIME: AttributeConfig<string | null>;
 };

@@ -634,6 +634,18 @@ const PartnerProfileAttributes = {
     jsonProperty: "hardwares",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
+  },
+  CHECK_IN_TIME: {
+    attribute: "check_in_time",
+    value: null,
+    jsonProperty: "checkInTime",
+    format: (value) => String(value)
+  },
+  CHECK_OUT_TIME: {
+    attribute: "check_out_time",
+    value: null,
+    jsonProperty: "checkOutTime",
+    format: (value) => String(value)
   }
 };
 const AdminProfileAttributes = {
