@@ -26,6 +26,8 @@ export interface Room {
     orderId: number;
     status: string;
     amount: number;
+    checkInAt: string;
+    checkOutAt: string;
 }
 export interface AdditionalChargeItem {
     name: string;
