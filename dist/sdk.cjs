@@ -636,6 +636,18 @@ const PartnerProfileAttributes = {
     jsonProperty: "hardwares",
     format: (value) => JSON.parse(value),
     cast: (value) => JSON.stringify(value)
+  },
+  ROOM_CHECK_IN_TIME: {
+    attribute: "room_check_in_time",
+    value: null,
+    jsonProperty: "roomCheckInTime",
+    format: (value) => String(value)
+  },
+  ROOM_CHECK_OUT_TIME: {
+    attribute: "room_check_out_time",
+    value: null,
+    jsonProperty: "roomCheckOutTime",
+    format: (value) => String(value)
   }
 };
 const AdminProfileAttributes = {
