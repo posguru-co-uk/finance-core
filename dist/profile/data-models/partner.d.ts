@@ -31,4 +31,6 @@ export declare const PartnerProfileAttributes: {
     ADDON_FEATURES: AttributeConfig<number[]>;
     HardwareCost: AttributeConfig<number>;
     Hardwares: AttributeConfig<string[]>;
+    ROOM_CHECK_IN_TIME: AttributeConfig<string | null>;
+    ROOM_CHECK_OUT_TIME: AttributeConfig<string | null>;
 };

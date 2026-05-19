@@ -220,5 +220,17 @@ export const PartnerProfileAttributes = {
     format: (value: any): string[] => JSON.parse(value),
     cast: (value: string[]) => JSON.stringify(value),
   } as AttributeConfig<string[]>,
+  ROOM_CHECK_IN_TIME: {
+    attribute: 'room_check_in_time',
+    value: null,
+    jsonProperty: "roomCheckInTime",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
+  ROOM_CHECK_OUT_TIME: {
+    attribute: 'room_check_out_time',
+    value: null,
+    jsonProperty: "roomCheckOutTime",
+    format: (value: any) => String(value),
+  } as AttributeConfig<string | null>,
 };
 
