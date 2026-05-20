@@ -33,4 +33,5 @@ export declare const PartnerProfileAttributes: {
     Hardwares: AttributeConfig<string[]>;
     ROOM_CHECK_IN_TIME: AttributeConfig<string | null>;
     ROOM_CHECK_OUT_TIME: AttributeConfig<string | null>;
+    SUBSCRIPTION_PLANS: AttributeConfig<string[]>;
 };
