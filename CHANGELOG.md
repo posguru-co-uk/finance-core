@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.5.0 (2026-05-20)
+**New** [POSWEB-2201](https://posguru.atlassian.net/browse/POSWEB-2201) Add new feature Subscription Plans
+
 ## 4.4.0 (2026-05-19)
 **New** [POSWEB-2188](https://posguru.atlassian.net/browse/POSWEB-2188) Add room checking time
 

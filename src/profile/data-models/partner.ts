@@ -232,5 +232,12 @@ export const PartnerProfileAttributes = {
     jsonProperty: "roomCheckOutTime",
     format: (value: any) => String(value),
   } as AttributeConfig<string | null>,
+  SUBSCRIPTION_PLANS: {
+    attribute: 'subscription_plans',
+    value: [] as string[],
+    jsonProperty: "subscriptionPlans",
+    format: (value: any): string[] => value ? JSON.parse(value) : [],
+    cast: (value: string[]) => JSON.stringify(value || []),
+  } as AttributeConfig<string[]>,
 };
 

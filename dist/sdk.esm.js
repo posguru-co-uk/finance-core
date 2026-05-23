@@ -646,6 +646,13 @@ const PartnerProfileAttributes = {
     value: null,
     jsonProperty: "roomCheckOutTime",
     format: (value) => String(value)
+  },
+  SUBSCRIPTION_PLANS: {
+    attribute: "subscription_plans",
+    value: [],
+    jsonProperty: "subscriptionPlans",
+    format: (value) => value ? JSON.parse(value) : [],
+    cast: (value) => JSON.stringify(value || [])
   }
 };
 const AdminProfileAttributes = {
