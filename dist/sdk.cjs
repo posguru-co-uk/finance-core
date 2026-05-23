@@ -655,6 +655,12 @@ const PartnerProfileAttributes = {
     jsonProperty: "subscriptionPlans",
     format: (value) => value ? JSON.parse(value) : [],
     cast: (value) => JSON.stringify(value || [])
+  },
+  SKIP_SUBSCRIPTION: {
+    attribute: "skip_subscription",
+    value: false,
+    jsonProperty: "skipSubscription",
+    format: (value) => isBoolean(value)
   }
 };
 const AdminProfileAttributes = {

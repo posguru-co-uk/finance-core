@@ -34,4 +34,5 @@ export declare const PartnerProfileAttributes: {
     ROOM_CHECK_IN_TIME: AttributeConfig<string | null>;
     ROOM_CHECK_OUT_TIME: AttributeConfig<string | null>;
     SUBSCRIPTION_PLANS: AttributeConfig<string[]>;
+    SKIP_SUBSCRIPTION: AttributeConfig<boolean>;
 };

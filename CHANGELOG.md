@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.6.0 (2026-05-23)
+**New** [POSWEB-2213](https://posguru.atlassian.net/browse/POSWEB-2213) Add skip subscription
+
 ## 4.5.0 (2026-05-20)
 **New** [POSWEB-2201](https://posguru.atlassian.net/browse/POSWEB-2201) Add new feature Subscription Plans
 
