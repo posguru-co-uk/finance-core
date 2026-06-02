@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.6.2 (2026-06-02)
+**New** [POSWEB-2252](https://posguru.atlassian.net/browse/POSWEB-2252) Add skip_subscription default true
+
 ## 4.6.0 (2026-05-23)
 **New** [POSWEB-2213](https://posguru.atlassian.net/browse/POSWEB-2213) Add skip subscription
 
