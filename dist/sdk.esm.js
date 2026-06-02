@@ -658,6 +658,7 @@ const PartnerProfileAttributes = {
   SKIP_SUBSCRIPTION: {
     attribute: "skip_subscription",
     value: false,
+    override: true,
     jsonProperty: "skipSubscription",
     format: (value) => isBoolean(value)
   }
