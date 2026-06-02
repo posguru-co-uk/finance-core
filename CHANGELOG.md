@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.6.1 (2026-05-30)
+**Fix** [POSWEB-2239](https://posguru.atlassian.net/browse/POSWEB-2239) Add Override true in SUBSCRIPTION PLANS
+
 ## 4.6.0 (2026-05-23)
 **New** [POSWEB-2213](https://posguru.atlassian.net/browse/POSWEB-2213) Add skip subscription
 

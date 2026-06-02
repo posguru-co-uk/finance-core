@@ -653,6 +653,7 @@ const PartnerProfileAttributes = {
     attribute: "subscription_plans",
     value: [],
     jsonProperty: "subscriptionPlans",
+    override: true,
     format: (value) => value ? JSON.parse(value) : [],
     cast: (value) => JSON.stringify(value || [])
   },

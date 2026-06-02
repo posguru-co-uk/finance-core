@@ -236,6 +236,7 @@ export const PartnerProfileAttributes = {
     attribute: 'subscription_plans',
     value: [] as string[],
     jsonProperty: "subscriptionPlans",
+    override: true,
     format: (value: any): string[] => value ? JSON.parse(value) : [],
     cast: (value: string[]) => JSON.stringify(value || []),
   } as AttributeConfig<string[]>,
