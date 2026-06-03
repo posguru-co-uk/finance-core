@@ -2,9 +2,11 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.7.0 (2026-06-03)
+**New** [POSWEB-2274](https://posguru.atlassian.net/browse/POSWEB-2274) Add JSON stringify cast for permissions attribute in AdminProfileAttributes
+
 ## 4.6.2 (2026-06-02)
 **Fix** [POSWEB-2252](https://posguru.atlassian.net/browse/POSWEB-2252) package fix
-
 
 ## 4.6.1 (2026-06-02)
 **Fix** [POSWEB-2239](https://posguru.atlassian.net/browse/POSWEB-2239) Add Override true in SUBSCRIPTION PLANS

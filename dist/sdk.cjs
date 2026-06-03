@@ -694,7 +694,8 @@ const AdminProfileAttributes = {
     attribute: "permissions",
     value: [],
     jsonProperty: "permissions",
-    format: (value) => Array.isArray(value) ? value : []
+    format: (value) => Array.isArray(value) ? value : [],
+    cast: (value) => JSON.stringify(value)
   },
   STATUS: {
     attribute: "status",
