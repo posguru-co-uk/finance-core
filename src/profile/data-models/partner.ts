@@ -207,28 +207,19 @@ export const PartnerProfileAttributes = {
     cast: (value: number[]) => JSON.stringify(value),
     override: true,
   } as AttributeConfig<number[]>,
-  AUTO_ROSTER_ENABLED: {
-    attribute: "auto_roster_enabled",
-    value: false,
-    jsonProperty: "autoRosterEnabled",
-    format: (value: any) => isBoolean(value),
-    cast: (value: boolean) => JSON.stringify(value),
-  } as AttributeConfig<boolean>,
-  NEXT_ROSTER_WEEK_START: {
-    attribute: "next_roster_week_start",
-    value: null,
-    jsonProperty: "nextRosterWeekStart",
-    format: (value: any): string | null => value,
-    cast: (value: string | null) => value,
-  } as AttributeConfig<string | null>,
-  LAST_AUTO_ROSTER_GENERATED_AT: {
-    attribute: "last_auto_roster_generated_at",
-    value: null,
-    jsonProperty: "lastAutoRosterGeneratedAt",
-    format: (value: any): string | null => value,
-    cast: (value: string | null) => value,
-  } as AttributeConfig<string | null>,
-
+  HardwareCost: {
+    attribute: "hardware_cost",
+    value: 0,
+    jsonProperty: "hardwareCost",
+    format: (value: any) => Number(value),
+  }as AttributeConfig<number>,
+  Hardwares: {
+    attribute: "hardwares",
+    value: [] as string[],
+    jsonProperty: "hardwares",
+    format: (value: any): string[] => JSON.parse(value),
+    cast: (value: string[]) => JSON.stringify(value),
+  } as AttributeConfig<string[]>,
   ROOM_CHECK_IN_TIME: {
     attribute: 'room_check_in_time',
     value: null,
