@@ -29,8 +29,9 @@ export declare const PartnerProfileAttributes: {
     LATITUDE: AttributeConfig<string | null>;
     LONGITUDE: AttributeConfig<string | null>;
     ADDON_FEATURES: AttributeConfig<number[]>;
-    HardwareCost: AttributeConfig<number>;
-    Hardwares: AttributeConfig<string[]>;
+    AUTO_ROSTER_ENABLED: AttributeConfig<boolean>;
+    NEXT_ROSTER_WEEK_START: AttributeConfig<string | null>;
+    LAST_AUTO_ROSTER_GENERATED_AT: AttributeConfig<string | null>;
     ROOM_CHECK_IN_TIME: AttributeConfig<string | null>;
     ROOM_CHECK_OUT_TIME: AttributeConfig<string | null>;
     SUBSCRIPTION_PLANS: AttributeConfig<string[]>;

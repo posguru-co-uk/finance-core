@@ -622,18 +622,26 @@ const PartnerProfileAttributes = {
     cast: (value) => JSON.stringify(value),
     override: true
   },
-  HardwareCost: {
-    attribute: "hardware_cost",
-    value: 0,
-    jsonProperty: "hardwareCost",
-    format: (value) => Number(value)
-  },
-  Hardwares: {
-    attribute: "hardwares",
-    value: [],
-    jsonProperty: "hardwares",
-    format: (value) => JSON.parse(value),
+  AUTO_ROSTER_ENABLED: {
+    attribute: "auto_roster_enabled",
+    value: false,
+    jsonProperty: "autoRosterEnabled",
+    format: (value) => isBoolean(value),
     cast: (value) => JSON.stringify(value)
+  },
+  NEXT_ROSTER_WEEK_START: {
+    attribute: "next_roster_week_start",
+    value: null,
+    jsonProperty: "nextRosterWeekStart",
+    format: (value) => value,
+    cast: (value) => value
+  },
+  LAST_AUTO_ROSTER_GENERATED_AT: {
+    attribute: "last_auto_roster_generated_at",
+    value: null,
+    jsonProperty: "lastAutoRosterGeneratedAt",
+    format: (value) => value,
+    cast: (value) => value
   },
   ROOM_CHECK_IN_TIME: {
     attribute: "room_check_in_time",
