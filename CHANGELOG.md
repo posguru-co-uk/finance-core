@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.8.0 (2026-06-03)
+**New** [POSWEB-2434](https://posguru.atlassian.net/browse/POSWEB-2434) Add new attributes for auto roster configuration in PartnerProfileAttributes
+
 ## 4.7.0 (2026-06-03)
 **New** [POSWEB-2274](https://posguru.atlassian.net/browse/POSWEB-2274) Add JSON stringify cast for permissions attribute in AdminProfileAttributes
 
