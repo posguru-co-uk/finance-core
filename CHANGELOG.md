@@ -2,7 +2,7 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 4.8.0 (2026-06-03)
+## 4.8.0 (2026-07-14)
 **New** [POSWEB-2434](https://posguru.atlassian.net/browse/POSWEB-2434) Add new attributes for auto roster configuration in PartnerProfileAttributes
 
 ## 4.7.0 (2026-06-03)
