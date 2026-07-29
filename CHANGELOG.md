@@ -2,6 +2,9 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
+## 4.8.1 (2026-07-30)
+**Fix** [POSWEB-2488](https://posguru.atlassian.net/browse/POSWEB-2488) Update format function for permissions attribute to parse JSON input
+
 ## 4.8.0 (2026-07-14)
 **New** [POSWEB-2434](https://posguru.atlassian.net/browse/POSWEB-2434) Add new attributes for auto roster configuration in PartnerProfileAttributes
 
