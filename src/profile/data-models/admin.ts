@@ -34,7 +34,7 @@ export const AdminProfileAttributes = {
     attribute: 'permissions',
     value: [] as string[],
     jsonProperty: 'permissions',
-    format: (value: any) => (Array.isArray(value) ? value : []),
+    format: (value) => JSON.parse(value),
     cast: (value: string[]) => JSON.stringify(value),
   } as AttributeConfig<string[]>,
 
