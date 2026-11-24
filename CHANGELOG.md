@@ -2,9 +2,6 @@
 
 **Breaking**, **New**, **Fix**, **Change**, **Others**
 
-## 4.8.2 (2026-11-24)
-**Fix** [POSWEB-2962](https://posguru.atlassian.net/browse/POSWEB-2962) Add override true for roomTime attribute
-
 ## 4.8.1 (2026-07-30)
 **Fix** [POSWEB-2488](https://posguru.atlassian.net/browse/POSWEB-2488) Update format function for permissions attribute to parse JSON input
 
