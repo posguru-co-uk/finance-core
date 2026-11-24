@@ -649,14 +649,12 @@ const PartnerProfileAttributes = {
     attribute: "room_check_in_time",
     value: null,
     jsonProperty: "roomCheckInTime",
-    override: true,
     format: (value) => String(value)
   },
   ROOM_CHECK_OUT_TIME: {
     attribute: "room_check_out_time",
     value: null,
     jsonProperty: "roomCheckOutTime",
-    override: true,
     format: (value) => String(value)
   },
   SUBSCRIPTION_PLANS: {
