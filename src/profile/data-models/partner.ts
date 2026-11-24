@@ -233,12 +233,14 @@ export const PartnerProfileAttributes = {
     attribute: 'room_check_in_time',
     value: null,
     jsonProperty: "roomCheckInTime",
+    override: true,
     format: (value: any) => String(value),
   } as AttributeConfig<string | null>,
   ROOM_CHECK_OUT_TIME: {
     attribute: 'room_check_out_time',
     value: null,
     jsonProperty: "roomCheckOutTime",
+    override: true,
     format: (value: any) => String(value),
   } as AttributeConfig<string | null>,
   SUBSCRIPTION_PLANS: {
